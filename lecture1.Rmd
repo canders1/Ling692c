@@ -1,0 +1,220 @@
+---
+title: "Programming in Python: Lecture 1"
+output: html_document
+---
+
+```{r}
+library(knitr)
+opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
+```
+
+Today we'll go over Python's atomic types and basic data structures.
+
+<h3>Getting started</h3>
+
+In this class, we're using Python 2.7. 
+
+If you haven't already installed it, you should go to https://www.python.org/downloads and do so now.
+
+You can write Python and run it using the Python IDLE, but to write programs and save them, you'll need to use a text editor.
+
+I use Sublime Text, which is free and multi-purpose.
+
+<h3>Language properties</h3>
+
+Python is intepreted and dynamically typed (like R!)
+
+<h3>Data Types</h3>
+
+<h4>Integers</h4>
+
+```{python}
+x = 10
+print(x)
+print(type(x))
+```
+
+<h4>Floats</h4>
+
+Python has another numeric datatype, which is used for floating point numbers.
+
+```{python}
+y = 5.0
+print(y)
+print(type(y))
+```
+
+<h4>Integer and Double Operations</h4>
+
+<h6>Arithmetic operations</h6>
+
+When you divide a float by a float, you get a float.
+
+```{python}
+y = 21.0
+x = 5.0
+z = y/x
+print(z)
+print(type(z))
+```
+
+When you divide an integer by an integer, you get an integer.
+
+```{python}
+y = 21
+x = 5
+z = y/x
+print(z)
+print(type(z))
+```
+
+However, converting an integer to a float is very easy.
+
+<h6>Type conversion</h6>
+
+```{python}
+x = 5
+y = float(x)
+print(type(y))
+```
+
+<h4>Booleans</h4>
+
+```{python}
+x = True
+y = False
+print(x,y)
+```
+
+<h4>Boolean operations</h4>
+
+<h6>Equality testing</h6>
+
+```{python}
+x = True
+y = False
+print(x == y)
+```
+
+<h6>Negation</h6>
+
+```{python}
+x = True
+y = False
+print(x != y)
+print(not (x == y))
+print((not x) == y)
+```
+
+<h6>Conjunction and Disjunction</h6>
+
+```{python}
+print((True or False) == True)
+print((True and False) == True)
+```
+
+<h4>Comparing numeric types</h4>
+
+```{python}
+i = 5
+j = 5.0
+print(j == i)
+print(j > i)
+print(j <= i)
+```
+
+<h4>Strings</h4>
+
+Python is great for string-processing!
+
+```{python}
+cat = "Captain Haddock"
+print(cat)
+```
+
+Often, we want to know the length of the string we're dealing with.
+
+```{python}
+print(len("cat"))
+```
+One helpful feature is being able to slice strings.
+
+*Important note*: Unlike R, Python indexes starting at 0.
+
+```{python}
+yummy = "marshmallow"
+gummy = yummy[0:5]
+print(gummy)
+```
+
+Another common task is finding substrings.
+
+```{python}
+yummy = "marshmallow"
+gummy = "marsh"
+print(gummy in yummy)
+```
+
+We can also build up longer strings through concatenation.
+
+```{python}
+fish = "Haddock"
+title = "Captain"
+cat = title+" "+fish
+print(cat)
+```
+
+We can divide a string by a specified character using split.
+
+```{python}
+cat = "Captain Haddock"
+print(cat.split(" "))
+```
+
+The object returned by split() is a list of strings.
+
+<h4>Lists</h4>
+
+Python lists can hold heterogenous data types.
+
+```{python}
+cat_data = [5,"Captain Haddock","Calvin",11,True]
+print(cat_data)
+print(type(cat_data[0]))
+```
+
+Notice that the contents of a list can be indexed just like strings. We can also take slices of lists.
+
+```{python}
+cat_data = [5,"Captain Haddock","Calvin",11,True]
+cats = cat_data[1:3]
+print(cats)
+```
+
+There are all kinds of useful list operations. But the most important to know for now is how to add new items.
+
+```{python}
+cats = ["Captain Haddock","Calvin"]
+cats.append("Jane")
+print(cats)
+```
+
+We can also remove items.
+
+```{python}
+cats = ["Captain Haddock","Calvin","Jane"]
+cats.remove("Jane")
+print(cats)
+```
+
+Notice that we did not have to save the result of append() or remove() as a list. These methods do not return anything; they update the list in place.
+
+There is also a built-in sort method for lists, which likewise sorts in place.
+
+```{python}
+cats = ["Captain Haddock","Smurfie","Calvin","Jane"]
+cats.sort()
+print(cats)
+```
+
+
