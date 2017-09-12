@@ -389,7 +389,7 @@ Reading data in from a file
 f = open(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt&quot;,&quot;r&quot;)
 wordlist = f.read()
 print wordlist</code></pre>
-<pre><code>## 'CONNECTIONIST', 'ALGORITHM', 'SEMANTICS', 'COGNITION', 'MODELING', 'PARSING', 'TAGGING', 'NEURAL', 'SYNTAX', 'REGEX'</code></pre>
+<pre><code>## REGEX,SYNTAX,NEURAL,TAGGING,PARSING,MODELING,COGNITION,SEMANTICS,ALGORITHM,CONNECTIONIST</code></pre>
 <h3>
 Exercise
 </h3>
@@ -406,9 +406,14 @@ for line in grid:
   newline = &quot;&quot;
   for letter in line:
     newline = newline+&quot; &quot;+letter
-  print newline</code></pre>
-<pre><code>## 
-##  N G G N I L E D O M R N Q J L J U L G A
+  print newline
+
+f = open(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt&quot;,&quot;r&quot;)
+
+wordlist = f.read()
+for w in wordlist.split(&quot;,&quot;):
+  print w</code></pre>
+<pre><code>##  N G G N I L E D O M R N Q J L J U L G A
 ##  P E D J S U F X X R Q G R L P Z H B W E
 ##  X G V K O P N G N O N J L J V R E G E X
 ##  A J I E E B C V V B O Z L R J H T T P N
@@ -427,7 +432,57 @@ for line in grid:
 ##  M K H F L L F P R V W A W J D T J O U H
 ##  O X G J V Y L U K H K W N P T V B U I L
 ##  C O P U J J K L A W L M P A R S I N G N
-##  Y M J H C Z C J I G H A L Z Z R O N A R</code></pre>
+##  Y M J H C Z C J I G H A L Z Z R O N A R 
+## 
+## REGEX
+## SYNTAX
+## NEURAL
+## TAGGING
+## PARSING
+## MODELING
+## COGNITION
+## SEMANTICS
+## ALGORITHM
+## CONNECTIONIST</code></pre>
+<h6>
+Bonus exercise
+</h6>
+<p>Can you come up with a way of finding words in the word search puzzle?</p>
+<pre class="python"><code>import sys
+
+gridFile = open(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/grid.txt&quot;,&quot;r&quot;)
+gridText = gridFile.read()
+
+grid = gridText.split(&quot;,&quot;)
+
+f = open(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt&quot;,&quot;r&quot;)
+wordlist = f.read()
+wordlist = wordlist.split(&quot;,&quot;)
+
+#Vertical
+for line in grid:
+  for w in wordlist:
+    if w in line or w[::-1] in line:
+      print &quot;Found {0}!&quot;.format(w)
+
+#Horizontal
+columns = []
+for i in range(0,20):
+  columns.append(&quot;&quot;)
+for line in grid:
+  for i in range(0,len(grid)):
+    columns[i] = columns[i]+line[i]
+
+for c in columns:
+  for w in wordlist:
+    if w in c or w[::-1] in c:
+      print &quot;Found {0}!&quot;.format(w)</code></pre>
+<pre><code>## Found MODELING!
+## Found REGEX!
+## Found NEURAL!
+## Found ALGORITHM!
+## Found PARSING!
+## Found COGNITION!</code></pre>
 
 
 
