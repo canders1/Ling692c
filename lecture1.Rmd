@@ -6,6 +6,7 @@ output: html_document
 ```{r}
 library(knitr)
 opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
+getwd()
 ```
 
 Today we'll go over Python's atomic types and basic data structures.
@@ -327,6 +328,19 @@ for cat in cats:
 
 With fancy strings, we can supply all variables as arguments to format() instead of using concatenate to build up a string.
 
+<h3>Reading data in from a file</h3>
+
+The last topic we'll cover today is reading data in from a file. To do this, we need to import the sys library.
+
+Next, we open the file using open(), and specify whether we are reading ("r") or writing ("w") from the file using the second argument to open().
+
+```{python}
+import sys
+f = open("/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt","r")
+wordlist = f.read()
+print wordlist
+```
+
 <h3>Exercise</h3>
 
 I've generate a word search using the misc.wordfinder in the NLTK library. NLTK has lots of useful modules for computational linguistics--- it's worth downloading and exploring.
@@ -336,14 +350,56 @@ Your first task, though, is simply to figure out how to print the word search pu
 ```{python}
 import sys
 
-gridFile = open("~/Documents/UMass/CogMod/Ling692c/grid.txt","r")
+gridFile = open("/Users/carolyn/Documents/UMass/CogMod/Ling692c/grid.txt","r")
 gridText = gridFile.read()
 
-for l in grid:
-  line = ""
-  for letter in l:
-    line = line+" "+letter
-  print line
-for word in searchList:
-  print word
+grid = gridText.split(",")
+
+for line in grid:
+  newline = ""
+  for letter in line:
+    newline = newline+" "+letter
+  print newline
+
+f = open("/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt","r")
+
+wordlist = f.read()
+for w in wordlist.split(","):
+  print w
+```
+
+<h6>Bonus exercise</h6>
+
+Can you come up with a way of finding words in the word search puzzle?
+
+```{python}
+import sys
+
+gridFile = open("/Users/carolyn/Documents/UMass/CogMod/Ling692c/grid.txt","r")
+gridText = gridFile.read()
+
+grid = gridText.split(",")
+
+f = open("/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt","r")
+wordlist = f.read()
+wordlist = wordlist.split(",")
+
+#Vertical
+for line in grid:
+  for w in wordlist:
+    if w in line or w[::-1] in line:
+      print "Found {0}!".format(w)
+
+#Horizontal
+columns = []
+for i in range(0,20):
+  columns.append("")
+for line in grid:
+  for i in range(0,len(grid)):
+    columns[i] = columns[i]+line[i]
+
+for c in columns:
+  for w in wordlist:
+    if w in c or w[::-1] in c:
+      print "Found {0}!".format(w)
 ```

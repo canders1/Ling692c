@@ -121,7 +121,9 @@ $(document).ready(function () {
 
 
 <pre class="r"><code>library(knitr)
-opts_chunk$set(engine = 'python',engine.path=&quot;/usr/local/bin/python2&quot;)</code></pre>
+opts_chunk$set(engine = 'python',engine.path=&quot;/usr/local/bin/python2&quot;)
+getwd()</code></pre>
+<pre><code>## [1] &quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c&quot;</code></pre>
 <p>Today we’ll go over Python’s atomic types and basic data structures.</p>
 <h3>
 Getting started
@@ -379,9 +381,53 @@ for cat in cats:
 ## Captain Haddock's favorite food is rabbit. He is 5 years old.</code></pre>
 <p>With fancy strings, we can supply all variables as arguments to format() instead of using concatenate to build up a string.</p>
 <h3>
+Reading data in from a file
+</h3>
+<p>The last topic we’ll cover today is reading data in from a file. To do this, we need to import the sys library.</p>
+<p>Next, we open the file using open(), and specify whether we are reading (“r”) or writing (“w”) from the file using the second argument to open().</p>
+<pre class="python"><code>import sys
+f = open(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt&quot;,&quot;r&quot;)
+wordlist = f.read()
+print wordlist</code></pre>
+<pre><code>## 'CONNECTIONIST', 'ALGORITHM', 'SEMANTICS', 'COGNITION', 'MODELING', 'PARSING', 'TAGGING', 'NEURAL', 'SYNTAX', 'REGEX'</code></pre>
+<h3>
 Exercise
 </h3>
-<pre class="python"><code></code></pre>
+<p>I’ve generate a word search using the misc.wordfinder in the NLTK library. NLTK has lots of useful modules for computational linguistics— it’s worth downloading and exploring.</p>
+<p>Your first task, though, is simply to figure out how to print the word search puzzle nicely.</p>
+<pre class="python"><code>import sys
+
+gridFile = open(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/grid.txt&quot;,&quot;r&quot;)
+gridText = gridFile.read()
+
+grid = gridText.split(&quot;,&quot;)
+
+for line in grid:
+  newline = &quot;&quot;
+  for letter in line:
+    newline = newline+&quot; &quot;+letter
+  print newline</code></pre>
+<pre><code>## 
+##  N G G N I L E D O M R N Q J L J U L G A
+##  P E D J S U F X X R Q G R L P Z H B W E
+##  X G V K O P N G N O N J L J V R E G E X
+##  A J I E E B C V V B O Z L R J H T T P N
+##  E T L J T X D I S B I F Y T Q F M E S B
+##  U N W R X Y D Q A C T C S J R Y I V C U
+##  Q D U O E L Z B J P I Y V W H L R F D D
+##  L L M U P K E F W V N T C T N C D K N B
+##  L B Y S Q F N Z X T G R N O A J E K O T
+##  A R O I J W I K A A O G P A V G H O T E
+##  H I T C T H N X Y X C D C P M E G R Y U
+##  H Y A U H S G F P Y K V J G Y E C I Q J
+##  T R T S I N O I T C E N N O C Y S G N X
+##  M I J P P I K F L V Y W Q J Q E Y Q T G
+##  B Y S Q N E U R A L O J G I G S V S P U
+##  V J E K X J B U W D M H T I R O G L A W
+##  M K H F L L F P R V W A W J D T J O U H
+##  O X G J V Y L U K H K W N P T V B U I L
+##  C O P U J J K L A W L M P A R S I N G N
+##  Y M J H C Z C J I G H A L Z Z R O N A R</code></pre>
 
 
 
