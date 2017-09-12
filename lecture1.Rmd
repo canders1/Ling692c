@@ -326,3 +326,24 @@ for cat in cats:
 ```
 
 With fancy strings, we can supply all variables as arguments to format() instead of using concatenate to build up a string.
+
+<h3>Exercise</h3>
+
+I've generate a word search using the misc.wordfinder in the NLTK library. NLTK has lots of useful modules for computational linguistics--- it's worth downloading and exploring.
+
+Your first task, though, is simply to figure out how to print the word search puzzle nicely. 
+
+```{python}
+import sys
+
+gridFile = open("~/Documents/UMass/CogMod/Ling692c/grid.txt","r")
+gridText = gridFile.read()
+
+for l in grid:
+  line = ""
+  for letter in l:
+    line = line+" "+letter
+  print line
+for word in searchList:
+  print word
+```
