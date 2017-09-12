@@ -141,8 +141,8 @@ Data Types
 Integers
 </h4>
 <pre class="python"><code>x = 10
-print(x)
-print(type(x))</code></pre>
+print x
+print type(x)</code></pre>
 <pre><code>## 10
 ## &lt;type 'int'&gt;</code></pre>
 <h4>
@@ -150,8 +150,8 @@ Floats
 </h4>
 <p>Python has another numeric datatype, which is used for floating point numbers.</p>
 <pre class="python"><code>y = 5.0
-print(y)
-print(type(y))</code></pre>
+print y
+print type(y)</code></pre>
 <pre><code>## 5.0
 ## &lt;type 'float'&gt;</code></pre>
 <h4>
@@ -164,16 +164,16 @@ Arithmetic operations
 <pre class="python"><code>y = 21.0
 x = 5.0
 z = y/x
-print(z)
-print(type(z))</code></pre>
+print z
+print type(z)</code></pre>
 <pre><code>## 4.2
 ## &lt;type 'float'&gt;</code></pre>
 <p>When you divide an integer by an integer, you get an integer.</p>
 <pre class="python"><code>y = 21
 x = 5
 z = y/x
-print(z)
-print(type(z))</code></pre>
+print z
+print type(z)</code></pre>
 <pre><code>## 4
 ## &lt;type 'int'&gt;</code></pre>
 <p>However, converting an integer to a float is very easy.</p>
@@ -182,15 +182,15 @@ Type conversion
 </h6>
 <pre class="python"><code>x = 5
 y = float(x)
-print(type(y))</code></pre>
+print type(y)</code></pre>
 <pre><code>## &lt;type 'float'&gt;</code></pre>
 <h4>
 Booleans
 </h4>
 <pre class="python"><code>x = True
 y = False
-print(x,y)</code></pre>
-<pre><code>## (True, False)</code></pre>
+print x,y</code></pre>
+<pre><code>## True False</code></pre>
 <h4>
 Boolean operations
 </h4>
@@ -199,24 +199,24 @@ Equality testing
 </h6>
 <pre class="python"><code>x = True
 y = False
-print(x == y)</code></pre>
+print x == y</code></pre>
 <pre><code>## False</code></pre>
 <h6>
 Negation
 </h6>
 <pre class="python"><code>x = True
 y = False
-print(x != y)
-print(not (x == y))
-print((not x) == y)</code></pre>
+print x != y
+print not (x == y)
+print (not x) == y</code></pre>
 <pre><code>## True
 ## True
 ## True</code></pre>
 <h6>
 Conjunction and Disjunction
 </h6>
-<pre class="python"><code>print((True or False) == True)
-print((True and False) == True)</code></pre>
+<pre class="python"><code>print (True or False) == True
+print (True and False) == True</code></pre>
 <pre><code>## True
 ## False</code></pre>
 <h4>
@@ -224,9 +224,9 @@ Comparing numeric types
 </h4>
 <pre class="python"><code>i = 5
 j = 5.0
-print(j == i)
-print(j &gt; i)
-print(j &lt;= i)</code></pre>
+print j == i
+print j &gt; i
+print j &lt;= i</code></pre>
 <pre><code>## True
 ## False
 ## True</code></pre>
@@ -235,31 +235,31 @@ Strings
 </h4>
 <p>Python is great for string-processing!</p>
 <pre class="python"><code>cat = &quot;Captain Haddock&quot;
-print(cat)</code></pre>
+print cat</code></pre>
 <pre><code>## Captain Haddock</code></pre>
 <p>Often, we want to know the length of the string we’re dealing with.</p>
-<pre class="python"><code>print(len(&quot;cat&quot;))</code></pre>
+<pre class="python"><code>print len(&quot;cat&quot;)</code></pre>
 <pre><code>## 3</code></pre>
 <p>One helpful feature is being able to slice strings.</p>
 <p><em>Important note</em>: Unlike R, Python indexes starting at 0.</p>
 <pre class="python"><code>yummy = &quot;marshmallow&quot;
 gummy = yummy[0:5]
-print(gummy)</code></pre>
+print gummy</code></pre>
 <pre><code>## marsh</code></pre>
 <p>Another common task is finding substrings.</p>
 <pre class="python"><code>yummy = &quot;marshmallow&quot;
 gummy = &quot;marsh&quot;
-print(gummy in yummy)</code></pre>
+print gummy in yummy</code></pre>
 <pre><code>## True</code></pre>
 <p>We can also build up longer strings through concatenation.</p>
 <pre class="python"><code>fish = &quot;Haddock&quot;
 title = &quot;Captain&quot;
 cat = title+&quot; &quot;+fish
-print(cat)</code></pre>
+print cat</code></pre>
 <pre><code>## Captain Haddock</code></pre>
 <p>We can divide a string by a specified character using split.</p>
 <pre class="python"><code>cat = &quot;Captain Haddock&quot;
-print(cat.split(&quot; &quot;))</code></pre>
+print cat.split(&quot; &quot;)</code></pre>
 <pre><code>## ['Captain', 'Haddock']</code></pre>
 <p>The object returned by split() is a list of strings.</p>
 <h4>
@@ -267,31 +267,117 @@ Lists
 </h4>
 <p>Python lists can hold heterogenous data types.</p>
 <pre class="python"><code>cat_data = [5,&quot;Captain Haddock&quot;,&quot;Calvin&quot;,11,True]
-print(cat_data)
-print(type(cat_data[0]))</code></pre>
+print cat_data
+print type(cat_data[0])</code></pre>
 <pre><code>## [5, 'Captain Haddock', 'Calvin', 11, True]
 ## &lt;type 'int'&gt;</code></pre>
 <p>Notice that the contents of a list can be indexed just like strings. We can also take slices of lists.</p>
 <pre class="python"><code>cat_data = [5,&quot;Captain Haddock&quot;,&quot;Calvin&quot;,11,True]
 cats = cat_data[1:3]
-print(cats)</code></pre>
+print cats</code></pre>
 <pre><code>## ['Captain Haddock', 'Calvin']</code></pre>
 <p>There are all kinds of useful list operations. But the most important to know for now is how to add new items.</p>
 <pre class="python"><code>cats = [&quot;Captain Haddock&quot;,&quot;Calvin&quot;]
 cats.append(&quot;Jane&quot;)
-print(cats)</code></pre>
+print cats</code></pre>
 <pre><code>## ['Captain Haddock', 'Calvin', 'Jane']</code></pre>
-<p>We can also remove items.</p>
+<p>You can also add all items in a list to another list using extend()</p>
+<pre class="python"><code>blackCats = [&quot;Captain Haddock&quot;,&quot;Smurfie&quot;]
+moreBlackCats = [&quot;Carbon&quot;,&quot;Jane&quot;]
+blackCats.extend(moreBlackCats)
+print blackCats </code></pre>
+<pre><code>## ['Captain Haddock', 'Smurfie', 'Carbon', 'Jane']</code></pre>
+<p>We can remove items by name using delete().</p>
 <pre class="python"><code>cats = [&quot;Captain Haddock&quot;,&quot;Calvin&quot;,&quot;Jane&quot;]
 cats.remove(&quot;Jane&quot;)
-print(cats)</code></pre>
+print cats</code></pre>
 <pre><code>## ['Captain Haddock', 'Calvin']</code></pre>
 <p>Notice that we did not have to save the result of append() or remove() as a list. These methods do not return anything; they update the list in place.</p>
+<p>We can also remove them by position using pop()</p>
+<pre class="python"><code>cats = [&quot;Captain Haddock&quot;,&quot;Calvin&quot;,&quot;Jane&quot;]
+print cats.pop(0) 
+print cats</code></pre>
+<pre><code>## Captain Haddock
+## ['Calvin', 'Jane']</code></pre>
+<p>This way of removing items does return something: the item that is removed.</p>
 <p>There is also a built-in sort method for lists, which likewise sorts in place.</p>
 <pre class="python"><code>cats = [&quot;Captain Haddock&quot;,&quot;Smurfie&quot;,&quot;Calvin&quot;,&quot;Jane&quot;]
 cats.sort()
-print(cats)</code></pre>
+print cats</code></pre>
 <pre><code>## ['Calvin', 'Captain Haddock', 'Jane', 'Smurfie']</code></pre>
+<h4>
+Tuples
+</h4>
+<p>Tuples are sort of like lists, because they store things.</p>
+<pre class="python"><code>friends = (&quot;Calvin&quot;,&quot;Captain Haddock&quot;)
+print type(friends)</code></pre>
+<pre><code>## &lt;type 'tuple'&gt;</code></pre>
+<p>Unlike lists, however, tuples are immutable: you can’t change their contents. You can index into a tuple, but you cannot reassign a position in a tuple.</p>
+<pre class="python"><code>friends = (&quot;Calvin&quot;,&quot;Captain Haddock&quot;)
+print friends[0]
+#friends[0] = &quot;Smurfie&quot;</code></pre>
+<pre><code>## Calvin</code></pre>
+<p>You can also construct tuples through <em>tuple packing</em>.</p>
+<pre class="python"><code>friends = &quot;Calvin&quot;, &quot;Captain Haddock&quot;
+print friends</code></pre>
+<pre><code>## ('Calvin', 'Captain Haddock')</code></pre>
+<p>Similarly, you can name the items of a tuple through <em>sequence unpacking</em>.</p>
+<pre class="python"><code>friends = &quot;Calvin&quot;, &quot;Captain Haddock&quot;
+Calvin, Haddock = friends
+print Calvin
+print Haddock </code></pre>
+<pre><code>## Calvin
+## Captain Haddock</code></pre>
+<h3>
+Control Statements
+</h3>
+<h4>
+If statements
+</h4>
+<p>The most common type of control statement is the <em>if</em> statement.</p>
+<pre class="python"><code>x = 5
+y = 7
+if y &gt; x:
+  print &quot;Y is bigger!&quot;
+else:
+  print &quot;X is bigger!&quot;</code></pre>
+<pre><code>## Y is bigger!</code></pre>
+<p>Python is <em>white-space sensitive</em>. If you don’t indent correctly, you will get an error.</p>
+<p>If you have more than one if/else statement to chain, you should use <em>elif</em>.</p>
+<pre class="python"><code>x = 7
+y = 7
+if y &gt; x:
+  print &quot;Y is bigger!&quot;
+elif x &gt; y:
+  print &quot;X is bigger!&quot;
+else:
+  print &quot;X and Y are equal!&quot;</code></pre>
+<pre><code>## X and Y are equal!</code></pre>
+<h4>
+For statements
+</h4>
+<p>Another common type of control statement is the for loop.</p>
+<pre class="python"><code>cats = [(&quot;Calvin&quot;,11,&quot;butter&quot;),(&quot;Captain Haddock&quot;,5,&quot;rabbit&quot;)]
+for cat in cats:
+  name = cat[0]
+  age = cat[1]
+  favoriteFood = cat[2]
+  print name+&quot;'s favorite food is &quot;+favoriteFood+&quot;. He is &quot;+str(age)+&quot; years old.&quot;</code></pre>
+<pre><code>## Calvin's favorite food is butter. He is 11 years old.
+## Captain Haddock's favorite food is rabbit. He is 5 years old.</code></pre>
+<p>That last line was a little awkward. There’s a nicer way to print strings using Python fancy string formatting.</p>
+<h3>
+Fancy string formatting
+</h3>
+<pre class="python"><code>cats = [(&quot;Calvin&quot;,11,&quot;butter&quot;),(&quot;Captain Haddock&quot;,5,&quot;rabbit&quot;)]
+for cat in cats:
+  name = cat[0]
+  age = cat[1]
+  favoriteFood = cat[2]
+  print &quot;{0}'s favorite food is {1}. He is {2} years old.&quot;.format(name,favoriteFood,age)</code></pre>
+<pre><code>## Calvin's favorite food is butter. He is 11 years old.
+## Captain Haddock's favorite food is rabbit. He is 5 years old.</code></pre>
+<p>With fancy strings, we can supply all variables as arguments to format() instead of using concatenate to build up a string.</p>
 
 
 

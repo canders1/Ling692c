@@ -30,8 +30,8 @@ Python is intepreted and dynamically typed (like R!)
 
 ```{python}
 x = 10
-print(x)
-print(type(x))
+print x
+print type(x)
 ```
 
 <h4>Floats</h4>
@@ -40,8 +40,8 @@ Python has another numeric datatype, which is used for floating point numbers.
 
 ```{python}
 y = 5.0
-print(y)
-print(type(y))
+print y
+print type(y)
 ```
 
 <h4>Integer and Double Operations</h4>
@@ -54,8 +54,8 @@ When you divide a float by a float, you get a float.
 y = 21.0
 x = 5.0
 z = y/x
-print(z)
-print(type(z))
+print z
+print type(z)
 ```
 
 When you divide an integer by an integer, you get an integer.
@@ -64,8 +64,8 @@ When you divide an integer by an integer, you get an integer.
 y = 21
 x = 5
 z = y/x
-print(z)
-print(type(z))
+print z
+print type(z)
 ```
 
 However, converting an integer to a float is very easy.
@@ -75,7 +75,7 @@ However, converting an integer to a float is very easy.
 ```{python}
 x = 5
 y = float(x)
-print(type(y))
+print type(y)
 ```
 
 <h4>Booleans</h4>
@@ -83,7 +83,7 @@ print(type(y))
 ```{python}
 x = True
 y = False
-print(x,y)
+print x,y
 ```
 
 <h4>Boolean operations</h4>
@@ -93,7 +93,7 @@ print(x,y)
 ```{python}
 x = True
 y = False
-print(x == y)
+print x == y
 ```
 
 <h6>Negation</h6>
@@ -101,16 +101,16 @@ print(x == y)
 ```{python}
 x = True
 y = False
-print(x != y)
-print(not (x == y))
-print((not x) == y)
+print x != y
+print not (x == y)
+print (not x) == y
 ```
 
 <h6>Conjunction and Disjunction</h6>
 
 ```{python}
-print((True or False) == True)
-print((True and False) == True)
+print (True or False) == True
+print (True and False) == True
 ```
 
 <h4>Comparing numeric types</h4>
@@ -118,9 +118,9 @@ print((True and False) == True)
 ```{python}
 i = 5
 j = 5.0
-print(j == i)
-print(j > i)
-print(j <= i)
+print j == i
+print j > i
+print j <= i
 ```
 
 <h4>Strings</h4>
@@ -129,13 +129,13 @@ Python is great for string-processing!
 
 ```{python}
 cat = "Captain Haddock"
-print(cat)
+print cat
 ```
 
 Often, we want to know the length of the string we're dealing with.
 
 ```{python}
-print(len("cat"))
+print len("cat")
 ```
 One helpful feature is being able to slice strings.
 
@@ -144,7 +144,7 @@ One helpful feature is being able to slice strings.
 ```{python}
 yummy = "marshmallow"
 gummy = yummy[0:5]
-print(gummy)
+print gummy
 ```
 
 Another common task is finding substrings.
@@ -152,7 +152,7 @@ Another common task is finding substrings.
 ```{python}
 yummy = "marshmallow"
 gummy = "marsh"
-print(gummy in yummy)
+print gummy in yummy
 ```
 
 We can also build up longer strings through concatenation.
@@ -161,14 +161,14 @@ We can also build up longer strings through concatenation.
 fish = "Haddock"
 title = "Captain"
 cat = title+" "+fish
-print(cat)
+print cat
 ```
 
 We can divide a string by a specified character using split.
 
 ```{python}
 cat = "Captain Haddock"
-print(cat.split(" "))
+print cat.split(" ")
 ```
 
 The object returned by split() is a list of strings.
@@ -179,8 +179,8 @@ Python lists can hold heterogenous data types.
 
 ```{python}
 cat_data = [5,"Captain Haddock","Calvin",11,True]
-print(cat_data)
-print(type(cat_data[0]))
+print cat_data
+print type(cat_data[0])
 ```
 
 Notice that the contents of a list can be indexed just like strings. We can also take slices of lists.
@@ -188,7 +188,7 @@ Notice that the contents of a list can be indexed just like strings. We can also
 ```{python}
 cat_data = [5,"Captain Haddock","Calvin",11,True]
 cats = cat_data[1:3]
-print(cats)
+print cats
 ```
 
 There are all kinds of useful list operations. But the most important to know for now is how to add new items.
@@ -196,25 +196,133 @@ There are all kinds of useful list operations. But the most important to know fo
 ```{python}
 cats = ["Captain Haddock","Calvin"]
 cats.append("Jane")
-print(cats)
+print cats
 ```
 
-We can also remove items.
+You can also add all items in a list to another list using extend()
+
+```{python}
+blackCats = ["Captain Haddock","Smurfie"]
+moreBlackCats = ["Carbon","Jane"]
+blackCats.extend(moreBlackCats)
+print blackCats 
+```
+
+We can remove items by name using delete().
 
 ```{python}
 cats = ["Captain Haddock","Calvin","Jane"]
 cats.remove("Jane")
-print(cats)
+print cats
 ```
 
 Notice that we did not have to save the result of append() or remove() as a list. These methods do not return anything; they update the list in place.
+
+We can also remove them by position using pop()
+
+```{python}
+cats = ["Captain Haddock","Calvin","Jane"]
+print cats.pop(0) 
+print cats
+```
+
+This way of removing items does return something: the item that is removed.
 
 There is also a built-in sort method for lists, which likewise sorts in place.
 
 ```{python}
 cats = ["Captain Haddock","Smurfie","Calvin","Jane"]
 cats.sort()
-print(cats)
+print cats
 ```
 
+<h4>Tuples</h4>
 
+Tuples are sort of like lists, because they store things. 
+
+```{python}
+friends = ("Calvin","Captain Haddock")
+print type(friends)
+```
+
+Unlike lists, however, tuples are immutable: you can't change their contents. You can index into a tuple, but you cannot reassign a position in a tuple.
+
+```{python}
+friends = ("Calvin","Captain Haddock")
+print friends[0]
+#friends[0] = "Smurfie"
+```
+
+You can also construct tuples through *tuple packing*.
+
+```{python}
+friends = "Calvin", "Captain Haddock"
+print friends
+```
+
+Similarly, you can name the items of a tuple through *sequence unpacking*.
+
+```{python}
+friends = "Calvin", "Captain Haddock"
+Calvin, Haddock = friends
+print Calvin
+print Haddock 
+```
+
+<h3>Control Statements</h3>
+
+<h4>If statements</h4>
+
+The most common type of control statement is the *if* statement.
+
+```{python}
+x = 5
+y = 7
+if y > x:
+  print "Y is bigger!"
+else:
+  print "X is bigger!"
+```
+
+Python is *white-space sensitive*. If you don't indent correctly, you will get an error.
+
+If you have more than one if/else statement to chain, you should use *elif*.
+
+```{python}
+x = 7
+y = 7
+if y > x:
+  print "Y is bigger!"
+elif x > y:
+  print "X is bigger!"
+else:
+  print "X and Y are equal!"
+```
+
+<h4>For statements</h4>
+
+Another common type of control statement is the for loop.
+
+```{python}
+cats = [("Calvin",11,"butter"),("Captain Haddock",5,"rabbit")]
+for cat in cats:
+  name = cat[0]
+  age = cat[1]
+  favoriteFood = cat[2]
+  print name+"'s favorite food is "+favoriteFood+". He is "+str(age)+" years old."
+```
+
+That last line was a little awkward. There's a nicer way to print strings using Python fancy string formatting.
+
+<h3>Fancy string formatting</h3>
+
+```{python}
+cats = [("Calvin",11,"butter"),("Captain Haddock",5,"rabbit")]
+for cat in cats:
+  name = cat[0]
+  age = cat[1]
+  favoriteFood = cat[2]
+  print "{0}'s favorite food is {1}. He is {2} years old.".format(name,favoriteFood,age)
+```
+
+With fancy strings, we can supply all variables as arguments to format() instead of using concatenate to build up a string.
