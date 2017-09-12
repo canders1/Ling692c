@@ -209,7 +209,7 @@ blackCats.extend(moreBlackCats)
 print blackCats 
 ```
 
-We can remove items by name using delete().
+We can remove items by name using remove().
 
 ```{python}
 cats = ["Captain Haddock","Calvin","Jane"]
@@ -384,13 +384,15 @@ f = open("/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt","r")
 wordlist = f.read()
 wordlist = wordlist.split(",")
 
-#Vertical
+#Vertically hidden words
 for line in grid:
   for w in wordlist:
     if w in line or w[::-1] in line:
       print "Found {0}!".format(w)
 
-#Horizontal
+#Horizontally hidden words
+
+#First, build strings that correspond to columns
 columns = []
 for i in range(0,20):
   columns.append("")
@@ -398,6 +400,7 @@ for line in grid:
   for i in range(0,len(grid)):
     columns[i] = columns[i]+line[i]
 
+#Next, search column strings for words
 for c in columns:
   for w in wordlist:
     if w in c or w[::-1] in c:

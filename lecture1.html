@@ -289,7 +289,7 @@ moreBlackCats = [&quot;Carbon&quot;,&quot;Jane&quot;]
 blackCats.extend(moreBlackCats)
 print blackCats </code></pre>
 <pre><code>## ['Captain Haddock', 'Smurfie', 'Carbon', 'Jane']</code></pre>
-<p>We can remove items by name using delete().</p>
+<p>We can remove items by name using remove().</p>
 <pre class="python"><code>cats = [&quot;Captain Haddock&quot;,&quot;Calvin&quot;,&quot;Jane&quot;]
 cats.remove(&quot;Jane&quot;)
 print cats</code></pre>
@@ -459,13 +459,15 @@ f = open(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/searchlist.txt&quo
 wordlist = f.read()
 wordlist = wordlist.split(&quot;,&quot;)
 
-#Vertical
+#Vertically hidden words
 for line in grid:
   for w in wordlist:
     if w in line or w[::-1] in line:
       print &quot;Found {0}!&quot;.format(w)
 
-#Horizontal
+#Horizontally hidden words
+
+#First, build strings that correspond to columns
 columns = []
 for i in range(0,20):
   columns.append(&quot;&quot;)
@@ -473,6 +475,7 @@ for line in grid:
   for i in range(0,len(grid)):
     columns[i] = columns[i]+line[i]
 
+#Next, search column strings for words
 for c in columns:
   for w in wordlist:
     if w in c or w[::-1] in c:
