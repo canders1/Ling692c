@@ -11,7 +11,7 @@ opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
 
 Today we're going to cover input and output, functions, and dictionaries.
 
-<h3>Output</h3>
+<h3>Printing output</h3>
 
 Last class I used the print() function to show the results of our computations. Since the syntax of print() is one difference between Python 3 and 2.7, I want to go over a few more points about print().
 
@@ -76,3 +76,94 @@ f.write(introduction)
 ```
 
 This creates a file in my working directory called results.txt, and writes our string to that file. Opening a file with option 'w' will override an existing file if there is one. You can use option 'a' to append to an existing file. You can also use option 'r+' to open a file for reading and writing.
+
+<h3>Reading user input</h3>
+
+We know how to read in data from a file. That's great! But what if we want to interact with the user in real time?
+
+```{python, eval=FALSE}
+name = raw_input("Please choose a cat name:\n")
+
+if (name != "Captain Haddock") and (name != "Calvin"):
+  print "That's not my cat!"
+else:
+  print "That is my cat!"
+```
+
+If we save this as a python file and run it, it will prompt the user for a string, and then output whether or not the string is one of my cats' names.
+
+<h3>While loops</h3>
+
+What if we want to give the user three chances to guess one of my cats' names?
+
+One option is to essentially repeat the block of code above three times.
+
+```{python,eval=FALSE}
+
+name = raw_input("Please choose a cat name:\n")
+
+if (name != "Captain Haddock") and (name != "Calvin"):
+  print "That's not my cat!"
+  name2 = raw_input("Please choose another cat name:\n")
+  if (name2 != "Captain Haddock") and (name2 != "Calvin"):
+    print "That's not my cat!"
+    name3 = raw_input("Please choose another cat name:\n")
+    if(name2 != "Captain Haddock") and (name2 != "Calvin"):
+      print "That's not my cat!"
+    else:
+      print "That is my cat!"
+  else:
+    print "That is my cat!"
+else:
+  print "That is my cat!"
+```
+
+This works correctly. But it's really ugly! There's a bunch of lines of text that are repeated, and the structure of the program isn't obvious at first glance.
+
+Another option would be to use a for loop to iterate through the code three times. If we do this, we have to figure out a way to not repeat the prompt if the user has already correctly guessed one of my cats.
+
+One option is to use a variable to store whether or not the user has already succeeded. At the top of the for loop, we'll check to see if the user has already guessed correctly, and if so, we won't do anything.
+
+```{python,eval=FALSE}
+
+success = False
+for i in range(0,3):
+  if success == False:                                        #Has the user succeeded yet?
+    name = raw_input("Please choose a cat name:\n")
+    if (name != "Captain Haddock") and (name != "Calvin"):
+      print "That's not my cat!"
+    else:
+      print "That is my cat!"
+      success = True                                          #Set the value of success to True since the user has guessed correctly
+```
+
+However, this is not very efficient, because we end up going through the entire for loop even if the user guesses correctly on the first try. We can instead use *break* to end the for loop when the user guesses correctly.
+
+```{python,eval=FALSE}
+
+for i in range(0,3):                                       #Has the user succeeded yet?
+  name = raw_input("Please choose a cat name:\n")
+  if (name != "Captain Haddock") and (name != "Calvin"):
+    print "That's not my cat!"
+  else:
+    print "That is my cat!" 
+    break
+```
+
+But what if we don't know how many chances we want to give the user? What if we want the program to run until they guess correctly?
+
+There's another kind of control loop in Python that makes this easy. It's called a while loop.
+
+```{python,eval=FALSE}
+while:
+  name = raw_input("Please choose a cat name:\n")
+  if (name != "Captain Haddock") and (name != "Calvin"):
+    print "That's not my cat!"
+  else:
+    print "That is my cat!" 
+    break
+```
+
+Wait a minute, though. What happens if we forget to put in the break statement?
+
+
