@@ -283,7 +283,123 @@ while quit == False:
       else:
         print &quot;We want to do some stuff here!&quot;
         </code></pre>
-<p>Okay, we’ve handled all the user interface stuff. Now for the substance of our program. We’ve already written code that compares the guess to the list of cats. But it would be really nice if we didn’t have to paste that code into our while loop, which is already fairly long. If we write it inside a function</p>
+<p>Okay, we’ve handled all the user interface stuff. Now for the substance of our program. We’ve already written code that compares the guess to the list of cats. But it would be really nice if we didn’t have to paste that code into our while loop, which is already fairly long. If we write it inside a function, we can make our code tidier, and also easier to change if we decide we want to swap our the is-it-my-cat game for something more interesting.</p>
+<p>Here’s how we define a function in Python:</p>
+<pre class="python"><code>
+def isitmycat(guess,cats):  #We name the arguments to the function in the parentheses
+    if guess in cats:
+        print &quot;That's my cat!&quot;
+    else:
+        print &quot;That's not my cat.&quot;
+
+goodguess = &quot;Calvin&quot;
+badguess = &quot;Matilda&quot;
+catlist = [&quot;Captain Haddock&quot;,&quot;Calvin&quot;]
+
+isitmycat(goodguess,catlist)
+isitmycat(badguess,catlist)</code></pre>
+<pre><code>## That's my cat!
+## That's not my cat.</code></pre>
+<p>Our isitme() function is going to be very similar, but we’ll compare the guess against a string: my name.</p>
+<pre class="python"><code>
+def isitme(guess,name):     #We name the arguments to the function in the parentheses
+    if guess == name:
+        print &quot;That's me!&quot;
+    else:
+        print &quot;That's not me.&quot;
+        
+###################################
+
+itsme = &quot;Carolyn&quot;
+notme = &quot;Matilda&quot;
+isitme(notme,itsme)</code></pre>
+<pre><code>## That's not me.</code></pre>
+<p>I’ve used the line of # characters to demarcate the end of the function (of course, the indentation level also shows us the end). Since # is the character used for comments, you can break up long programs into chunks this way.</p>
+<p>Now we have all the pieces to write our game.</p>
+<pre class="python"><code>mycats = [&quot;Calvin&quot;,&quot;Captain Haddock&quot;] #If we define our list here, it's easy to change later
+me = &quot;Carolyn&quot;
+
+###################################
+
+def isitmycat(guess,cats):  #We name the arguments to the function in the parentheses
+    if guess in cats:
+        print &quot;That's my cat!&quot;
+    else:
+        print &quot;That's not my cat.&quot;
+
+###################################
+
+def isitme(guess,name):     #We name the arguments to the function in the parentheses
+    if guess == name:
+        print &quot;That's me!&quot;
+    else:
+        print &quot;That's not me.&quot;
+        
+###################################
+
+print &quot;Welcome!&quot;
+
+quit = False                #Initialize quit to False
+while quit == False:        #Stop when isitmycat() returns True
+    print &quot;Please pick an option: &quot;
+    print &quot;1. Play is-it-my-cat&quot;
+    print &quot;2. Play is-it-me&quot;
+    print &quot;3. Quit&quot;
+    choice = int(raw_input(&quot;Your choice is: &quot;)) #Convert the input to an integer since we're comparing it to an integer!
+    if choice == 3:
+        print &quot;Thanks for playing!&quot;
+        quit = True
+    else:
+        guess = raw_input(&quot;Your guess is: &quot;)
+        if choice == 1:
+            isitmycat(guess,mycats)
+        else:
+            isitme(guess,me)
+</code></pre>
+<p>It’s conventional to put the body of your program inside a function called <em>main</em>.</p>
+<pre class="python"><code>
+def main():
+  mycats = [&quot;Calvin&quot;,&quot;Captain Haddock&quot;]
+  me = &quot;Carolyn&quot;
+  
+  print &quot;Welcome!&quot;
+
+  quit = False              #Initialize quit to False
+  while quit == False:      #Stop when isitmycat() returns True
+      print &quot;Please pick an option: &quot;
+    print &quot;1. Play is-it-my-cat&quot;
+      print &quot;2. Play is-it-me&quot;
+    print &quot;3. Quit&quot;
+    choice = int(raw_input(&quot;Your choice is: &quot;)) #Convert the input to an integer since we're comparing it to an integer!
+    if choice == 3:
+        print &quot;Thanks for playing!&quot;
+        quit = True
+    else:
+          guess = raw_input(&quot;Your guess is: &quot;)
+          if choice == 1:
+            isitmycat(guess,mycats)
+        else:
+            isitme(guess,me)
+  
+###################################
+
+def isitmycat(guess,cats):  #We name the arguments to the function in the parentheses
+    if guess in cats:
+        print &quot;That's my cat!&quot;
+    else:
+        print &quot;That's not my cat.&quot;
+
+###################################
+
+def isitme(guess,name):     #We name the arguments to the function in the parentheses
+    if guess == name:
+        print &quot;That's me!&quot;
+    else:
+        print &quot;That's not me.&quot;
+        
+###################################
+
+main()</code></pre>
 
 
 
