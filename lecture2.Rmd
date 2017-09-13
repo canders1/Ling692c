@@ -1,0 +1,78 @@
+---
+title: 'Programming in Python: Lecture 2'
+author: "Carolyn Jane Anderson"
+output: html_document
+---
+
+```{r,echo=FALSE}
+library(knitr)
+opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
+```
+
+Today we're going to cover input and output, functions, and dictionaries.
+
+<h3>Output</h3>
+
+Last class I used the print() function to show the results of our computations. Since the syntax of print() is one difference between Python 3 and 2.7, I want to go over a few more points about print().
+
+In Python 2.7, parentheses around the value to be printed are optional. In Python 3, however, they are mandatory.
+
+```{python}
+#Here I'm running Python 2.7
+print "There are no parentheses here."
+print("There are parentheses here.")
+```
+
+Last class we covered the format() method for strings, which helps us print strings nicely and lets us ignore type conversions. You can also print variables of different types together using plain old print() if you separate them with commas.
+
+```{python}
+age = 5
+half1 = "I am"
+half2 = "years old."
+print half1, age, half2
+```
+
+Python automatically separates the expressions by a space character.
+
+This method works for the print() function in Python 3 as well.
+
+By default, Python inserts a newline at the end of each print statement.
+
+```{python}
+introduction = "My name is:"
+name = "Matilda"
+
+print introduction
+print name
+```
+
+You may not want each print statement to produce a newline, however. In this case, you can end the print statement with a comma (Python 2.7), or specify an end condition (Python 3).
+
+```{python}
+introduction = "My name is"
+name = "Matilda"
+
+print introduction,
+print name
+```
+
+Notice that Python still inserts a space character between the two expressions.
+
+You may also want to print an expression out on more than one line. In this case, you can insert a newline character, "\\n", in your string.
+
+```{python}
+introduction = "Hello!\nMy name is Matilda."
+print introduction
+```
+
+<h3>Writing to a file</h3>
+
+You may also want to save the results of your program to a file. We use the same file() function we saw last class to do this.
+
+```{python}
+f = open('results.txt', 'w') #Remember to adjust the name/location of the file for your own computer!
+introduction = "Hello!\nMy name is Matilda."
+f.write(introduction)
+```
+
+This creates a file in my working directory called results.txt, and writes our string to that file. Opening a file with option 'w' will override an existing file if there is one. You can use option 'a' to append to an existing file. You can also use option 'r+' to open a file for reading and writing.
