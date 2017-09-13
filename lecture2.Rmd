@@ -166,4 +166,61 @@ while:
 
 Wait a minute, though. What happens if we forget to put in the break statement?
 
+<h3>Functions</h3>
 
+Let's consider a slightly more complicated guessing game. What if we want to allow the user to choose between two games: is-it-my-cat and is-it-me? Let's break this problem down into tasks:
+
+1. Ask the user which game they want to play.
+2. Ask the user for their guess.
+3. Check if their guess is correct, for the specified game.
+
+That seems pretty simple! The first thing to ask ourselves, though, is when the program should quit. Should it quit when the user wins one of the games? Or should it allow the user to play again?
+
+Let's write a game that allows the user to keep playing until they type "quit". We can modify our task list slightly to reflect this.
+
+1. Give the user three choices: (1) play is-it-my-cat, (2) play is-it-me, or (3) quit.
+2. Ask the user for their guess.
+3. Check if their guess is correct, for the specified game.
+
+Okay, let's tackle the first task first. We'll write a while loop that asks the user to pick an option, and quits if that option is 3.
+
+```{python, eval=FALSE}
+
+quit = False
+while quit == False:	
+  print "Please pick an option: "
+	print "1. Play is-it-my-cat"
+	print "2. Play is-it-me"
+	print "3. Quit"
+	choice = int(raw_input("Your choice is: ")) #Remember to convert the input to an integer if you're comparing it to an integer!
+	if choice == 3:
+		print "Thanks for playing!"
+		quit = True
+```
+
+So far so good. Our program quits on demand, but otherwise it doesn't do anything.
+
+If the user picks Option 1 or Option 2, we need to ask them for their guess.
+
+```{python, eval=FALSE}
+
+quit = False
+while quit == False:	
+  print "Please pick an option: "
+	print "1. Play is-it-my-cat"
+	print "2. Play is-it-me"
+	print "3. Quit"
+	choice = int(raw_input("Your choice is: ")) #Remember to convert the input to an integer if you're comparing it to an integer!
+	if choice == 3:
+		print "Thanks for playing!"
+		quit = True
+	else:
+	  guess = raw_input("Your guess is: ")
+	  if choice == 1:
+	    print "We want to do some stuff here!"
+	  else:
+	    print "We want to do some stuff here!"
+	    
+```
+
+Okay, we've handled all the user interface stuff. Now for the substance of our program. We've already written code that compares the guess to the list of cats. But it would be really nice if we didn't have to paste that code into our while loop, which is already fairly long. If we write it inside a function
