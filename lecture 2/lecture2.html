@@ -118,61 +118,23 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Programming in Python: Lecture 2</h1>
 <h4 class="author"><em>Carolyn Jane Anderson</em></h4>
+<h4 class="date"><em>9/15/2017</em></h4>
 
 </div>
 
 
 <p>Today we’re going to cover input and output, functions, and dictionaries.</p>
 <h3>
-Printing output
+Input and Output
 </h3>
-<p>Last class I used the print() function to show the results of our computations. Since the syntax of print() is one difference between Python 3 and 2.7, I want to go over a few more points about print().</p>
-<p>In Python 2.7, parentheses around the value to be printed are optional. In Python 3, however, they are mandatory.</p>
-<pre class="python"><code>#Here I'm running Python 2.7
-print &quot;There are no parentheses here.&quot;
-print(&quot;There are parentheses here.&quot;)</code></pre>
-<pre><code>## There are no parentheses here.
-## There are parentheses here.</code></pre>
-<p>Last class we covered the format() method for strings, which helps us print strings nicely and lets us ignore type conversions. You can also print variables of different types together using plain old print() if you separate them with commas.</p>
-<pre class="python"><code>age = 5
-half1 = &quot;I am&quot;
-half2 = &quot;years old.&quot;
-print half1, age, half2</code></pre>
-<pre><code>## I am 5 years old.</code></pre>
-<p>Python automatically separates the expressions by a space character.</p>
-<p>This method works for the print() function in Python 3 as well.</p>
-<p>By default, Python inserts a newline at the end of each print statement.</p>
-<pre class="python"><code>introduction = &quot;My name is:&quot;
-name = &quot;Matilda&quot;
-
-print introduction
-print name</code></pre>
-<pre><code>## My name is:
-## Matilda</code></pre>
-<p>You may not want each print statement to produce a newline, however. In this case, you can end the print statement with a comma (Python 2.7), or specify an end condition (Python 3).</p>
-<pre class="python"><code>introduction = &quot;My name is&quot;
-name = &quot;Matilda&quot;
-
-print introduction,
-print name</code></pre>
-<pre><code>## My name is Matilda</code></pre>
-<p>Notice that Python still inserts a space character between the two expressions.</p>
-<p>You may also want to print an expression out on more than one line. In this case, you can insert a newline character, “\n”, in your string.</p>
-<pre class="python"><code>introduction = &quot;Hello!\nMy name is Matilda.&quot;
-print introduction</code></pre>
-<pre><code>## Hello!
-## My name is Matilda.</code></pre>
-<h3>
-Writing to a file
-</h3>
-<p>You may also want to save the results of your program to a file. We use the same file() function we saw last class to do this.</p>
+<p>In our last class, we briefly saw how to open a file and read its contents. We can use the same file() function to write the results of a program to a file.</p>
 <pre class="python"><code>f = open('results.txt', 'w') #Remember to adjust the name/location of the file for your own computer!
 introduction = &quot;Hello!\nMy name is Matilda.&quot;
 f.write(introduction)</code></pre>
 <p>This creates a file in my working directory called results.txt, and writes our string to that file. Opening a file with option ‘w’ will override an existing file if there is one. You can use option ‘a’ to append to an existing file. You can also use option ‘r+’ to open a file for reading and writing.</p>
-<h3>
+<h4>
 Reading user input
-</h3>
+</h4>
 <p>We know how to read in data from a file. That’s great! But what if we want to interact with the user in real time?</p>
 <pre class="python"><code>name = raw_input(&quot;Please choose a cat name:\n&quot;)
 
@@ -182,29 +144,9 @@ else:
   print &quot;That is my cat!&quot;</code></pre>
 <p>If we save this as a python file and run it, it will prompt the user for a string, and then output whether or not the string is one of my cats’ names.</p>
 <h3>
-While loops
+More about control statements
 </h3>
-<p>What if we want to give the user three chances to guess one of my cats’ names?</p>
-<p>One option is to essentially repeat the block of code above three times.</p>
-<pre class="python"><code>
-name = raw_input(&quot;Please choose a cat name:\n&quot;)
-
-if (name != &quot;Captain Haddock&quot;) and (name != &quot;Calvin&quot;):
-  print &quot;That's not my cat!&quot;
-  name2 = raw_input(&quot;Please choose another cat name:\n&quot;)
-  if (name2 != &quot;Captain Haddock&quot;) and (name2 != &quot;Calvin&quot;):
-    print &quot;That's not my cat!&quot;
-    name3 = raw_input(&quot;Please choose another cat name:\n&quot;)
-    if(name2 != &quot;Captain Haddock&quot;) and (name2 != &quot;Calvin&quot;):
-      print &quot;That's not my cat!&quot;
-    else:
-      print &quot;That is my cat!&quot;
-  else:
-    print &quot;That is my cat!&quot;
-else:
-  print &quot;That is my cat!&quot;</code></pre>
-<p>This works correctly. But it’s really ugly! There’s a bunch of lines of text that are repeated, and the structure of the program isn’t obvious at first glance.</p>
-<p>Another option would be to use a for loop to iterate through the code three times. If we do this, we have to figure out a way to not repeat the prompt if the user has already correctly guessed one of my cats.</p>
+<p>Let’s consider expanding our program a little bit to give the user three guesses. One option would be to use a for loop to iterate through the code three times. This requires us to figure out a way to not repeat the prompt if the user has already correctly guessed one of my cats.</p>
 <p>One option is to use a variable to store whether or not the user has already succeeded. At the top of the for loop, we’ll check to see if the user has already guessed correctly, and if so, we won’t do anything.</p>
 <pre class="python"><code>
 success = False
@@ -216,7 +158,7 @@ for i in range(0,3):
     else:
       print &quot;That is my cat!&quot;
       success = True                                          #Set the value of success to True since the user has guessed correctly</code></pre>
-<p>However, this is not very efficient, because we end up going through the entire for loop even if the user guesses correctly on the first try. We can instead use <em>break</em> to end the for loop when the user guesses correctly.</p>
+<p>This is much easier to read. We can make it even more efficient however, by using <em>break</em> to end the for loop early if the user guesses correctly.</p>
 <pre class="python"><code>
 for i in range(0,3):                                       #Has the user succeeded yet?
   name = raw_input(&quot;Please choose a cat name:\n&quot;)
@@ -226,6 +168,9 @@ for i in range(0,3):                                       #Has the user succeed
     print &quot;That is my cat!&quot; 
     break</code></pre>
 <p>But what if we don’t know how many chances we want to give the user? What if we want the program to run until they guess correctly?</p>
+<h4>
+While loops
+</h4>
 <p>There’s another kind of control loop in Python that makes this easy. It’s called a while loop.</p>
 <pre class="python"><code>while:
   name = raw_input(&quot;Please choose a cat name:\n&quot;)
@@ -234,54 +179,53 @@ for i in range(0,3):                                       #Has the user succeed
   else:
     print &quot;That is my cat!&quot; 
     break</code></pre>
-<p>Wait a minute, though. What happens if we forget to put in the break statement?</p>
+<p>Question: What happens if we forget to put in the break statement?</p>
 <h3>
 Functions
 </h3>
-<p>Let’s consider a slightly more complicated guessing game. What if we want to allow the user to choose between two games: is-it-my-cat and is-it-me? Let’s break this problem down into tasks:</p>
+<p>Let’s move on from our cat guessing game to a more realistic task. We’re going to write a program that prompts the user for a list of words and a block of text, and counts how many times each of the words appears in the text (that is, count the <em>tokens</em>).</p>
+<p>Let’s break this problem down into tasks:</p>
 <ol style="list-style-type: decimal">
-<li>Ask the user which game they want to play.</li>
-<li>Ask the user for their guess.</li>
-<li>Check if their guess is correct, for the specified game.</li>
+<li>Ask the user for the name of the text file.</li>
+<li>Ask the user for a list of words.</li>
+<li>Count how many times each word appears in the text.</li>
+<li>Report the results to the user.</li>
 </ol>
-<p>That seems pretty simple! The first thing to ask ourselves, though, is when the program should quit. Should it quit when the user wins one of the games? Or should it allow the user to play again?</p>
-<p>Let’s write a game that allows the user to keep playing until they type “quit”. We can modify our task list slightly to reflect this.</p>
+<p>That seems pretty simple! The first thing to ask ourselves, though, is when the program should quit. Should it only run once? Or should it wait until the user asks it to quit?</p>
+<p>Let’s write the program so that it runs until the user types “quit”. We can modify our task list slightly to reflect this.</p>
 <ol style="list-style-type: decimal">
-<li>Give the user three choices: (1) play is-it-my-cat, (2) play is-it-me, or (3) quit.</li>
-<li>Ask the user for their guess.</li>
-<li>Check if their guess is correct, for the specified game.</li>
+<li>Give the user two choices: (1) count words or (2) quit</li>
+<li>Ask the user for the name of the text file.</li>
+<li>Ask the user for a list of words.</li>
+<li>Count how many times each word appears in the text.</li>
+<li>Report the results to the user.</li>
 </ol>
 <p>Okay, let’s tackle the first task first. We’ll write a while loop that asks the user to pick an option, and quits if that option is 3.</p>
 <pre class="python"><code>
 quit = False
 while quit == False:    
   print &quot;Please pick an option: &quot;
-    print &quot;1. Play is-it-my-cat&quot;
-    print &quot;2. Play is-it-me&quot;
-    print &quot;3. Quit&quot;
+    print &quot;1. Run word count&quot;
+    print &quot;2. Quit&quot;
     choice = int(raw_input(&quot;Your choice is: &quot;)) #Remember to convert the input to an integer if you're comparing it to an integer!
-    if choice == 3:
+    if choice == 2:
         print &quot;Thanks for playing!&quot;
         quit = True</code></pre>
 <p>So far so good. Our program quits on demand, but otherwise it doesn’t do anything.</p>
-<p>If the user picks Option 1 or Option 2, we need to ask them for their guess.</p>
+<p>If the user picks Option 1, we need to ask them for a file name.</p>
 <pre class="python"><code>
 quit = False
 while quit == False:    
   print &quot;Please pick an option: &quot;
-    print &quot;1. Play is-it-my-cat&quot;
-    print &quot;2. Play is-it-me&quot;
-    print &quot;3. Quit&quot;
+    print &quot;1. Run word count&quot;
+    print &quot;2. Quit&quot;
     choice = int(raw_input(&quot;Your choice is: &quot;)) #Remember to convert the input to an integer if you're comparing it to an integer!
-    if choice == 3:
+    if choice == 2:
         print &quot;Thanks for playing!&quot;
         quit = True
     else:
-      guess = raw_input(&quot;Your guess is: &quot;)
-      if choice == 1:
-        print &quot;We want to do some stuff here!&quot;
-      else:
-        print &quot;We want to do some stuff here!&quot;
+      f = raw_input(&quot;File name: &quot;)
+      wordString = raw_input(&quot;Words to count: &quot;)
         </code></pre>
 <p>Okay, we’ve handled all the user interface stuff. Now for the substance of our program. We’ve already written code that compares the guess to the list of cats. But it would be really nice if we didn’t have to paste that code into our while loop, which is already fairly long. If we write it inside a function, we can make our code tidier, and also easier to change if we decide we want to swap our the is-it-my-cat game for something more interesting.</p>
 <p>Here’s how we define a function in Python:</p>
