@@ -89,9 +89,67 @@ while:
 
 Question: What happens if we forget to put in the break statement?
 
+<h3>Dictionaries</h3>
+
+Dictionaries are the bread and butter of Python programming. 
+
+A dictionary is a data type that maps *keys* to *values*. 
+
+What is a key? Anything that is immutable can be a key (strings, numeric types, tuples containing immutable values...). Within a dictionary, keys are unique.
+
+Values do not need to be immutable. In fact, in the first lab, you'll probably use a dictionary that stores string:dictionary pairs.
+
+```{python}
+d = {'Harry Potter':'Gryffindor','Luna Lovegood':'Ravenclaw'}
+d['Penelope Clearwater'] = 'Hufflepuff'
+print(d)
+```
+
+There are several ways to access the contents of a dictionary. 
+
+You can use the keys() or values() method to get a list of keys or values.
+
+You can also use items() to get a list of key:value pairs.
+
+```{python}
+d = {'Harry Potter':'Gryffindor','Luna Lovegood':'Ravenclaw'}
+for k in d.keys():
+  print k
+for v in d.values():
+  print v
+```
+
+You can update the value associated with a key using the familiar bracket syntax.
+
+```{python}
+d = {'Harry Potter':'Gryffindor','Luna Lovegood':'Ravenclaw'}
+d['Harry Potter'] = 'Slytherin'
+print(d['Harry Potter'])
+```
+
+Plain old Python dictionaries will throw an error if you try to access a key that is not in a dictionary. 
+
+```{python, eval=FALSE}
+d = {'Harry Potter':'Gryffindor','Luna Lovegood':'Ravenclaw'}
+print d['Ginny Weasley']
+```
+
+However, there is a data structure in the collections library called a Default Dict that solves the problem of having to initialize keys before accessing them.
+
+The first argument to the defaultdict() constructor is the type of the values being stored.
+
+```{python}
+from collections import defaultdict
+
+d = defaultdict(str)
+d['Harry Potter'] = 'Gryffindor'
+print "Harry Potter's house is: ", d['Harry Potter']
+print "Ginny Weasley's house is: ", d['Ginny Weasley']
+```
+
 <h3>Functions</h3>
 
-Let's move on from our cat guessing game to a more realistic task. We're going to write a program that prompts the user for a list of words and a block of text, and counts how many times each of the words appears in the text (that is, count the *tokens*).
+Let's think about how to write a program that is slightly more complicated than the cat guessing game we considered earlier. We're going to write a program that prompts the user for a list of words and a block of text, and counts how many times each of the words appears in the text (that is, count the *tokens*).
 
 Let's break this problem down into tasks:
 
@@ -114,15 +172,20 @@ Okay, let's tackle the first task first. We'll write a while loop that asks the 
 
 ```{python, eval=FALSE}
 
+print "Hello! This is a word count program."
+
 quit = False
-while quit == False:	
-  print "Please pick an option: "
+while quit == False:
+	print "Please pick an option: "
 	print "1. Run word count"
 	print "2. Quit"
 	choice = int(raw_input("Your choice is: ")) #Remember to convert the input to an integer if you're comparing it to an integer!
 	if choice == 2:
-		print "Thanks for playing!"
+		print "Goodbye!"
 		quit = True
+	#GET USER INPUT
+	#DO WORD COUNT
+	#REPORT RESULTS
 ```
 
 So far so good. Our program quits on demand, but otherwise it doesn't do anything.
@@ -130,6 +193,8 @@ So far so good. Our program quits on demand, but otherwise it doesn't do anythin
 If the user picks Option 1, we need to ask them for a file name.
 
 ```{python, eval=FALSE}
+
+print "Hello! This is a word count program."
 
 quit = False
 while quit == False:	
@@ -143,137 +208,128 @@ while quit == False:
 	else:
 	  f = raw_input("File name: ")
 	  wordString = raw_input("Words to count: ")
-	    
+	  #RUN WORD COUNT
+	  #REPORT RESULTS
 ```
 
-Okay, we've handled all the user interface stuff. Now for the substance of our program. We've already written code that compares the guess to the list of cats. But it would be really nice if we didn't have to paste that code into our while loop, which is already fairly long. If we write it inside a function, we can make our code tidier, and also easier to change if we decide we want to swap our the is-it-my-cat game for something more interesting.
+Okay, so far we've handled the user input stuff. Now for the substance of our program. 
+
+Let's think about how to do the word count. This piece of the program can be defined as follows:
+
+Given a list of words and a block of text, count how many times each word appears in the text.
+  
+Now a human might go about this word by word, scanning the text and calculating the sum for each word. This involves looping through the text once for each word in the list. 
+
+We're going to do something slightly different: we're going to separate the text into words and enter each word into a dictionary that keeps track of how many times it appears. Then, we'll simply print out the dictionary entries for each word in the list at the end. 
+
+Although we create a dictionary entry for a bunch of words that we never see, we only have to go through the text once.
+
+```{python}
+from collections import defaultdict
+
+text = "It was the best of times, it was the worst of times."
+textList = text.split(" ")
+d = defaultdict(int)
+for t in textList:
+  old = d[t]
+  d[t] = old+1
+print(d) #Notice that because we haven't normalized punctuation and capitalization, 'It' and 'it' are counted separately!
+```
+
+We've produced a word count dictionary for the text given above. But we really want to write a *function* that takes an arbitrary string.
 
 Here's how we define a function in Python:
 
 ```{python}
+from collections import defaultdict
 
-def isitmycat(guess,cats): 	#We name the arguments to the function in the parentheses
-	if guess in cats:
-		print "That's my cat!"
-	else:
-		print "That's not my cat."
+###############################################################
 
-goodguess = "Calvin"
-badguess = "Matilda"
-catlist = ["Captain Haddock","Calvin"]
+def wordcount(text): 	#We name the arguments to the function in the parentheses
+  text = "It was the best of times, it was the worst of times."
+  textList = text.split(" ")
+  d = defaultdict(int)
+  for t in textList:
+    old = d[t]
+    d[t] = old+1
+  return(d)
+###############################################################
 
-isitmycat(goodguess,catlist)
-isitmycat(badguess,catlist)
-```
-
-Our isitme() function is going to be very similar, but we'll compare the guess against a string: my name.
-
-```{python}
-
-def isitme(guess,name): 	#We name the arguments to the function in the parentheses
-	if guess == name:
-		print "That's me!"
-	else:
-		print "That's not me."
-		
-###################################
-
-itsme = "Carolyn"
-notme = "Matilda"
-isitme(notme,itsme)
+text = "It was the best of times, it was the worst of times."
+counts = wordcount(text)
+print(counts)
 ```
 
 I've used the line of # characters to demarcate the end of the function (of course, the indentation level also shows us the end). Since # is the character used for comments, you can break up long programs into chunks this way.
 
-Now we have all the pieces to write our game.
-
-```{python, eval=FALSE}
-mycats = ["Calvin","Captain Haddock"] #If we define our list here, it's easy to change later
-me = "Carolyn"
-
-###################################
-
-def isitmycat(guess,cats): 	#We name the arguments to the function in the parentheses
-	if guess in cats:
-		print "That's my cat!"
-	else:
-		print "That's not my cat."
-
-###################################
-
-def isitme(guess,name): 	#We name the arguments to the function in the parentheses
-	if guess == name:
-		print "That's me!"
-	else:
-		print "That's not me."
-		
-###################################
-
-print "Welcome!"
-
-quit = False				#Initialize quit to False
-while quit == False:		#Stop when isitmycat() returns True
-	print "Please pick an option: "
-	print "1. Play is-it-my-cat"
-	print "2. Play is-it-me"
-	print "3. Quit"
-	choice = int(raw_input("Your choice is: "))	#Convert the input to an integer since we're comparing it to an integer!
-	if choice == 3:
-		print "Thanks for playing!"
-		quit = True
-	else:
-		guess = raw_input("Your guess is: ")
-		if choice == 1:
-			isitmycat(guess,mycats)
-		else:
-			isitme(guess,me)
-
-```
+Now we have all the pieces to write our word-count program.
 
 It's conventional to put the body of your program inside a function called *main*.
 
+You should always write a comment at the top of the file describing the file. It's generally good practice to put a comment by each function definition as well.
+
 ```{python, eval=FALSE}
+"""
+Author: Carolyn Anderson
+Date: 9/15/17
+
+This is a word-count program for Lecture 2.
+
+Input: 	a list of words to count; a filename containing text to search
+Output: a count per word of how many times the word occurs
+"""
+
+from collections import defaultdict
+
 
 def main():
-  mycats = ["Calvin","Captain Haddock"]
-  me = "Carolyn"
-  
-  print "Welcome!"
 
-  quit = False				#Initialize quit to False
-  while quit == False:		#Stop when isitmycat() returns True
-	  print "Please pick an option: "
-  	print "1. Play is-it-my-cat"
-	  print "2. Play is-it-me"
-  	print "3. Quit"
-  	choice = int(raw_input("Your choice is: "))	#Convert the input to an integer since we're comparing it to an integer!
-  	if choice == 3:
-	  	print "Thanks for playing!"
-	  	quit = True
-  	else:
-		  guess = raw_input("Your guess is: ")
-		  if choice == 1:
-		  	isitmycat(guess,mycats)
-	  	else:
-		  	isitme(guess,me)
-  
-###################################
+	print "Hello! This is a word count program."
 
-def isitmycat(guess,cats): 	#We name the arguments to the function in the parentheses
-	if guess in cats:
-		print "That's my cat!"
-	else:
-		print "That's not my cat."
+	quit = False
+	while quit == False:
+		print "Please pick an option: "
+		print "1. Run word count"
+		print "2. Quit"
+		choice = int(raw_input("Your choice is: ")) #Remember to convert the input to an integer if you're comparing it to an integer!
+		if choice == 2:
+			print "Goodbye!"
+			quit = True
+		else:
+			filename = raw_input("File name: ")
+			f = file(filename,"r")
+			text = f.read()
+			wordString = raw_input("Words to count: ")
+			counts = wordcount(text)
+			printResults(counts,wordString)
 
-###################################
+###############################################################
 
-def isitme(guess,name): 	#We name the arguments to the function in the parentheses
-	if guess == name:
-		print "That's me!"
-	else:
-		print "That's not me."
-		
-###################################
+#Produces a dictionary containing token counts for each word in text
+
+def wordcount(text): 	#We name the arguments to the function in the parentheses
+  text = "It was the best of times, it was the worst of times."
+  textList = text.split(" ")
+  d = defaultdict(int)
+  for t in textList:
+    old = d[t]
+    d[t] = old+1
+  return(d)
+
+###############################################################
+
+#Prints the word counts found in counts for each white-space separated word in wordString
+
+def printResults(counts,wordString):
+	words = wordString.split(",")
+	for w in words:
+		w = w.strip()
+		if w in counts:
+			print w, counts[w]
+		else:
+			print w, 0
+
+###############################################################
 
 main()
 ```
