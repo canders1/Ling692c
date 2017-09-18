@@ -136,7 +136,8 @@ f.write(introduction)</code></pre>
 Reading user input
 </h4>
 <p>We know how to read in data from a file. That’s great! But what if we want to interact with the user in real time?</p>
-<pre class="python"><code>name = raw_input(&quot;Please choose a cat name:\n&quot;)
+<pre class="python"><code>#Saved as isitmycat.py
+name = raw_input(&quot;Please choose a cat name:\n&quot;)
 
 if (name != &quot;Captain Haddock&quot;) and (name != &quot;Calvin&quot;):
   print &quot;That's not my cat!&quot;
@@ -148,7 +149,7 @@ More about control statements
 </h3>
 <p>Let’s consider expanding our program a little bit to give the user three guesses. One option would be to use a for loop to iterate through the code three times. This requires us to figure out a way to not repeat the prompt if the user has already correctly guessed one of my cats.</p>
 <p>One option is to use a variable to store whether or not the user has already succeeded. At the top of the for loop, we’ll check to see if the user has already guessed correctly, and if so, we won’t do anything.</p>
-<pre class="python"><code>
+<pre class="python"><code>#Saved as isitmycat2.py
 success = False
 for i in range(0,3):
   if success == False:                                        #Has the user succeeded yet?
@@ -159,7 +160,8 @@ for i in range(0,3):
       print &quot;That is my cat!&quot;
       success = True                                          #Set the value of success to True since the user has guessed correctly</code></pre>
 <p>This is much easier to read. We can make it even more efficient however, by using <em>break</em> to end the for loop early if the user guesses correctly.</p>
-<pre class="python"><code>
+<pre class="python"><code>#Saved as isitmycat3.py
+
 for i in range(0,3):                                       #Has the user succeeded yet?
   name = raw_input(&quot;Please choose a cat name:\n&quot;)
   if (name != &quot;Captain Haddock&quot;) and (name != &quot;Calvin&quot;):
@@ -172,7 +174,9 @@ for i in range(0,3):                                       #Has the user succeed
 While loops
 </h4>
 <p>There’s another kind of control loop in Python that makes this easy. It’s called a while loop.</p>
-<pre class="python"><code>while:
+<pre class="python"><code>#Saved as isitmycat4.py
+
+while True:
   name = raw_input(&quot;Please choose a cat name:\n&quot;)
   if (name != &quot;Captain Haddock&quot;) and (name != &quot;Calvin&quot;):
     print &quot;That's not my cat!&quot;
