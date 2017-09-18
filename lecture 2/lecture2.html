@@ -131,7 +131,8 @@ Input and Output
 <pre class="python"><code>f = open('results.txt', 'w') #Remember to adjust the name/location of the file for your own computer!
 introduction = &quot;Hello!\nMy name is Matilda.&quot;
 f.write(introduction)</code></pre>
-<p>This creates a file in my working directory called results.txt, and writes our string to that file. Opening a file with option ‘w’ will override an existing file if there is one. You can use option ‘a’ to append to an existing file. You can also use option ‘r+’ to open a file for reading and writing.</p>
+<p>This creates a file in my working directory called results.txt, and writes our string to that file.</p>
+<p>Opening a file with option ‘w’ will override an existing file if there is one. You can use option ‘a’ to append to an existing file. You can also use option ‘r+’ to open a file for reading and writing.</p>
 <h4>
 Reading user input
 </h4>
@@ -228,15 +229,17 @@ print &quot;Ginny Weasley's house is: &quot;, d['Ginny Weasley']</code></pre>
 <p>One note about defaultdicts: if you want to create a defaultdict that stores defaultdicts, you’ll need to wrap the defaultdict type argument to the outer defaultdict in an anonymous function:</p>
 <pre class="python"><code>from collections import defaultdict
 
-outerDict = defaultdict(lambda : defaultdict(float))
+outerDict = defaultdict(lambda : defaultdict(str))
 innerDict = outerDict[&quot;Harry Potter&quot;]
-innerValue = innerDict[&quot;Hedwig&quot;]
-print innerValue
+innerDict[&quot;owl&quot;] = &quot;Hedwig&quot;
+innerValue = innerDict[&quot;owl&quot;]
+
+print outerDict
 print innerDict
-print outerDict</code></pre>
-<pre><code>## 0.0
-## defaultdict(&lt;type 'float'&gt;, {'Hedwig': 0.0})
-## defaultdict(&lt;function &lt;lambda&gt; at 0x1100cb410&gt;, {'Harry Potter': defaultdict(&lt;type 'float'&gt;, {'Hedwig': 0.0})})</code></pre>
+print innerValue</code></pre>
+<pre><code>## defaultdict(&lt;function &lt;lambda&gt; at 0x10f3da488&gt;, {'Harry Potter': defaultdict(&lt;type 'str'&gt;, {'owl': 'Hedwig'})})
+## defaultdict(&lt;type 'str'&gt;, {'owl': 'Hedwig'})
+## Hedwig</code></pre>
 <h3>
 Functions
 </h3>

@@ -22,7 +22,9 @@ introduction = "Hello!\nMy name is Matilda."
 f.write(introduction)
 ```
 
-This creates a file in my working directory called results.txt, and writes our string to that file. Opening a file with option 'w' will override an existing file if there is one. You can use option 'a' to append to an existing file. You can also use option 'r+' to open a file for reading and writing.
+This creates a file in my working directory called results.txt, and writes our string to that file. 
+
+Opening a file with option 'w' will override an existing file if there is one. You can use option 'a' to append to an existing file. You can also use option 'r+' to open a file for reading and writing.
 
 <h4>Reading user input</h4>
 
@@ -156,12 +158,14 @@ One note about defaultdicts: if you want to create a defaultdict that stores def
 ```{python}
 from collections import defaultdict
 
-outerDict = defaultdict(lambda : defaultdict(float))
+outerDict = defaultdict(lambda : defaultdict(str))
 innerDict = outerDict["Harry Potter"]
-innerValue = innerDict["Hedwig"]
-print innerValue
-print innerDict
+innerDict["owl"] = "Hedwig"
+innerValue = innerDict["owl"]
+
 print outerDict
+print innerDict
+print innerValue
 ```
 
 <h3>Functions</h3>
