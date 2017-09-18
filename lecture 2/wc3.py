@@ -8,36 +8,28 @@ Input: 	a list of words to count;
 		a filename containing text to search
 Output: a count per word of how many times the word occurs
 """
-
+import sys
 from collections import defaultdict
 
 def main():
 
-	print "Hello! This is a word count program."
+	wordname = sys.argv[1] #Get words to count
+	textname = sys.argv[2] #Get text to search
 
-	quit = False
-	while quit == False:
-		print "Please pick an option: "
-		print "1. Run word count"
-		print "2. Quit"
-		choice = int(raw_input("Your choice is: ")) #Remember to convert the input to an integer if you're comparing it to an integer!
-		if choice == 2:
-			print "Goodbye!"
-			quit = True
-		else:
-			filename = raw_input("File name: ")
-			f = file(filename,"r")
-			text = f.read()
-			wordString = raw_input("Words to count: ")
-			counts = wordcount(text)
-			printResults(counts,wordString)
+	wordfile = file(wordname, "r")
+	textfile = file(textname, "r")
+	words = wordfile.read()
+	text = textfile.read()
+
+	wordList = words.split("\n") #Split word file into a list
+	counts = wordcount(text)
+	printResults(counts,wordList)
 
 ###############################################################
 
 #Produces a dictionary containing token counts for each word in text
 
 def wordcount(text): 	#We name the arguments to the function in the parentheses
-  text = "It was the best of times, it was the worst of times."
   textList = text.split(" ")
   d = defaultdict(int)
   for t in textList:
@@ -49,8 +41,7 @@ def wordcount(text): 	#We name the arguments to the function in the parentheses
 
 #Prints the word counts found in counts for each white-space separated word in wordString
 
-def printResults(counts,wordString):
-	words = wordString.split(",")
+def printResults(counts,words):
 	for w in words:
 		w = w.strip()
 		if w in counts:

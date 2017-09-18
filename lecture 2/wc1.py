@@ -1,11 +1,14 @@
-print "Hello! This is a word count program."
+import sys
 
-quit = False
-while quit == False:
-	print "Please pick an option: "
-	print "1. Run word count"
-	print "2. Quit"
-	choice = int(raw_input("Your choice is: ")) #Remember to convert the input to an integer if you're comparing it to an integer!
-	if choice == 2:
-		print "Goodbye!"
-		quit = True
+wordname = sys.argv[1]
+textname = sys.argv[2]
+
+wordfile = file(wordname, "r")
+textfile = file(textname, "r")
+words = wordfile.read()
+text = textfile.read()
+
+wordList = words.split("\n")
+
+print wordList
+print text

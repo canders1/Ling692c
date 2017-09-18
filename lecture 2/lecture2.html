@@ -224,61 +224,35 @@ print &quot;Ginny Weasley's house is: &quot;, d['Ginny Weasley']</code></pre>
 <h3>
 Functions
 </h3>
-<p>Let’s think about how to write a program that is slightly more complicated than the cat guessing game we considered earlier. We’re going to write a program that prompts the user for a list of words and a block of text, and counts how many times each of the words appears in the text (that is, count the <em>tokens</em>).</p>
+<p>Let’s think about how to write a program that is slightly more complicated than the cat guessing game we considered earlier. We’re going to write a program that reads in a list of words and a block of text, and counts how many times each of the words appears in the text (that is, counts the <em>tokens</em>).</p>
 <p>Let’s break this problem down into tasks:</p>
 <ol style="list-style-type: decimal">
-<li>Ask the user for the name of the text file.</li>
-<li>Ask the user for a list of words.</li>
+<li>Retrieve names of the word file and the text file.</li>
+<li>Read in the contents of each file.</li>
 <li>Count how many times each word appears in the text.</li>
 <li>Report the results to the user.</li>
 </ol>
-<p>That seems pretty simple! The first thing to ask ourselves, though, is when the program should quit. Should it only run once? Or should it wait until the user asks it to quit?</p>
-<p>Let’s write the program so that it runs until the user types “quit”. We can modify our task list slightly to reflect this.</p>
-<ol style="list-style-type: decimal">
-<li>Give the user two choices: (1) count words or (2) quit</li>
-<li>Ask the user for the name of the text file.</li>
-<li>Ask the user for a list of words.</li>
-<li>Count how many times each word appears in the text.</li>
-<li>Report the results to the user.</li>
-</ol>
-<p>Okay, let’s tackle the first task first. We’ll write a while loop that asks the user to pick an option, and quits if that option is 3.</p>
-<pre class="python"><code>
-print &quot;Hello! This is a word count program.&quot;
+<p>Okay, let’s tackle the first two tasks. To read in command-line arguments, we need to import the sys library.</p>
+<p>The first argument in the argv list of command-line arguments is always the name of the program, so the name of the word file is argv[1].</p>
+<p>Since the words are read in as a string, we’ll split them on the newline character to create a list.</p>
+<pre class="python"><code>#Saved as wc1.py
+import sys
 
-quit = False
-while quit == False:
-    print &quot;Please pick an option: &quot;
-    print &quot;1. Run word count&quot;
-    print &quot;2. Quit&quot;
-    choice = int(raw_input(&quot;Your choice is: &quot;)) #Remember to convert the input to an integer if you're comparing it to an integer!
-    if choice == 2:
-        print &quot;Goodbye!&quot;
-        quit = True
-    #GET USER INPUT
-    #DO WORD COUNT
-    #REPORT RESULTS</code></pre>
-<p>So far so good. Our program quits on demand, but otherwise it doesn’t do anything.</p>
-<p>If the user picks Option 1, we need to ask them for a file name.</p>
-<pre class="python"><code>
-print &quot;Hello! This is a word count program.&quot;
+wordname = sys.argv[1]
+textname = sys.argv[2]
 
-quit = False
-while quit == False:    
-  print &quot;Please pick an option: &quot;
-    print &quot;1. Run word count&quot;
-    print &quot;2. Quit&quot;
-    choice = int(raw_input(&quot;Your choice is: &quot;)) #Remember to convert the input to an integer if you're comparing it to an integer!
-    if choice == 2:
-        print &quot;Thanks for playing!&quot;
-        quit = True
-    else:
-      f = raw_input(&quot;File name: &quot;)
-      wordString = raw_input(&quot;Words to count: &quot;)
-      #RUN WORD COUNT
-      #REPORT RESULTS</code></pre>
+wordfile = file(wordname, &quot;r&quot;)
+textfile = file(textname, &quot;r&quot;)
+words = wordfile.read()
+text = textfile.read()
+
+
+wordList = words.split(&quot;\n&quot;)
+
+print wordList
+print text</code></pre>
 <p>Okay, so far we’ve handled the user input stuff. Now for the substance of our program.</p>
-<p>Let’s think about how to do the word count. This piece of the program can be defined as follows:</p>
-<p>Given a list of words and a block of text, count how many times each word appears in the text.</p>
+<p>Let’s think about how to do the word count. This piece of the program can be defined as follows: given a list of words and a block of text, count how many times each word appears in the text.</p>
 <p>Now a human might go about this word by word, scanning the text and calculating the sum for each word. This involves looping through the text once for each word in the list.</p>
 <p>We’re going to do something slightly different: we’re going to separate the text into words and enter each word into a dictionary that keeps track of how many times it appears. Then, we’ll simply print out the dictionary entries for each word in the list at the end.</p>
 <p>Although we create a dictionary entry for a bunch of words that we never see, we only have to go through the text once.</p>
@@ -294,12 +268,13 @@ print(d) #Notice that because we haven't normalized punctuation and capitalizati
 <pre><code>## defaultdict(&lt;type 'int'&gt;, {'of': 2, 'It': 1, 'it': 1, 'times,': 1, 'times.': 1, 'worst': 1, 'the': 2, 'was': 2, 'best': 1})</code></pre>
 <p>We’ve produced a word count dictionary for the text given above. But we really want to write a <em>function</em> that takes an arbitrary string.</p>
 <p>Here’s how we define a function in Python:</p>
-<pre class="python"><code>from collections import defaultdict
+<pre class="python"><code>#Saved as wc2.py
+
+from collections import defaultdict
 
 ###############################################################
 
 def wordcount(text):    #We name the arguments to the function in the parentheses
-  text = &quot;It was the best of times, it was the worst of times.&quot;
   textList = text.split(&quot; &quot;)
   d = defaultdict(int)
   for t in textList:
@@ -316,46 +291,39 @@ print(counts)</code></pre>
 <p>Now we have all the pieces to write our word-count program.</p>
 <p>It’s conventional to put the body of your program inside a function called <em>main</em>.</p>
 <p>You should always write a comment at the top of the file describing the file. It’s generally good practice to put a comment by each function definition as well.</p>
-<pre class="python"><code>&quot;&quot;&quot;
+<pre class="python"><code>#Saved as wc3.py
+&quot;&quot;&quot;
 Author: Carolyn Anderson
 Date: 9/15/17
 
-This is a word-count program for Lecture 2.
+This is a word-count program. 
 
-Input:  a list of words to count; a filename containing text to search
+Input:  a list of words to count; 
+        a filename containing text to search
 Output: a count per word of how many times the word occurs
 &quot;&quot;&quot;
-
+import sys
 from collections import defaultdict
-
 
 def main():
 
-    print &quot;Hello! This is a word count program.&quot;
+    wordname = sys.argv[1] #Get words to count
+    textname = sys.argv[2] #Get text to search
 
-    quit = False
-    while quit == False:
-        print &quot;Please pick an option: &quot;
-        print &quot;1. Run word count&quot;
-        print &quot;2. Quit&quot;
-        choice = int(raw_input(&quot;Your choice is: &quot;)) #Remember to convert the input to an integer if you're comparing it to an integer!
-        if choice == 2:
-            print &quot;Goodbye!&quot;
-            quit = True
-        else:
-            filename = raw_input(&quot;File name: &quot;)
-            f = file(filename,&quot;r&quot;)
-            text = f.read()
-            wordString = raw_input(&quot;Words to count: &quot;)
-            counts = wordcount(text)
-            printResults(counts,wordString)
+    wordfile = file(wordname, &quot;r&quot;)
+    textfile = file(textname, &quot;r&quot;)
+    words = wordfile.read()
+    text = textfile.read()
+
+    wordList = words.split(&quot;\n&quot;) #Split word file into a list
+    counts = wordcount(text)
+    printResults(counts,wordList)
 
 ###############################################################
 
 #Produces a dictionary containing token counts for each word in text
 
 def wordcount(text):    #We name the arguments to the function in the parentheses
-  text = &quot;It was the best of times, it was the worst of times.&quot;
   textList = text.split(&quot; &quot;)
   d = defaultdict(int)
   for t in textList:
@@ -367,8 +335,7 @@ def wordcount(text):    #We name the arguments to the function in the parenthese
 
 #Prints the word counts found in counts for each white-space separated word in wordString
 
-def printResults(counts,wordString):
-    words = wordString.split(&quot;,&quot;)
+def printResults(counts,words):
     for w in words:
         w = w.strip()
         if w in counts:
