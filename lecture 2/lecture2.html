@@ -225,6 +225,18 @@ print &quot;Harry Potter's house is: &quot;, d['Harry Potter']
 print &quot;Ginny Weasley's house is: &quot;, d['Ginny Weasley']</code></pre>
 <pre><code>## Harry Potter's house is:  Gryffindor
 ## Ginny Weasley's house is:</code></pre>
+<p>One note about defaultdicts: if you want to create a defaultdict that stores defaultdicts, you’ll need to wrap the defaultdict type argument to the outer defaultdict in an anonymous function:</p>
+<pre class="python"><code>from collections import defaultdict
+
+outerDict = defaultdict(lambda : defaultdict(float))
+innerDict = outerDict[&quot;Harry Potter&quot;]
+innerValue = innerDict[&quot;Hedwig&quot;]
+print innerValue
+print innerDict
+print outerDict</code></pre>
+<pre><code>## 0.0
+## defaultdict(&lt;type 'float'&gt;, {'Hedwig': 0.0})
+## defaultdict(&lt;function &lt;lambda&gt; at 0x1100cb410&gt;, {'Harry Potter': defaultdict(&lt;type 'float'&gt;, {'Hedwig': 0.0})})</code></pre>
 <h3>
 Functions
 </h3>

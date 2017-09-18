@@ -151,6 +151,19 @@ print "Harry Potter's house is: ", d['Harry Potter']
 print "Ginny Weasley's house is: ", d['Ginny Weasley']
 ```
 
+One note about defaultdicts: if you want to create a defaultdict that stores defaultdicts, you'll need to wrap the defaultdict type argument to the outer defaultdict in an anonymous function:
+
+```{python}
+from collections import defaultdict
+
+outerDict = defaultdict(lambda : defaultdict(float))
+innerDict = outerDict["Harry Potter"]
+innerValue = innerDict["Hedwig"]
+print innerValue
+print innerDict
+print outerDict
+```
+
 <h3>Functions</h3>
 
 Let's think about how to write a program that is slightly more complicated than the cat guessing game we considered earlier. We're going to write a program that reads in a list of words and a block of text, and counts how many times each of the words appears in the text (that is, counts the *tokens*).
