@@ -178,6 +178,80 @@ print re.search('[^aA-zZ]+',s).group(0) #Find sequence of non-letters</code></pr
 ## address: 33 Peachtree St.
 ## a
 ## : 33</code></pre>
+<h4>
+Regex methods
+</h4>
+<p>There are four methods for regexes.</p>
+<p>You can use match() to check if the beginning of the string matches the regex.</p>
+<pre class="python"><code>import re
+
+s = 'address: 33 Peachtree St.'
+
+print re.match('[0-9]{1}', s)
+print re.match('[a-z]{1}', s).group()</code></pre>
+<pre><code>## None
+## a</code></pre>
+<p>You can use search() to try to match the string at any position.</p>
+<pre class="python"><code>import re
+
+s = 'address: 33 Peachtree St.'
+
+print re.search('[0-9]{1}', s).group()
+print re.search('[a-z]{1}', s).group()</code></pre>
+<pre><code>## 3
+## a</code></pre>
+<p>You can use findall() to find all substrings where the RE matches. findall() returns all matches as a list.</p>
+<pre class="python"><code>import re
+
+s = 'address: 33 Peachtree St. Apt. 1079'
+
+m = re.findall('[0-9]{1}', s) #Find first digit in string
+for i in m:
+  print i</code></pre>
+<pre><code>## 3
+## 3
+## 1
+## 0
+## 7
+## 9</code></pre>
+<p>Lastly, finditer(), like findall(), picks out all matching substrings, but it returns them as an interator rather than a list.</p>
+<h4>
+Match object methods
+</h4>
+<p>I’ve been using group() to get the string matched by search().</p>
+<p>There are a few more methods you can use to get different information from the match object.</p>
+<p>To return the starting index of the match, use start().</p>
+<pre class="python"><code>import re
+
+s = 'address: 33 Peachtree St.'
+
+print re.search('[0-9]{1}', s).start()
+print re.search('[a-z]{1}', s).start()</code></pre>
+<pre><code>## 9
+## 0</code></pre>
+<p>To get the ending index of the match, use end().</p>
+<pre class="python"><code>import re
+
+s = 'address: 33 Peachtree St.'
+
+print re.search('[0-9]{2}', s).end()
+print re.search('[a-z]{2}', s).end()</code></pre>
+<pre><code>## 11
+## 2</code></pre>
+<p>Last, span() returns a tuple containing the start and end indices of the match.</p>
+<pre class="python"><code>import re
+
+s = 'address: 33 Peachtree St.'
+
+print re.search('[0-9]{2}', s).span()
+print re.search('[a-z]{2}', s).span()</code></pre>
+<pre><code>## (9, 11)
+## (0, 2)</code></pre>
+<h4>
+Exercise: finding phone numbers
+</h4>
+<p>Can you write a regex that matches phone numbers?</p>
+<p>Assume that each phone number is of the format (413)-555-3091, where the area code is given in parentheses, and hyphens are used to separate the blocks of digits.</p>
 </div>
 
 
