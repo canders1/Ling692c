@@ -1,6 +1,8 @@
+import sys
 
-
-def main(ws):
+def main():
+	f = file(sys.argv[1],"r")
+	ws = f.read().split("\n")
 	plist = normList(ws)
 	pairs = []
 	for i in range(0,len(plist)-1):
@@ -19,4 +21,4 @@ def normList(wordlist):
 	pairlist.sort(key=lambda w: w[1])
 	return pairlist
 
-main(["cra","rat","car","art"])
+main()

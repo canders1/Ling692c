@@ -1,0 +1,59 @@
+---
+title: 'Programming in Python: Lecture 3'
+author: "Carolyn Jane Anderson"
+date: "9/22/2017"
+output: html_document
+---
+
+```{r,echo=FALSE}
+library(knitr)
+opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
+```
+
+Today we're going to work some more with strings. We'll also learn about regular expressions.
+
+#WARMUP EXERCISE
+
+<h3>Regular expressions</h3>
+
+Regular expressions are all about pattern-matching. They are called *regular expressions* because the basic atomics and operations form a *regular language*. However, regular expressions in many languages, including Python, have expanded functionality so that they are no longer regular.
+
+<h4>Regular expression syntax</h5>
+
+<h5>Character classes</h5>
+
+. : any character except newline
+
+\\w : word
+
+\\d : digit
+
+\\s : whitespace
+
+\\t : tab
+
+\\n : newline
+
+<h5>Quantifiers</h5>
+
+\* : 0 or more
+
+\+ : 1 or more
+
+? : 0 or 1
+
+<h5>Anchors</h5>
+
+\^ : start of string
+
+\$ : end of string
+
+<h5>Sets</h5>
+
+[ ] : set
+
+[^ ] : complement of set
+
+\| : or
+
+[ - ] : range
