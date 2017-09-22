@@ -148,6 +148,7 @@ Quantifiers
 <p>* : 0 or more</p>
 <p>+ : 1 or more</p>
 <p>? : 0 or 1</p>
+<p>{n} : exactly n</p>
 <h5>
 Anchors
 </h5>
@@ -160,6 +161,23 @@ Sets
 <p>[^ ] : complement of set</p>
 <p>| : or</p>
 <p>[ - ] : range</p>
+<pre class="python"><code>import re
+
+s = 'address: 33 Peachtree St.'
+
+m = re.search('[0-9]{1}', s) #Find first digit in string
+print m.group(0)
+
+n = re.search('.*',s) #Find sequence of 0 or more characters
+print n.group(0)
+
+print re.search('[a-z]',s).group(0) #Find lowercase letter
+
+print re.search('[^aA-zZ]+',s).group(0) #Find sequence of non-letters</code></pre>
+<pre><code>## 3
+## address: 33 Peachtree St.
+## a
+## : 33</code></pre>
 </div>
 
 

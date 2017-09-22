@@ -42,6 +42,8 @@ Regular expressions are all about pattern-matching. They are called *regular exp
 
 ? : 0 or 1
 
+{n} : exactly n
+
 <h5>Anchors</h5>
 
 \^ : start of string
@@ -57,3 +59,19 @@ Regular expressions are all about pattern-matching. They are called *regular exp
 \| : or
 
 [ - ] : range
+
+```{python}
+import re
+
+s = 'address: 33 Peachtree St.'
+
+m = re.search('[0-9]{1}', s) #Find first digit in string
+print m.group(0)
+
+n = re.search('.*',s) #Find sequence of 0 or more characters
+print n.group(0)
+
+print re.search('[a-z]',s).group(0) #Find lowercase letter
+
+print re.search('[^aA-zZ]+',s).group(0) #Find sequence of non-letters
+```
