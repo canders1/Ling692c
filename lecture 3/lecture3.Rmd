@@ -10,17 +10,17 @@ library(knitr)
 opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
 ```
 
-Today we're going to work some more with strings. We'll also learn about regular expressions.
+Today we're going to learn about regular expressions.
 
 #WARMUP EXERCISE
 
-<h3>Regular expressions</h3>
+<h2>Regular expressions</h2>
 
 Regular expressions are all about pattern-matching. They are called *regular expressions* because the basic atomics and operations form a *regular language*. However, regular expressions in many languages, including Python, have expanded functionality so that they are no longer regular.
 
-<h4>Regular expression syntax</h5>
+<h3>Regular expression syntax</h3>
 
-<h5>Character classes</h5>
+<h4>Character classes</h4>
 
 . : any character except newline
 
@@ -34,7 +34,7 @@ Regular expressions are all about pattern-matching. They are called *regular exp
 
 \\n : newline
 
-<h5>Quantifiers</h5>
+<h4>Quantifiers</h4>
 
 \* : 0 or more
 
@@ -44,13 +44,13 @@ Regular expressions are all about pattern-matching. They are called *regular exp
 
 {n} : exactly n
 
-<h5>Anchors</h5>
+<h4>Anchors</h4>
 
 \^ : start of string
 
 \$ : end of string
 
-<h5>Sets</h5>
+<h4>Sets</h4>
 
 [ ] : set
 
@@ -76,7 +76,7 @@ print re.search(r'[a-z]',s).group(0) #Find lowercase letter
 print re.search(r'[^aA-zZ]+',s).group(0) #Find sequence of non-letters
 ```
 
-<h4>Regex methods</h4>
+<h3>Regex methods</h3>
 
 There are four methods for regexes.  
 
@@ -116,7 +116,7 @@ for i in m:
 
 Lastly, finditer(), like findall(), picks out all matching substrings, but it returns them as an interator rather than a list.
 
-<h4>Match object methods</h4>
+<h3>Match object methods</h3>
 
 I've been using group() to get the string matched by search().
 
@@ -155,7 +155,7 @@ print re.search(r'[0-9]{2}', s).span()
 print re.search(r'[a-z]{2}', s).span()
 ```
 
-<h4>Exercise: finding phone numbers</h4>
+<h3>Exercise: finding phone numbers</h3>
 
 Can you write a regex that matches phone numbers?
 
@@ -190,7 +190,7 @@ What would we have to do to exclude these bad numbers?
 
 For many applications, regular expressions are a useful tool to catch the majority of cases, but it may not make sense to spend the time to consider every last case.
 
-<h4>Capturing groups</h4>
+<h3>Capturing groups</h3>
 
 There's one other aspect of regular expressions that I haven't shown you. This is the non-regular feature of most implementations of regular expressions: capturing groups.
 
@@ -209,6 +209,86 @@ print r
 
 Here, the \\1 refers to the first group of the expression: whichever character was matched by \\w. The regex above matches sequences where the same character appears before and after an a.
 
+You can also use the group syntax to define a *lookahead* assertion. These are used to match something in the context of an expression without capturing anything but the expression.
 
+You can write both positive and negative lookaheads. 
 
+Let's consider an example where we are matching filenames.
 
+```{python}
+import re
+
+r = re.compile(r'.*[.].*$')
+files = ['foo.txt','foo.jar','foo.jpeg']
+for f in files:
+  res = re.search(r,f)
+  if res is not None:
+    print res.group()
+```
+
+It's very easy to match a filename: we simply accept a sequence of characters, followed by a period, followed by another sequence of characters and line end character.
+
+(Note that we wrap the period character in a set since period is a special character in the regex syntax.)
+
+However, it's not so easy to write an expression that recognizes all file types except one. For instance, say that we want to exclude just .jar files. 
+
+We can start by excluding file extensions that start with 'j'.
+
+```{python}
+import re
+
+r = re.compile(r'.*[.][^j]*$') 
+files = ['foo.txt','foo.jar','foo.jpeg']
+for f in files:
+  res = re.search(r,f)
+  if res is not None:
+    print res.group()
+```
+
+Of course, this is too liberal, because we end up excluding jpeg files as well.
+
+Instead, we can use a negative lookahead to specify an expression that we don't want to match.
+
+```{python}
+import re
+
+r = re.compile(r'.*[.](?!jar).*$')
+files = ['foo.txt','foo.jar','foo.jpeg']
+for f in files:
+  res = re.search(r,f)
+  if res is not None:
+    print res.group()
+```
+
+You can also use a positive lookahead to specify the characters that follow your target expression.
+
+For instance, you might want to get the filename as a string without the extension following.
+
+If you knew the file extension, you could use string.find in base Python, which is generally faster than a regular expression.
+
+```{python}
+file = "linguistics.is.cool.txt"
+ext = file.find(".txt")
+filename = file[0:ext]
+print filename
+```
+
+However, if you don't know the file extension, you can use a positive lookahead to match a substring that is followed by a period plus a sequence of characters plus the line end character.
+
+```{python}
+import re
+
+file = "linguistics.is.cool.txt"
+r = re.compile(r'.*(?=\.[a-z]+$)')
+res = re.search(r,file)
+if res is not None:
+    print res.group()
+```
+
+<h2>Regular Expression Practice</h2>
+
+That's about all I want to tell you about regular expressions! You can use them to replace substrings as well as just find them, but I'll let you investigate that on your own.
+
+Now we're going to practice what we learned on some text. 
+
+<h4>Task: write a regular expression to capture as many of the proper names in names.txt as possible</h4>
