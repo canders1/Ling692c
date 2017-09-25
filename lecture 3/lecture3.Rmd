@@ -12,7 +12,25 @@ opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
 
 Today we're going to learn about regular expressions.
 
-#WARMUP EXERCISE
+<h2>Warm-up Exercise</h2>
+
+<h5>Task: write a program that prints a pyramid using a given character.</h5>
+
+Your program should take two arguments: a character and a number of lines (height of pyramid).
+
+Each line in the pyramid should be two characters more than the previous line.
+
+For example, if given the character "M" and a height of 4, your program would produce the pyramid shown below.
+
+M
+
+MMM
+
+MMMMM
+
+MMMMMMM
+
+<h5>Bonus: write a function that produces a centered triangle.</h5>
 
 <h2>Regular expressions</h2>
 
@@ -294,8 +312,56 @@ Now we're going to practice what we learned on some text.
 <h4>Task: write a regular expression to capture as many of the proper names in names.txt as possible</h4>
 
 ```{python}
+import re
+
 f = file("/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 3/names.txt","r")
+r = re.compile(r'(?!^)([A-Z]{1}[a-z]*[.]? )*([A-Z]{1}[a-z]*)')
 s =  f.read()
-l = s.split('\n')
+lines = s.split('\n')
+for l in lines:
+  print l
+  res = re.search(r,l)
+  if res is not None:
+    print res.group(0)
+  else:
+    print "None"
+```
+
+<h2>Scope</h2>
+
+So far, we haven't explicitly discussed scope. As you've probably figured out by now, variables declared within a function are bound within the scope of that function, even if they share the same name as a variable outside of the function.
+
+```{python}
+x = 3
+
+def foo():
+  x = 7
+
+foo()
+print x
+```
+
+Similarly, if you modify the value of a variable inside a function, its value outside the function will not be affected.
+
+```{python}
+x = 3
+
+def foo(y):
+  y = y+7  #We could return y and update x with the result of foo(x) in order to affect the value of x in the outer context.
+
+foo(x)
+print x
+```
+
+However, more care must be taken with mutable datatypes. Datatypes like lists have methods that modify the list in place. It's important to be aware that the calling these methods inside a function will affect the value of the datatype outside the function as well.
+
+```{python}
+l = ["b","z","a"]
+
+def foo(s):
+  s.sort()
+
+foo(l)
 print l
 ```
+
