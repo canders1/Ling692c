@@ -165,15 +165,15 @@ Sets
 
 s = 'address: 33 Peachtree St.'
 
-m = re.search('[0-9]{1}', s) #Find first digit in string
+m = re.search(r'[0-9]{1}', s) #Find first digit in string
 print m.group(0)
 
-n = re.search('.*',s) #Find sequence of 0 or more characters
+n = re.search(r'.*',s) #Find sequence of 0 or more characters
 print n.group(0)
 
-print re.search('[a-z]',s).group(0) #Find lowercase letter
+print re.search(r'[a-z]',s).group(0) #Find lowercase letter
 
-print re.search('[^aA-zZ]+',s).group(0) #Find sequence of non-letters</code></pre>
+print re.search(r'[^aA-zZ]+',s).group(0) #Find sequence of non-letters</code></pre>
 <pre><code>## 3
 ## address: 33 Peachtree St.
 ## a
@@ -187,8 +187,8 @@ Regex methods
 
 s = 'address: 33 Peachtree St.'
 
-print re.match('[0-9]{1}', s)
-print re.match('[a-z]{1}', s).group()</code></pre>
+print re.match(r'[0-9]{1}', s)
+print re.match(r'[a-z]{1}', s).group()</code></pre>
 <pre><code>## None
 ## a</code></pre>
 <p>You can use search() to try to match the string at any position.</p>
@@ -196,8 +196,8 @@ print re.match('[a-z]{1}', s).group()</code></pre>
 
 s = 'address: 33 Peachtree St.'
 
-print re.search('[0-9]{1}', s).group()
-print re.search('[a-z]{1}', s).group()</code></pre>
+print re.search(r'[0-9]{1}', s).group()
+print re.search(r'[a-z]{1}', s).group()</code></pre>
 <pre><code>## 3
 ## a</code></pre>
 <p>You can use findall() to find all substrings where the RE matches. findall() returns all matches as a list.</p>
@@ -205,7 +205,7 @@ print re.search('[a-z]{1}', s).group()</code></pre>
 
 s = 'address: 33 Peachtree St. Apt. 1079'
 
-m = re.findall('[0-9]{1}', s) #Find first digit in string
+m = re.findall(r'[0-9]{1}', s) #Find first digit in string
 for i in m:
   print i</code></pre>
 <pre><code>## 3
@@ -225,8 +225,8 @@ Match object methods
 
 s = 'address: 33 Peachtree St.'
 
-print re.search('[0-9]{1}', s).start()
-print re.search('[a-z]{1}', s).start()</code></pre>
+print re.search(r'[0-9]{1}', s).start()
+print re.search(r'[a-z]{1}', s).start()</code></pre>
 <pre><code>## 9
 ## 0</code></pre>
 <p>To get the ending index of the match, use end().</p>
@@ -234,8 +234,8 @@ print re.search('[a-z]{1}', s).start()</code></pre>
 
 s = 'address: 33 Peachtree St.'
 
-print re.search('[0-9]{2}', s).end()
-print re.search('[a-z]{2}', s).end()</code></pre>
+print re.search(r'[0-9]{2}', s).end()
+print re.search(r'[a-z]{2}', s).end()</code></pre>
 <pre><code>## 11
 ## 2</code></pre>
 <p>Last, span() returns a tuple containing the start and end indices of the match.</p>
@@ -243,15 +243,61 @@ print re.search('[a-z]{2}', s).end()</code></pre>
 
 s = 'address: 33 Peachtree St.'
 
-print re.search('[0-9]{2}', s).span()
-print re.search('[a-z]{2}', s).span()</code></pre>
+print re.search(r'[0-9]{2}', s).span()
+print re.search(r'[a-z]{2}', s).span()</code></pre>
 <pre><code>## (9, 11)
 ## (0, 2)</code></pre>
 <h4>
 Exercise: finding phone numbers
 </h4>
 <p>Can you write a regex that matches phone numbers?</p>
-<p>Assume that each phone number is of the format (413)-555-3091, where the area code is given in parentheses, and hyphens are used to separate the blocks of digits.</p>
+<p>First we’ll assume that each phone number is of the format (413)-555-3091, where the area code is given in parentheses, and hyphens are used to separate the blocks of digits.</p>
+<p>Now let’s try to be a little more flexible. How many of the valid phone numbers below can you capture, without capturing any of the invalid ones?</p>
+<p>You can find the phone numbers in numbers.txt.</p>
+<pre class="python"><code>f = file(&quot;/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 3/numbers.txt&quot;,&quot;r&quot;)
+print f.read()</code></pre>
+<pre><code>## 101-8001,good
+## (41)-000-5555,bad
+## (555)(000)1010,bad
+## (413)-000-5555,good
+## 1-413-(555)-0100,bad
+## (555)000-1010,good
+## 2-(513)5555,bad
+## 501-555-5050,good
+## (1)-413-555-0100,good
+## 101-101-101-8001,bad
+## 5550-0100,bad
+## 2-(444)-513-5555,good
+## (1)413-555-0100,good
+## (1)41-555-0123,bad
+## 501-555-505,bad
+## 1-100-0101,bad
+## 1-100-001-0101,good
+## -413-3030,bad</code></pre>
+<p>I’ve written you an evaluation program in phonetest.py. This program takes two command-line arguments: your regular expression, and the name of the file of phone numbers.</p>
+<p>For example:</p>
+<p>python phonetest.py ‘^a’ numbers.txt</p>
+<p>The program prints out a score indicating what fraction of phone numbers you correctly identified. It also prints out the phone numbers that your regex failed to correctly classify (both false negatives and false positives).</p>
+<p>I wrote a regex that catches all but two of the numbers:</p>
+<p>5550-0100</p>
+<p>1-100-0101</p>
+<p>Why are these cases problematic?</p>
+<p>What would we have to do to exclude these bad numbers?</p>
+<p>For many applications, regular expressions are a useful tool to catch the majority of cases, but it may not make sense to spend the time to consider every last case.</p>
+<h4>
+Capturing groups
+</h4>
+<p>There’s one other aspect of regular expressions that I haven’t shown you. This is the non-regular feature of most implementations of regular expressions: capturing groups.</p>
+<p>Capturing groups is a way of giving regular expressions memory. The parentheses we used to group characters together above actually does a little more work than just making scope explicit.</p>
+<p>Parentheses actually define groups, which can be referred to using <em>backreferences</em>.</p>
+<pre class="python"><code>import re
+
+fooafoo = re.compile(r'(\w)a\1')
+s = 'ana nan bad dad ab banana.'
+r = re.findall(fooafoo,s)
+print r</code></pre>
+<pre><code>## ['n', 'd', 'n']</code></pre>
+<p>Here, the \1 refers to the first group of the expression: whichever character was matched by \w. The regex above matches sequences where the same character appears before and after an a.</p>
 </div>
 
 
