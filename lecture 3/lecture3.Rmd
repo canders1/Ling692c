@@ -295,5 +295,7 @@ Now we're going to practice what we learned on some text.
 
 ```{python}
 f = file("/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 3/names.txt","r")
-print f.read()
+s =  f.read()
+l = s.split('\n')
+print l
 ```
