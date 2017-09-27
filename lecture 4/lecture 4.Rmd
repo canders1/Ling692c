@@ -1,0 +1,52 @@
+---
+title: 'Programming in Python: Lecture 4'
+author: "Carolyn Jane Anderson"
+date: "9/27/2017"
+output: html_document
+---
+
+Today we'll discuss scope. We'll also practice string-processing.
+
+```{r,echo=FALSE}
+library(knitr)
+opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
+```
+
+<h2>Scope</h2>
+
+So far, we haven't explicitly discussed scope. As you've probably figured out by now, variables declared within a function are bound within the scope of that function, even if they share the same name as a variable outside of the function.
+
+```{python}
+x = 3
+
+def foo():
+  x = 7
+
+foo()
+print x
+```
+
+Similarly, if you modify the value of a variable inside a function, its value outside the function will not be affected.
+
+```{python}
+x = 3
+
+def foo(y):
+  y = y+7  #We could return y and update x with the result of foo(x) in order to affect the value of x in the outer context.
+
+foo(x)
+print x
+```
+
+However, more care must be taken with mutable datatypes. Datatypes like lists have methods that modify the list in place. It's important to be aware that the calling these methods inside a function will affect the value of the datatype outside the function as well.
+
+```{python}
+l = ["b","z","a"]
+
+def foo(s):
+  s.sort()
+
+foo(l)
+print l
+```
+

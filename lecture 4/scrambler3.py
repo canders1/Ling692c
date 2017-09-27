@@ -20,5 +20,5 @@ def scrambler(word):
 
 scrambles = scrambler(raw_input("Please give me a word: "))
 for s in scrambles:
-	#print s
+	print s
 print len(scrambles)
