@@ -123,7 +123,17 @@ $(document).ready(function () {
 </div>
 
 
-<p>Today we’ll discuss scope. We’ll also practice string-processing.</p>
+<p>Today is a bit of a hodgepodge. We’re going to talk about scope. We’ll also discuss debugging.</p>
+<h3>
+Warm-up: complex onsets in English
+</h3>
+<p>Task: write a regex that recognizes licit complex onsets in English using the simplified sonority sequencing hierarchy.</p>
+<p>Glides &gt; Liquids &gt; Nasals &gt; Fricatives/ Affricates &gt; Plosives</p>
+<p>[y j w] &gt; [r l] &gt; [m n] &gt; [z v th f ch s sh] &gt; [b d g p t k]</p>
+<p>(We’ll work with English orthography rather than IPA since the way Python handles Unicode varies between 2.7 and 3.)</p>
+<p>Once you have your regex, try to write a program that compares your regex’s classification with the list of words in good_onsets.txt.</p>
+<p>What words does your regex classify as good that are not in good_onsets.txt?</p>
+<p>What words in good_onsets.txt does your regex fail to classify?</p>
 <h2>
 Scope
 </h2>
@@ -154,6 +164,178 @@ def foo(s):
 foo(l)
 print l</code></pre>
 <pre><code>## ['a', 'b', 'z']</code></pre>
+<p>What if you want to be able to reference a variable no matter what the local scope is?</p>
+<p>You can create a <em>global variable</em> that is accessible, well, globally. However, it’s easy to create errors through the misuse of global variables, and it’s generally good style to try to avoid them, since they complicate the logic of your program.</p>
+<h2>
+Debugging
+</h2>
+<p>Good debugging practice relies on good programming practice. Debugging is only necessary when we fail. In an ideal world, we’d write perfect code that runs on the first try. Since we don’t like to think we’re going fail, it’s easy to fool ourselves into thinking we don’t have to write code that is easy to debug.</p>
+<p>What I mean when I say that good debugging is mostly good programming is that debugging becomes much easier when your code is:</p>
+<p><b>Modular</b>: broken into small, testable sub-functions</p>
+<p><b>Commented</b>: with the input, output, and expected functionality of each function, and explanations of any particularly tricky lines</p>
+<p><b>Conventionally-styled</b>: with informative variable names, plenty of whitespace (it’s free!), and an easy-to-find main()</p>
+<p><b>Planned</b>: you have at least an outline, on a whiteboard or preferably on paper, breaking the problem into steps</p>
+<h4>
+Modularity
+</h4>
+<p>Modularity leads to easier debugging for two reasons.</p>
+<p>First, it’s usually easier to understand things that are broken into pieces.</p>
+<p>Second, if you break your program up into small functions, it will be easier to test incrementally. Every time you write a function, you should test it out on at least a handful of input to make sure it is performing correctly.</p>
+<p>Of course, modularity is also helpful if you decide to change part of your program, or reuse part of your code in another program. It’s easier to do that if you’ve written it as a separate function.</p>
+<h4>
+Commenting
+</h4>
+<p>Here’s a situation you don’t want to be in. You’ve written a beautiful project in Python that relies on several different files. You decide you want to upload it to Github, so other people can use it, and you think, “I should make sure all my files are commented, so that people can understand them.”</p>
+<p>It’s been a few months since you wrote the code, though, and this is what you see when you open one of your files:</p>
+<pre class="python"><code>def oo000 ( ) :
+ ii = 12
+ for ii in range ( 0 , ii ) :
+  print oOOo ( ii )
+  if 59 - 59: Oo0Ooo . OO0OO0O0O0 * iiiIIii1IIi . iII111iiiii11 % I1IiiI
+def oOOo ( n ) :
+ if n &lt;= 1 :
+  if 27 - 27: iIiiiI1IiI1I1 * IIiIiII11i * IiIIi1I1Iiii - Ooo00oOo00o
+  if 48 - 48: oO0o / OOooOOo / I11i / Ii1I
+  return n
+ else :
+  return ( oOOo ( n - 1 ) + oOOo ( n - 2 ) )
+  if 48 - 48: iII111i % IiII + I1Ii111 / ooOoO0o * o00O0oo
+oo000 ( ) </code></pre>
+<p>Can anyone guess what this does? Yeah, you can’t either, even though you wrote it.</p>
+<p>If you do, by chance, inherit some legacy code, the first thing you should do is go through it, read all the comments, and put in comments as you start to understand things. At first, the code might look like:</p>
+<pre class="python"><code>def oo000 ( ) :
+ ii = 12 #Sets variable ii to 12
+ for ii in range ( 0 , ii ) : 
+  print oOOo ( ii )
+  if 59 - 59: Oo0Ooo . OO0OO0O0O0 * iiiIIii1IIi . iII111iiiii11 % I1IiiI #Does this even do anything??
+def oOOo ( n ) : #Function
+ if n &lt;= 1 :
+  if 27 - 27: iIiiiI1IiI1I1 * IIiIiII11i * IiIIi1I1Iiii - Ooo00oOo00o
+  if 48 - 48: oO0o / OOooOOo / I11i / Ii1I
+  return n
+ else :
+  return ( oOOo ( n - 1 ) + oOOo ( n - 2 ) ) #Returns ... ??
+  if 48 - 48: iII111i % IiII + I1Ii111 / ooOoO0o * o00O0oo
+oo000 ( ) </code></pre>
+<p>But that’s ok. First, let’s clean it up by writing more informative variable names.</p>
+<pre class="python"><code>def main():
+ iterations = 12 
+ for i in range (0, iterations): #Calls function foo() 12 times and prints the result
+  print foo(i)
+  if 59 - 59: Oo0Ooo . OO0OO0O0O0 * iiiIIii1IIi . iII111iiiii11 % I1IiiI #Does this even do anything??
+def foo(n) : #We still don't know what this does, so we'll call it foo
+ if n &lt;= 1 :
+  if 27 - 27: iIiiiI1IiI1I1 * IIiIiII11i * IiIIi1I1Iiii - Ooo00oOo00o
+  if 48 - 48: oO0o / OOooOOo / I11i / Ii1I
+  return n
+ else :
+  return ( foo( n - 1 ) + foo( n - 2 ) ) #Returns ... ??
+  if 48 - 48: iII111i % IiII + I1Ii111 / ooOoO0o * o00O0oo
+main( ) #We'll call this main, since it's called at the bottom</code></pre>
+<pre><code>## 0
+## 1
+## 1
+## 2
+## 3
+## 5
+## 8
+## 13
+## 21
+## 34
+## 55
+## 89</code></pre>
+<p>When we run the program, it looks like it calculates the first 12 Fibonocci numbers.</p>
+<pre class="python"><code>def main():
+ iterations = 12 
+ for i in range (0, iterations): #Calls function fib() 12 times and prints the result
+  print fib(i)
+  if 59 - 59: Oo0Ooo . OO0OO0O0O0 * iiiIIii1IIi . iII111iiiii11 % I1IiiI #Does this even do anything??
+def fib(n) : #We still don't know what this does, so we'll call it foo
+ if n &lt;= 1 : #Base case
+  if 27 - 27: iIiiiI1IiI1I1 * IIiIiII11i * IiIIi1I1Iiii - Ooo00oOo00o
+  if 48 - 48: oO0o / OOooOOo / I11i / Ii1I
+  return n
+ else : #Recursively call fib on the numbers 1 less and 2 less than current number to calculate result
+  return ( fib( n - 1 ) + fib( n - 2 ) ) #Returns ... ??
+  if 48 - 48: iII111i % IiII + I1Ii111 / ooOoO0o * o00O0oo
+main( )</code></pre>
+<pre><code>## 0
+## 1
+## 1
+## 2
+## 3
+## 5
+## 8
+## 13
+## 21
+## 34
+## 55
+## 89</code></pre>
+<p>What about all those <em>if n - n:</em> statements? Let’s comment them out and see what happens.</p>
+<pre class="python"><code>def main():
+ iterations = 12 
+ for i in range (0, iterations): #Calls function fib() 12 times and prints the result
+  print fib(i)
+  #if 59 - 59: Oo0Ooo . OO0OO0O0O0 * iiiIIii1IIi . iII111iiiii11 % I1IiiI #Does this even do anything??
+def fib(n) : #Calculates the nth number in the Fibonocci sequence
+ if n &lt;= 1 : #Base case
+  #if 27 - 27: iIiiiI1IiI1I1 * IIiIiII11i * IiIIi1I1Iiii - Ooo00oOo00o
+  #if 48 - 48: oO0o / OOooOOo / I11i / Ii1I
+  return n
+ else : #Recursively call fib on the numbers 1 less and 2 less than current number to calculate result
+  return ( fib( n - 1 ) + fib( n - 2 ) ) #Returns a number in the fibonnoci sequence
+  #if 48 - 48: iII111i % IiII + I1Ii111 / ooOoO0o * o00O0oo
+main( )</code></pre>
+<pre><code>## 0
+## 1
+## 1
+## 2
+## 3
+## 5
+## 8
+## 13
+## 21
+## 34
+## 55
+## 89</code></pre>
+<p>Yeah, nothing. First, notice that some of them occur after a return statement. That’s a pretty good indication that they’re junk, because once a value is returned, nothing else in the function is evaluated.</p>
+<p>Second, these statements boil down to <em>if 0:</em>. 0 evaluates to False, which means that these if-statements will never run.</p>
+<pre class="python"><code>def main():
+ iterations = 12 
+ for i in range (0, iterations): #Calls function fib() 12 times and prints the result
+  print fib(i)
+def fib(n) : #Calculates the nth number in the Fibonocci sequence
+ if n &lt;= 1 : #Base case
+  return n
+ else : #Recursively call fib on the numbers 1 less and 2 less than current number to calculate result
+  return ( fib( n - 1 ) + fib( n - 2 ) ) #Returns the nth number in the Fibonnoci sequence
+main( )</code></pre>
+<pre><code>## 0
+## 1
+## 1
+## 2
+## 3
+## 5
+## 8
+## 13
+## 21
+## 34
+## 55
+## 89</code></pre>
+<p>Just make sure you search for ‘?’ before you let anyone else see the code.</p>
+<h3>
+Okay, yeah, but how do I actually debug?
+</h3>
+<p>The most basic debugging tool is the copious use of print statements. You should use print statements liberally as you write coe to check that your code is doing what you expect.</p>
+<p>Second, if you’re writing a program that runs on large input files, you should create some smaller test files with just a handful of data points. Then you can manually check the output that your program produces.</p>
+<p>Another debugging strategy is to write test cases. Professional software developers often use test suites: programs that define a whole bunch of test cases for the system. It’s sort of like installing smoke alarms: failing test cases that you’ve previously passed indicates that you’ve introduced some bugs into the program.</p>
+<p>Writing a formal test suite is overkill for most of what you will be doing. But, you can still use the idea of test cases to verify that your code is performing as expected.</p>
+<div id="example" class="section level1">
+<h1>Example</h1>
+<h2>
+Let’s practice!
+</h2>
+</div>
 
 
 
