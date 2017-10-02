@@ -367,6 +367,3 @@ if search(r,"lbib") != False: #Check on input "lbib"
 if search(r,"trip") != "trip": #Check on input "trip"
   print "False negative!"
 ```
-
-
-<h2>Let's practice!</h2>
