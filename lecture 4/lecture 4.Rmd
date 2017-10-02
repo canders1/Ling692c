@@ -76,19 +76,116 @@ Good debugging practice relies on good programming practice. Debugging is only n
 
 What I mean when I say that good debugging is mostly good programming is that debugging becomes much easier when your code is:
 
+<b>Planned</b>: you have at least an outline, on a whiteboard or preferably on paper, breaking the problem into steps
+
 <b>Modular</b>: broken into small, testable sub-functions
 
 <b>Commented</b>: with the input, output, and expected functionality of each function, and explanations of any particularly tricky lines
 
 <b>Conventionally-styled</b>: with informative variable names, plenty of whitespace (it's free!), and an easy-to-find main()
 
-<b>Planned</b>: you have at least an outline, on a whiteboard or preferably on paper, breaking the problem into steps
+<h4>Planning</h4>
+
+This is the most important step of programming. First, take the time to sketch out a plan for your program, on a whiteboard or preferably on paper. Start with the input and the output. Think about input/output pairs and what needs to happen in the middle of your program to produce them.
+
+List out desiderata for your program: how is your program receiving the input? what data structures will you use to store the input and intermediate forms? what should the output of your program look like?
+
+Next, break your program into functions. At this point, you can open a python file if you like. Write a comment at the top based on the desiderata you wrote down. Create your functions in stubbed form. This means you define the function and write a comment explaining its purpose, but leave it unimplemented for now. Have it return nothing (or None).
+
+For core functions, you may want to sketch out their structure on paper before implementing them too. Think through a few different inputs. What should your function return?
+
+Here's an example of a program written without much consideration.
+
+```{python}
+
+def scale(bag1,bag2):
+  print("Bag A: "+bag1+" Bag B: "+bag2)
+  a, b = int(bag1), int(bag2)
+  if a+b <= 46 and a <= 23 and b <= 23:
+    print("You are good to fly!")
+  elif a+b > 46 and a>23 and b>23: 
+    print("You have too much packed.\nYou need to unpack " + str(a+b - 46)+"kg.")
+  elif a>23 and a-23 > 23-b:
+    print("You have too much packed.\nYou need to unpack " + str(a - 23)+"kg.")
+  elif b>23 and b-23 > 23-a:
+    print("You have too much packed.\nYou need to unpack " + str(b - 23)+"kg.")
+  elif a > 23:
+    print("Bag 1 is too heavy.\nRebalance " + str(a-23)+"kg into bag 2.")
+  else:
+    print("Bag 2 is too heavy.\nRebalance " + str(b-23)+"kg into bag 1.")
+  
+scale("20","12") #Both bags light enough
+scale("25","27") #Both are too full
+scale("23", "25") #B is too full
+scale("25", "23") #A is too full
+
+scale("25", "21") #A is too full but B has space
+scale("20", "26") #B is too full but A has space
+
+#Example courtesy of the /r/badcode/ subreddit
+```
+
+Can anyone spot the redundancy?
+
+Let's think through the possible input to the program. 
+
+First, both Bag 1 and Bag 2 may be under the 23kg weight limit.
+
+Second, Bag 1 may be too heavy, but there is still space in Bag 2.
+
+Third, Bag 2 may be too heavy, but there is still space in Bag 1.
+
+Last, the total baggage may be over 46 because one bag is too heavy, and there's not enough room in the other for the excess.
+
+```{python}
+
+def scale(bag1,bag2):
+  print("Bag A: "+bag1+" Bag B: "+bag2)
+  a, b = int(bag1), int(bag2)
+  if a <= 23 and b <= 23: #If both bags are light enough
+    return("You are good to fly!")
+  else:
+    if a+b > 46: #Too much baggage overall
+      return("You have too much packed.\nYou need to unpack " + str(a+b - 46)+"kg.")
+    elif a > 23:
+      return("Bag 1 is too heavy.\nRebalance " + str(a-23)+"kg into bag 2.")
+    else:
+      return("Bag 2 is too heavy.\nRebalance " + str(b-23)+"kg into bag 1.")
+    
+print scale("20","12"), "\n" #Both bags light enough
+print scale("25","27"), "\n" #Both are too full
+print scale("23", "25"), "\n" #B is too full
+print scale("25", "23"), "\n" #A is too full
+print scale("25", "21"), "\n" #A is too full but B has space
+print scale("20", "26"), "\n" #B is too full but A has space
+```
 
 <h4>Modularity</h4>
 
 Modularity leads to easier debugging for two reasons. 
 
-First, it's usually easier to understand things that are broken into pieces.
+First, it's usually easier to understand things that are broken into pieces. Here's how I originally found the baggage example that we saw above:
+
+```{python}
+bag1 = "50"; bag2 = "30"; a, b = int(bag1), int(bag2); print("You are good to fly!" if a+b <= 46 and a <= 23 and b <= 23 else ("You have too much packed.\nYou need to unpack " + str(a+b - 46)+"kg." if a+b > 46 else ("Bag 1 is too heavy.\nRebalance " + str(a-23)+"kg into bag 2." if a > 23 else "Bag 2 is too heavy.\nRebalance " + str(b-23)+"kg into bag 1.")))
+```
+
+```{python}
+#Better
+
+bag1 = "50"
+bag2 = "30"
+a, b = int(bag1), int(bag2)
+
+if a+b <= 46 and a <= 23 and b <= 23: #Still some redundancy here
+  print("You are good to fly!")
+elif a+b > 46:
+  print("You have too much packed.\nYou need to unpack " + str(a+b - 46)+"kg.")
+elif a > 23:
+  print("Bag 1 is too heavy.\nRebalance " + str(a-23)+"kg into bag 2.")
+else:
+  print("Bag 2 is too heavy.\nRebalance " + str(b-23)+"kg into bag 1.")
+```
 
 Second, if you break your program up into small functions, it will be easier to test incrementally. Every time you write a function, you should test it out on at least a handful of input to make sure it is performing correctly.
 
@@ -138,7 +235,17 @@ def oOOo ( n ) : #Function
 oo000 ( ) 
 ```
 
-But that's ok. First, let's clean it up by writing more informative variable names.
+But that's ok. Just make sure you search for '?' before you let anyone else see the code.
+
+<h4>Well-styled code</h4>
+
+Part of what makes this code so difficult to understand is that it ignores normal programming conventionally.
+
+It's good practice to use informative variable names. The variable names in this program don't tell us anything about the values that they store. Let's do some renaming.
+
+First, I'll call the top function main(), since it's called at the bottom of the program.
+
+Next, I'll rename ii to i, since that's a conventional name for a throw-away variable in for-loop.
 
 ```{python}
 def main():
@@ -157,8 +264,7 @@ def foo(n) : #We still don't know what this does, so we'll call it foo
 main( ) #We'll call this main, since it's called at the bottom
 ```
 
-
-When we run the program, it looks like it calculates the first 12 Fibonocci numbers.
+To clean the code up any more, we'll need to understand what the program actually does. When we it, it looks like it calculates the first 12 Fibonocci numbers.
 
 ```{python}
 def main():
@@ -213,18 +319,54 @@ def fib(n) : #Calculates the nth number in the Fibonocci sequence
 main( )
 ```
 
-Just make sure you search for '?' before you let anyone else see the code.
-
 <h3>Okay, yeah, but how do I actually debug?</h3>
 
 The most basic debugging tool is the copious use of print statements. You should use print statements liberally as you write coe to check that your code is doing what you expect.
 
 Second, if you're writing a program that runs on large input files, you should create some smaller test files with just a handful of data points. Then you can manually check the output that your program produces.
 
-Another debugging strategy is to write test cases. Professional software developers often use test suites: programs that define a whole bunch of test cases for the system. It's sort of like installing smoke alarms: failing test cases that you've previously passed indicates that you've introduced some bugs into the program.
+Another debugging strategy is to think by *cases*. This means thinking about how your program behaves when given different kinds of input. In a string-processing function, for instance, it's common to treat the empty string a little differently than other input. In a recursive function, you will have a base case: on some input, the function returns a value instead of calling itself. Without a base case, a recursive function will not terminate.
+
+```{python}
+#A program that prints a countdown from 10 to "Blast off!".
+
+def countDown(n): #A recursive function that prints a countdown from n to "Blast off!"
+  if n == 0:
+    print "Blast off!"
+    #countDown(n-1) If we uncomment this line, our function will not terminate
+  else:
+    print n
+    countDown(n-1)
+
+countDown(10)
+```
+
+Professional software developers often use test suites: programs that define a whole bunch of test cases for the system. It's sort of like installing smoke alarms: failing test cases that you've previously passed indicates that you've introduced some bugs into the program.
 
 Writing a formal test suite is overkill for most of what you will be doing. But, you can still use the idea of test cases to verify that your code is performing as expected. 
 
-#Example
+```{python}
+import re
+
+def search(r,line):
+	res = re.search(r,line)
+	if res is not None:
+	  if type(res) == type(None): #Make sure res isn't None
+	    print "None!"
+	  return line
+	else:
+	  if type(res) != type(None):
+	    print "Not None!" #Make sure None is None
+	  return False
+
+#r = re.compile(r'^[bdgptk]*[zv(th)fchs(sh)]*[mn]*[rl]*[yjw]*[aeiou]+')
+r = re.compile(r'^[yjw]*[rl]*[mn]*[zv(th)fchs(sh)]*[bdgptk]*[aeiou]+')
+
+if search(r,"lbib") != False: #Check on input "lbib"
+  print "False positive!"
+if search(r,"trip") != "trip": #Check on input "trip"
+  print "False negative!"
+```
+
 
 <h2>Let's practice!</h2>
