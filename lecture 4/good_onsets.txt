@@ -26,7 +26,6 @@ skwall
 kwick
 swim
 shrill
-zwell
 tlingit
 shmaltz
 well

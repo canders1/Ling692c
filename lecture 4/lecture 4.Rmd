@@ -264,7 +264,7 @@ def foo(n) : #We still don't know what this does, so we'll call it foo
 main( ) #We'll call this main, since it's called at the bottom
 ```
 
-To clean the code up any more, we'll need to understand what the program actually does. When we it, it looks like it calculates the first 12 Fibonocci numbers.
+To clean the code up any more, we'll need to understand what the program actually does. When we it, it looks like it calculates the first 12 Fibonacci numbers.
 
 ```{python}
 def main():
@@ -291,7 +291,7 @@ def main():
  for i in range (0, iterations): #Calls function fib() 12 times and prints the result
   print fib(i)
   #if 59 - 59: Oo0Ooo . OO0OO0O0O0 * iiiIIii1IIi . iII111iiiii11 % I1IiiI #Does this even do anything??
-def fib(n) : #Calculates the nth number in the Fibonocci sequence
+def fib(n) : #Calculates the nth number in the Fibonacci sequence
  if n <= 1 : #Base case
   #if 27 - 27: iIiiiI1IiI1I1 * IIiIiII11i * IiIIi1I1Iiii - Ooo00oOo00o
   #if 48 - 48: oO0o / OOooOOo / I11i / Ii1I
@@ -311,7 +311,7 @@ def main():
  iterations = 12 
  for i in range (0, iterations): #Calls function fib() 12 times and prints the result
   print fib(i)
-def fib(n) : #Calculates the nth number in the Fibonocci sequence
+def fib(n) : #Calculates the nth number in the Fibonacci sequence
  if n <= 1 : #Base case
   return n
  else : #Recursively call fib on the numbers 1 less and 2 less than current number to calculate result
@@ -321,7 +321,7 @@ main( )
 
 <h3>Okay, yeah, but how do I actually debug?</h3>
 
-The most basic debugging tool is the copious use of print statements. You should use print statements liberally as you write coe to check that your code is doing what you expect.
+The most basic debugging tool is the copious use of print statements. You should use print statements liberally as you write code to check that your code is doing what you expect.
 
 Second, if you're writing a program that runs on large input files, you should create some smaller test files with just a handful of data points. Then you can manually check the output that your program produces.
 

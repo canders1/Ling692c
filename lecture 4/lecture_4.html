@@ -369,7 +369,7 @@ main( ) #We'll call this main, since it's called at the bottom</code></pre>
 ## 34
 ## 55
 ## 89</code></pre>
-<p>To clean the code up any more, we’ll need to understand what the program actually does. When we it, it looks like it calculates the first 12 Fibonocci numbers.</p>
+<p>To clean the code up any more, we’ll need to understand what the program actually does. When we it, it looks like it calculates the first 12 Fibonacci numbers.</p>
 <pre class="python"><code>def main():
  iterations = 12 
  for i in range (0, iterations): #Calls function fib() 12 times and prints the result
@@ -402,7 +402,7 @@ main( )</code></pre>
  for i in range (0, iterations): #Calls function fib() 12 times and prints the result
   print fib(i)
   #if 59 - 59: Oo0Ooo . OO0OO0O0O0 * iiiIIii1IIi . iII111iiiii11 % I1IiiI #Does this even do anything??
-def fib(n) : #Calculates the nth number in the Fibonocci sequence
+def fib(n) : #Calculates the nth number in the Fibonacci sequence
  if n &lt;= 1 : #Base case
   #if 27 - 27: iIiiiI1IiI1I1 * IIiIiII11i * IiIIi1I1Iiii - Ooo00oOo00o
   #if 48 - 48: oO0o / OOooOOo / I11i / Ii1I
@@ -429,7 +429,7 @@ main( )</code></pre>
  iterations = 12 
  for i in range (0, iterations): #Calls function fib() 12 times and prints the result
   print fib(i)
-def fib(n) : #Calculates the nth number in the Fibonocci sequence
+def fib(n) : #Calculates the nth number in the Fibonacci sequence
  if n &lt;= 1 : #Base case
   return n
  else : #Recursively call fib on the numbers 1 less and 2 less than current number to calculate result
@@ -450,7 +450,7 @@ main( )</code></pre>
 <h3>
 Okay, yeah, but how do I actually debug?
 </h3>
-<p>The most basic debugging tool is the copious use of print statements. You should use print statements liberally as you write coe to check that your code is doing what you expect.</p>
+<p>The most basic debugging tool is the copious use of print statements. You should use print statements liberally as you write code to check that your code is doing what you expect.</p>
 <p>Second, if you’re writing a program that runs on large input files, you should create some smaller test files with just a handful of data points. Then you can manually check the output that your program produces.</p>
 <p>Another debugging strategy is to think by <em>cases</em>. This means thinking about how your program behaves when given different kinds of input. In a string-processing function, for instance, it’s common to treat the empty string a little differently than other input. In a recursive function, you will have a base case: on some input, the function returns a value instead of calling itself. Without a base case, a recursive function will not terminate.</p>
 <pre class="python"><code>#A program that prints a countdown from 10 to &quot;Blast off!&quot;.
