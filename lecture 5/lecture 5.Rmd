@@ -1,0 +1,50 @@
+---
+title: 'Programming in Python: Lecture 5'
+author: "Carolyn Jane Anderson"
+date: "10/11/2017"
+output: html_document
+---
+
+Today we're going to talk about efficiency.
+
+```{r,echo=FALSE}
+library(knitr)
+opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
+```
+<h2>Efficiency</h2>
+
+<h3>Why efficiency?</h3>
+
+Efficiency matters because it is a pain to sit around waiting for your program to finish. So far, the programs we've tackled in this class have been simple enough that efficiency hasn't really mattered. However, as you work with larger input files and more complicated algorithms, the speed of your program and the amount of memory it uses can become real concerns. 
+
+<h3>How do we measure efficiency?</h3>
+
++Speed
+
++Memory use
+
++Actions per input
+
+When we're analyzing an algorithm, we want to discuss efficiency abstracted away from the actual input to the program. Both speed and memory generally depend on the size of the input. However, we want to understand the relation between the efficiency of the algorithm and the input size.
+
+Generally, then, computational efficiency is measured in how many actions are taken per input. This gives us a measure of efficiency that does not depend on the size of the input. It also allows us to understand how the efficiency of the program changes as the input size changes.
+
+<h2>Activity: Sorting a List</h2>
+
+Can you come up with an efficient way of sorting a list of numbers?
+
+<h3>Sorting algorithms</h3>
+
+Let's think through the efficiency of a few different sorting algorithms.
+
+What is the *best case*? What is the *worst case*? How many actions does the algorithm perform on average?
+
+<h4>Insertion sort</h4>
+
+<h4>Bubble sort</h4>
+
+<h4>Merge sort</h4>
+
+<h4>Quick sort</h4>
+
+<h2>Anagrams</h2>
