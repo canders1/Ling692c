@@ -125,6 +125,9 @@ $(document).ready(function () {
 
 
 <p>Today we’re going to talk about efficiency.</p>
+<h3>
+Warm-up
+</h3>
 <h2>
 Efficiency
 </h2>
@@ -152,15 +155,102 @@ Sorting algorithms
 <h4>
 Insertion sort
 </h4>
+<pre><code>for i in range(1,len(list)):
+  for j in range(1,i):
+    if l[i] is less than l[0]:
+      move l[i] 1 to the left</code></pre>
+<p>What is the best case for Insertion Sort?</p>
+<p>It’s pretty good! In the best case, the list is already sorted. In that case, we only have to perform 1 comparison for each input. That’s called <em>linear time</em>.</p>
+<p>What happens if the array is sorted in reverse order?</p>
+<p>In this case, each item will require n moves to put it in the right place, where n is the size of the list. This means that n^2 operations are required to sort a list of n size.</p>
+<p>On average, Insertion Sort has a <em>quadratic run time</em>. That’s not good.</p>
 <h4>
 Bubble sort
 </h4>
+<pre><code>for i in range(0,len(list)):
+  for j in range(0,len(list)):
+    compare j and j+1
+    if out of order, swap</code></pre>
+<p>Bubble sort is also inefficient! On the first iteration, it requires n-1 comparisons, and in each following iteration, the number of required comparisons decreases by 1.</p>
+<p>That works out to be (n-1)(n)/2 comparisons for a list of size n.</p>
+<p>Unfortunately, that’s still quadratic.</p>
+<p>In the best case, however, Bubblesort requires only 1 pass through the data (n-1) comparisons. That’s because if Bubblesort doesn’t do any swaps in the first iteration, it can quit early.</p>
 <h4>
 Merge sort
 </h4>
+<pre><code>def mergesort(l):
+  if len(l) &gt; 1:
+    return merge(mergesort(l[0:half]),mergesort(l[half:len(l)]))
+  else:
+    return l
+
+def merge(l1,l2):
+  newlist
+  while len(l1) &gt; 0 and len(l2) &gt; 0:
+    if l1[0] &gt; l2[0]:
+      newlist.append(l1[0])
+      delete l1[0]
+    else:
+      newlist.append(l2[0])
+      delete l2[0]
+  if len(l1) &gt; 0:
+    newlist.append(l1)
+  elif len(l2) &gt; 0:
+    newlist.append(l2)
+  return newlist</code></pre>
+<p>Merge Sort is an example of a divide-and-conquer algorithm. That is, it allows us to break the input into little pieces, work on those pieces, and then stick them back together again. That’s usually a good thing.</p>
+<p>How efficient is Merge Sort?</p>
+<p>Merge Sort is an n log n run time algorithm.</p>
+<p>Merge Sort, unlike Insertion Sort and Bubble Sort, does not sort in place, which means that we must allocate memory for the copies of the smaller parts of the lists that we make.</p>
 <h4>
 Quick sort
 </h4>
+<pre><code>def partition:
+  if len(l) &gt; 1:
+    i = 0
+    j = len(l)
+    pivot = random(i)
+    while i &lt; j:
+      if i &gt; pivot and j &lt; pivot:
+        swap i,j
+      else:
+        if i &lt;= pivot: 
+          i++
+        if j &lt;= pivot:
+          j++
+      
+</code></pre>
+<h2>
+Search
+</h2>
+<p>Okay, we have some vocabulary for talking about the efficiency of our algorithms. At this point you may be thinking, “Why do I care about sorting algorithms when quicksort is built into Python lists?”</p>
+<p>That’s fair. You won’t need to write your own sorting functions very frequently. But you do need to understand the basics of efficiency in order to make decisions between Python’s built-in features.</p>
+<p>Let’s take <em>search</em> as an example. Now that we understand how to produce lovely sorted lists, how do I go about finding a particular value?</p>
+<p>Of course, one way to go about it is to iterate through all the items in a list using a for-loop.</p>
+<pre class="python"><code>list = [&quot;Professor Calculus&quot;,&quot;Professor Euclide&quot;,&quot;Aristides Silk&quot;,&quot;Professor Tarragon&quot;,&quot;Christopher Willoughby-Drupe&quot;,&quot;Captain Haddock&quot;,&quot;Thomson and Thompson&quot;,&quot;Sophocles Sarcophagus&quot;,&quot;Snowy&quot;]
+
+for l in range(0,len(list)):
+  if list[l] == &quot;Snowy&quot;:
+    print l</code></pre>
+<pre><code>## 8</code></pre>
+<p>In the worst case, this involves iterating through the entire list!</p>
+<p>There’s also a built-in method for lists to look up particular values.</p>
+<pre class="python"><code>list = [&quot;Professor Calculus&quot;,&quot;Professor Euclide&quot;,&quot;Aristides Silk&quot;,&quot;Professor Tarragon&quot;,&quot;Christopher Willoughby-Drupe&quot;,&quot;Captain Haddock&quot;,&quot;Thomson and Thompson&quot;,&quot;Sophocles Sarcophagus&quot;,&quot;Snowy&quot;]
+print list.index(&quot;Snowy&quot;)</code></pre>
+<pre><code>## 8</code></pre>
+<p>Is this more efficient?</p>
+<p>Well, maybe. Generally, the built-in functions will be faster than what you would right yourself, because they’re often optimized in subtle ways. However, there’s really no way to get around the fact that you don’t know where in the list the item is.</p>
+<p>The complexity of Get Item for lists is still linear time— that is, you may have to search the entire list to find the item.</p>
+<p>You can check the complexity of built-in methods here: <a href="https://wiki.python.org/moin/TimeComplexity" class="uri">https://wiki.python.org/moin/TimeComplexity</a></p>
+<h4>
+So what’s the solution?
+</h4>
+<p>Well, maybe you can reshape your problem.</p>
+<p>Is there a way to look up by position, rather than by value?</p>
+<p>Looking up an item in a list by position is a constant-time operation.</p>
+<p>Are you iterating through a list once for each entry?</p>
+<p>Maybe you should go through the list once, in order, and read the items into a dictionary.</p>
+<p>Dictionaries allow you to look up items by value in constant-time— that’s really what they’re designed for.</p>
 <h2>
 Anagrams
 </h2>
