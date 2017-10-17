@@ -155,7 +155,7 @@ print list.index("Snowy")
 
 Is this more efficient?
 
-Well, maybe. Generally, the built-in functions will be faster than what you would right yourself, because they're often optimized in subtle ways. However, there's really no way to get around the fact that you don't know where in the list the item is. 
+Well, maybe. Generally, the built-in functions will be faster than what you would write yourself, because they're often optimized in subtle ways. However, there's really no way to get around the fact that you don't know where in the list the item is. 
 
 The complexity of Get Item for lists is still linear time--- that is, you may have to search the entire list to find the item.
 
