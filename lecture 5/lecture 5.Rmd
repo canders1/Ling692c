@@ -127,28 +127,6 @@ Merge Sort is an n log n run time algorithm.
 
 Merge Sort, unlike Insertion Sort and Bubble Sort, does not sort in place, which means that we must allocate memory for the copies of the smaller parts of the lists that we make.
 
-<h4>Quick sort</h4>
-
-```
-def partition:
-  if len(l) > 1:
-    i = 0
-    j = len(l)
-    pivot = random(i)
-    while i < j:
-      if i > pivot and j < pivot:
-        swap i,j
-      else:
-        if i <= pivot: 
-          i++
-        if j <= pivot:
-          j++
-      
-
-```
-
-
-
 <h2>Search</h2>
 
 Okay, we have some vocabulary for talking about the efficiency of our algorithms. At this point you may be thinking, "Why do I care about sorting algorithms when quicksort is built into Python lists?"
@@ -198,7 +176,4 @@ Maybe you should go through the list once, in order, and read the items into a d
 
 Dictionaries allow you to look up items by value in constant-time--- that's really what they're designed for.
 
-
-
-
-<h2>Anagrams</h2>
+<h2>Exercise: what is the efficiency of the program you wrote for the warm-up?</h2>

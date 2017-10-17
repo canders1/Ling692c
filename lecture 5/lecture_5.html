@@ -212,24 +212,6 @@ def merge(l1,l2):
 <p>How efficient is Merge Sort?</p>
 <p>Merge Sort is an n log n run time algorithm.</p>
 <p>Merge Sort, unlike Insertion Sort and Bubble Sort, does not sort in place, which means that we must allocate memory for the copies of the smaller parts of the lists that we make.</p>
-<h4>
-Quick sort
-</h4>
-<pre><code>def partition:
-  if len(l) &gt; 1:
-    i = 0
-    j = len(l)
-    pivot = random(i)
-    while i &lt; j:
-      if i &gt; pivot and j &lt; pivot:
-        swap i,j
-      else:
-        if i &lt;= pivot: 
-          i++
-        if j &lt;= pivot:
-          j++
-      
-</code></pre>
 <h2>
 Search
 </h2>
@@ -262,7 +244,7 @@ So what’s the solution?
 <p>Maybe you should go through the list once, in order, and read the items into a dictionary.</p>
 <p>Dictionaries allow you to look up items by value in constant-time— that’s really what they’re designed for.</p>
 <h2>
-Anagrams
+Exercise: what is the efficiency of the program you wrote for the warm-up?
 </h2>
 
 
