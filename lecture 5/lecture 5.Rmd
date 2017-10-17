@@ -29,7 +29,6 @@ For example, for n=5, your program should output the following:
 5 10 15 20 25
 ```
 
-
 <h2>Efficiency</h2>
 
 <h3>Why efficiency?</h3>
@@ -129,11 +128,11 @@ Merge Sort, unlike Insertion Sort and Bubble Sort, does not sort in place, which
 
 <h2>Search</h2>
 
-Okay, we have some vocabulary for talking about the efficiency of our algorithms. At this point you may be thinking, "Why do I care about sorting algorithms when quicksort is built into Python lists?"
+Okay, we have some vocabulary for talking about the efficiency of our algorithms. At this point you may be thinking, "Why do I care about sorting algorithms when efficient sorting is already built into Python lists?"
 
 That's fair. You won't need to write your own sorting functions very frequently. But you do need to understand the basics of efficiency in order to make decisions between Python's built-in features.
 
-Let's take *search* as an example. Now that we understand how to produce lovely sorted lists, how do I go about finding a particular value?
+Let's take search as an example. Now that we understand how to produce lovely sorted lists, how do I go about finding a particular value?
 
 Of course, one way to go about it is to iterate through all the items in a list using a for-loop.
 
@@ -176,4 +175,6 @@ Maybe you should go through the list once, in order, and read the items into a d
 
 Dictionaries allow you to look up items by value in constant-time--- that's really what they're designed for.
 
-<h2>Exercise: what is the efficiency of the program you wrote for the warm-up?</h2>
+<h2>Exercise</h2>
+
+What is the efficiency of the program you wrote for the warm-up?
