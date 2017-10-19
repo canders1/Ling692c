@@ -161,19 +161,26 @@ print ' '.join(words)
 
 <h3>Practice</h3>
 
-<h4>Problem 1: Find the largest value in a list</h4>
+<h4>Problem 1: Find the sum of the list</h4>
 
-Given the list below, can you write a single line of code that returns the largest value?
+Given the list below, can you write a single line of code that returns the sum of all values in the list?
 
 ```{python}
 numbers = [8523, 2065, 8757, 7000, 4741, 4622, 380, 574, 5011, 220, 8281, 541, 8947, 9750, 8987, 1876, 6760, 4000, 4896, 4099, 8353, 5341, 4979, 7411, 1682, 5362, 5418, 2402, 8235, 5670, 7685, 396, 8070, 3719, 4003, 4107, 8386, 9530, 273, 1963, 2311, 6711, 9854, 4820, 1565, 2907, 9195, 6062, 3179, 9570]
 ```
 
-<h4>Problem 2: Find the sum of the list</h4>
+<h4>Problem 2: Find the largest value in a list</h4>
 
-Given the same list, can you write a single line of code that returns the sum of all values in the list?
+Given the same list, can you write a single line of code that returns the largest value?
 
-<h4>Problem 3: Find all words based on the root 'play'</h4>
+<h4>Problem 3: Find all words containing a given root</h4>
 
-Given the list of words in hobbit.txt, can you write a single line of code that returns a list of all elements containing the root 'play'?
+Given the list of words in hobbit.txt, can you write a single line of code that returns a list of all elements containing the root 'present'?
+
+```{python}
+f = file('/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 6/hobbit.txt','r')
+print f.read().split('\n')
+```
+
+
 
