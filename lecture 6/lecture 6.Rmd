@@ -65,3 +65,33 @@ foo(f,5)
 
 In the example above, both calls to foo() produce the same result, but the normal function definition way requires a few lines of code more than the lambda version. (Of course, the normal function definition way allows you to call the function later on in the code, which may be an advantage.)
 
+<h4>Exercise: </h4>
+
+<h3>Map</h3>
+
+Python provides several functions that make it easy to work with lists in a functional programming style. 
+
+Map( ) takes a function and a list, applies the function to each element, and returns the resulting list.
+
+```{python}
+import string
+
+words = ["zither","Gobsmack","funicular","Vernacular","dither","damsel","Damson"]
+print map(lambda x:string.lower(x),words)
+```
+
+<h3>Reduce</h3>
+
+Reduce( ) also takes a function and a list. However, it applies the function pairwise. In the first step, it will apply the function to the first two items in the list. In all previous steps, it will apply it to the result of the previous computation and the next item in the list. It returns a single value.
+
+In other words, it *reduces* the list down to a single value using the given function.
+
+```{python}
+numbers = [1, 2, 3, 4]
+letters = ["h","e","l","l","o","!"]
+print reduce(lambda x, y: x*y, numbers)
+print reduce(lambda x, y: x+y, letters)
+```
+
+
+

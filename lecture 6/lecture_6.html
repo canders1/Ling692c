@@ -173,6 +173,30 @@ foo(f,5)</code></pre>
 <pre><code>## 25
 ## 25</code></pre>
 <p>In the example above, both calls to foo() produce the same result, but the normal function definition way requires a few lines of code more than the lambda version. (Of course, the normal function definition way allows you to call the function later on in the code, which may be an advantage.)</p>
+<h4>
+Exercise:
+</h4>
+<h3>
+Map
+</h3>
+<p>Python provides several functions that make it easy to work with lists in a functional programming style.</p>
+<p>Map( ) takes a function and a list, applies the function to each element, and returns the resulting list.</p>
+<pre class="python"><code>import string
+
+words = [&quot;zither&quot;,&quot;Gobsmack&quot;,&quot;funicular&quot;,&quot;Vernacular&quot;,&quot;dither&quot;,&quot;damsel&quot;,&quot;Damson&quot;]
+print map(lambda x:string.lower(x),words)</code></pre>
+<pre><code>## ['zither', 'gobsmack', 'funicular', 'vernacular', 'dither', 'damsel', 'damson']</code></pre>
+<h3>
+Reduce
+</h3>
+<p>Reduce( ) also takes a function and a list. However, it applies the function pairwise. In the first step, it will apply the function to the first two items in the list. In all previous steps, it will apply it to the result of the previous computation and the next item in the list. It returns a single value.</p>
+<p>In other words, it <em>reduces</em> the list down to a single value using the given function.</p>
+<pre class="python"><code>numbers = [1, 2, 3, 4]
+letters = [&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;,&quot;!&quot;]
+print reduce(lambda x, y: x*y, numbers)
+print reduce(lambda x, y: x+y, letters)</code></pre>
+<pre><code>## 24
+## hello!</code></pre>
 
 
 
