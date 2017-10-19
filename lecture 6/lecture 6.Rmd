@@ -1,0 +1,67 @@
+---
+title: 'Programming in Python: Lecture 6'
+author: "Carolyn Jane Anderson"
+date: "10/19/2017"
+output: html_document
+---
+
+```{r,echo=FALSE}
+library(knitr)
+opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
+```
+
+Today we're going talk about recursion and functional programming.
+
+<h2>Warmup</h2>
+
+<h2>Functional programming</h2>
+
+<h3>Functions as arguments</h3>
+
+Functional programming style involves frequent use of functions as arguments to other functions.
+
+```{python}
+import math
+
+def square(x):
+  return x*x
+
+def squareroot(x):
+  return math.sqrt(x)
+
+def foo(f,x):
+  print f(x)
+
+foo(square,4)
+foo(squareroot,4)
+```
+
+Here we have defined three functions. The first two, square() and squareroot(), provide mathematical operations on an integer argument. The third takes both a function and an integer, and prints the result of the function applied to the second argument.
+
+<h4>Anonymous functions</h4>
+
+In addition to the function declaration style we've worked with previously, Python allows you to write anonymous functions called lambdas. Semantically, they're exactly the same: this is just a more compact syntax.
+
+```{python}
+f = lambda x : x*x
+print f(5)
+```
+
+Lambdas are a convenient shorthand when you don't plan to reuse the function.
+
+```{python}
+def foo(f,x):
+  if type(x)!=int:
+    print "Oh no, it's not an integer!"
+  else:
+    print f(x)
+
+def f(x):
+  return x*x
+
+foo(lambda x: x*x,5)
+foo(f,5)
+```
+
+In the example above, both calls to foo() produce the same result, but the normal function definition way requires a few lines of code more than the lambda version. (Of course, the normal function definition way allows you to call the function later on in the code, which may be an advantage.)
+
