@@ -197,6 +197,17 @@ print reduce(lambda x, y: x*y, numbers)
 print reduce(lambda x, y: x+y, letters)</code></pre>
 <pre><code>## 24
 ## hello!</code></pre>
+<h3>
+Filter
+</h3>
+<p>Filter( ) applies a function to a list, and returns the elements of the list for which the function returns true.</p>
+<p>It’s a way of filtering out elements of a list that don’t satisfy some criteria.</p>
+<pre class="python"><code>numbers = [1, 2, 3, 4]
+isEven = lambda x:x%2==0
+print filter(isEven,numbers)</code></pre>
+<pre><code>## [2, 4]</code></pre>
+<p>(Note: % is the modulo operator in Python— it returns the remainder of dividing the first argument by the second.)</p>
+<p>Here we define a function that returns true if the input is even, and false otherwise. Then we apply isEven( ) to the list of numbers using filter( ), and the result is a list containing only even numbers.</p>
 
 
 
