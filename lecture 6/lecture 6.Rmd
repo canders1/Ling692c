@@ -109,5 +109,55 @@ print filter(isEven,numbers)
 
 Here we define a function that returns true if the input is even, and false otherwise. Then we apply isEven( ) to the list of numbers using filter( ), and the result is a list containing only even numbers.
 
+<h3>Zip</h3>
 
+Zip turns two lists into a list of tuples.
+
+```{python}
+names = ["Hermione","Luna","Pansy","Cho","Millicent","Ginny","Hannah"]
+houses = ["Gryffindor","Ravenclaw","Slytherin","Ravenclaw","Slytherin","Gryffindor","Hufflepuff"]
+pairs = zip(names,houses)
+for p in pairs:
+  print p[0], "is in", p[1]
+```
+
+Zip( ) can also be used with the * operator to unzip a list of tuples. Given a list of n-ary tuples, it returns n tuples.
+
+You can then use list( ) to convert the tuples it returns into a list.
+
+```{python}
+pairs = [('Hermione', 'Gryffindor'), ('Luna', 'Ravenclaw'), ('Pansy', 'Slytherin'), ('Cho', 'Ravenclaw'), ('Millicent', 'Slytherin'), ('Ginny', 'Gryffindor'), ('Hannah', 'Hufflepuff')]
+names,houses = zip(*pairs)
+print names
+print list(houses)
+```
+
+Zip is useful when you're reading items into a dictionary.
+
+```{python}
+names = ["Hermione","Luna","Pansy","Cho","Millicent","Ginny","Hannah"]
+houses = ["Gryffindor","Ravenclaw","Slytherin","Ravenclaw","Slytherin","Gryffindor","Hufflepuff"]
+pairs = zip(names,houses)
+print dict(pairs)
+```
+
+<h3>Join</h3>
+
+Join( ) is a string method that creates a string out of the items of an iterable (like a list).
+
+It is technically a method on the string that is used to separate the items.
+
+```{python}
+letters = ["h","e","l","l","o","!"]
+print '~'.join(letters)
+```
+
+I use it most frequently with an empty string or space character separator.
+
+```{python}
+letters = ["h","e","l","l","o","!"]
+words = ["hello","world","!"]
+print ''.join(letters)
+print ' '.join(words)
+```
 

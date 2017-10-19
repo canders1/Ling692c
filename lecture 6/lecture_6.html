@@ -208,6 +208,51 @@ print filter(isEven,numbers)</code></pre>
 <pre><code>## [2, 4]</code></pre>
 <p>(Note: % is the modulo operator in Python— it returns the remainder of dividing the first argument by the second.)</p>
 <p>Here we define a function that returns true if the input is even, and false otherwise. Then we apply isEven( ) to the list of numbers using filter( ), and the result is a list containing only even numbers.</p>
+<h3>
+Zip
+</h3>
+<p>Zip turns two lists into a list of tuples.</p>
+<pre class="python"><code>names = [&quot;Hermione&quot;,&quot;Luna&quot;,&quot;Pansy&quot;,&quot;Cho&quot;,&quot;Millicent&quot;,&quot;Ginny&quot;,&quot;Hannah&quot;]
+houses = [&quot;Gryffindor&quot;,&quot;Ravenclaw&quot;,&quot;Slytherin&quot;,&quot;Ravenclaw&quot;,&quot;Slytherin&quot;,&quot;Gryffindor&quot;,&quot;Hufflepuff&quot;]
+pairs = zip(names,houses)
+for p in pairs:
+  print p[0], &quot;is in&quot;, p[1]</code></pre>
+<pre><code>## Hermione is in Gryffindor
+## Luna is in Ravenclaw
+## Pansy is in Slytherin
+## Cho is in Ravenclaw
+## Millicent is in Slytherin
+## Ginny is in Gryffindor
+## Hannah is in Hufflepuff</code></pre>
+<p>Zip( ) can also be used with the * operator to unzip a list of tuples. Given a list of n-ary tuples, it returns n tuples.</p>
+<p>You can then use list( ) to convert the tuples it returns into a list.</p>
+<pre class="python"><code>pairs = [('Hermione', 'Gryffindor'), ('Luna', 'Ravenclaw'), ('Pansy', 'Slytherin'), ('Cho', 'Ravenclaw'), ('Millicent', 'Slytherin'), ('Ginny', 'Gryffindor'), ('Hannah', 'Hufflepuff')]
+names,houses = zip(*pairs)
+print names
+print list(houses)</code></pre>
+<pre><code>## ('Hermione', 'Luna', 'Pansy', 'Cho', 'Millicent', 'Ginny', 'Hannah')
+## ['Gryffindor', 'Ravenclaw', 'Slytherin', 'Ravenclaw', 'Slytherin', 'Gryffindor', 'Hufflepuff']</code></pre>
+<p>Zip is useful when you’re reading items into a dictionary.</p>
+<pre class="python"><code>names = [&quot;Hermione&quot;,&quot;Luna&quot;,&quot;Pansy&quot;,&quot;Cho&quot;,&quot;Millicent&quot;,&quot;Ginny&quot;,&quot;Hannah&quot;]
+houses = [&quot;Gryffindor&quot;,&quot;Ravenclaw&quot;,&quot;Slytherin&quot;,&quot;Ravenclaw&quot;,&quot;Slytherin&quot;,&quot;Gryffindor&quot;,&quot;Hufflepuff&quot;]
+pairs = zip(names,houses)
+print dict(pairs)</code></pre>
+<pre><code>## {'Millicent': 'Slytherin', 'Hannah': 'Hufflepuff', 'Cho': 'Ravenclaw', 'Pansy': 'Slytherin', 'Luna': 'Ravenclaw', 'Hermione': 'Gryffindor', 'Ginny': 'Gryffindor'}</code></pre>
+<h3>
+Join
+</h3>
+<p>Join( ) is a string method that creates a string out of the items of an iterable (like a list).</p>
+<p>It is technically a method on the string that is used to separate the items.</p>
+<pre class="python"><code>letters = [&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;,&quot;!&quot;]
+print '~'.join(letters)</code></pre>
+<pre><code>## h~e~l~l~o~!</code></pre>
+<p>I use it most frequently with an empty string or space character separator.</p>
+<pre class="python"><code>letters = [&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;,&quot;!&quot;]
+words = [&quot;hello&quot;,&quot;world&quot;,&quot;!&quot;]
+print ''.join(letters)
+print ' '.join(words)</code></pre>
+<pre><code>## hello!
+## hello world !</code></pre>
 
 
 
