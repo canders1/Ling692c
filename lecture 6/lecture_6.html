@@ -134,23 +134,61 @@ Functional programming
 <h3>
 Functions as arguments
 </h3>
-<p>Functional programming style involves frequent use of functions as arguments to other functions.</p>
-<pre class="python"><code>import math
+<p>Why is functional programming useful? Let’s write a function that iterates through a list of numbers, and returns all the items that are even.</p>
+<pre class="python"><code>def evens(l):
+  n = []
+  for e in l:
+    if e%2.0==0:
+      n.append(e)
+  return n
 
-def square(x):
-  return x*x
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
+print evens(nums)</code></pre>
+<pre><code>## [20, 22, 24, 10]</code></pre>
+<p>Wait, oops, we actually need all the <em>odd numbers</em>, not the even ones! What to do?</p>
+<pre class="python"><code>def odds(l):
+  n = []
+  for e in l:
+    if e%2.0!=0:
+      n.append(e)
+  return n
+  
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
+print odds(nums)</code></pre>
+<pre><code>## [1, 3.4, 11, 5.7, 25, 11.2]</code></pre>
+<p>Great! Later on, we realize we also need to find all the multiples of 4 in the list.</p>
+<pre class="python"><code>def multiplesOfFour(l):
+  n = []
+  for e in l:
+    if e%4.0==0:
+      n.append(e)
+  return n
+  
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
+print multiplesOfFour(nums)</code></pre>
+<pre><code>## [20, 24]</code></pre>
+<p>Gosh, it feels like we’re writing the same code over and over again! What if instead, we pass that 1 line that’s different to our function as an argument?</p>
+<pre class="python"><code>
+def exclude(l,f):
+  n = []
+  for e in l:
+    if f(e):
+      n.append(e)
+  return n
+  
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
 
-def squareroot(x):
-  return math.sqrt(x)
-
-def foo(f,x):
-  print f(x)
-
-foo(square,4)
-foo(squareroot,4)</code></pre>
-<pre><code>## 16
-## 2.0</code></pre>
-<p>Here we have defined three functions. The first two, square() and squareroot(), provide mathematical operations on an integer argument. The third takes both a function and an integer, and prints the result of the function applied to the second argument.</p>
+def isEven(x):
+  return x%2.0==0
+  
+def isOdd(x):
+  return x%2!=0
+  
+print exclude(nums,isEven)
+print exclude(nums,isOdd)</code></pre>
+<pre><code>## [20, 22, 24, 10]
+## [1, 3.4, 11, 5.7, 25, 11.2]</code></pre>
+<p>Here we’ve written a function, exclude( ), that takes another function as an argument. That’s what functional programming is all about.</p>
 <h4>
 Anonymous functions
 </h4>
@@ -263,10 +301,15 @@ Problem 2: Find the largest value in a list
 </h4>
 <p>Given the same list, can you write a single line of code that returns the largest value?</p>
 <h4>
-Problem 3: Find all words containing a given root
+Problem 3: Remove False items from list
 </h4>
-<p>Given the list of words in hobbit.txt, can you write a single line of code that returns a list of all elements containing the root ‘present’?</p>
-<pre class="python"><code>f = file('/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 6/hobbit.txt','r')
+<p>Given the list below, can you write a single line of code that removes all Falses?</p>
+<pre class="python"><code>l = [False,&quot;penguin&quot;,1,False,True,19,20,&quot;pepper&quot;,True,109,&quot;a&quot;,False,&quot;peanut&quot;,&quot;pimento&quot;,100,True,109,False]</code></pre>
+<h4>
+Problem 4: Find all words containing a given root
+</h4>
+<p>Given the list of words in misc.txt, can you write a single line of code that returns a list of all elements containing the root ‘present’?</p>
+<pre class="python"><code>f = file('/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 6/misc.txt','r')
 print f.read().split('\n')</code></pre>
 <pre><code>## ['then', 'oozy', 'and', 'lots', 'his', 'that', 'and', 'were', 'deep-set', 'and', 'little', 'brass', 'these', 'The', 'bare', 'like', 'filled', 'knob', 'present', 'round', 'No', 'hats', 'paneled', 'these', 'a', 'door', 'lots', 'nasty', 'only', 'wound', 'hobbit', 'windows', 'smell', 'Hill', 'unpresented', 'to', 'the', 'he', 'was', 'of', 'lots', 'on', 'the', 'In', 'of', 'presentiment', 'a', 'windows', 'hobbit', 'provided', 'into', 'it', 'down', 'presentable', 'garden', 'all', 'with', 'on', 'to', 'side', 'door', 'people', 'coats', 'hole', 'a', 'and', 'tiled', 'and', 'and', 'fond', 'all', 'many', 'and', 'hobbit', 'means', 'chairs', 'first', 'dry', 'same', 'presentations', 'miles', 'or', 'and', 'called', 'on', 'green', 'floors', 'fairly', 'The', 'It', 'walls', 'represent', 'a', 'representative', 'the', 'not', 'bathrooms', 'tunnel', 'it', 'over', 'wet', 'a', 'carpeted', 'it', 'upstairs', 'river', 'and', 'the', 'round', 'bedrooms', 'it', 'a', 'in', 'many', 'was', 'middle', 'were', 'a', 'rooms', 'the', 'for', 'to', 'were', 'cellars', 'in', 'going', 'the', 'wardrobes', 'tunnel', 'to', 'for', 'Not', 'without', 'worms', 'have', 'same', 'had', 'one', 'the', 'floor', 'but', 'The', 'the', 'with', 'yet', 'shiny', 'quite', 'pegs', 'rooms', 'in', 'on', 'tube-shaped', 'of', 'sandy', 'on', 'porthole', 'hill', 'eat', 'with', 'very', 'on', 'devoted', 'nor', 'had', 'all', 'to', 'presently', 'doors', 'a', 'dirty', 'perfectly', 'out', 'clothes', 'passage', 'nothing', 'like', 'best', 'meadows', 'of', 'The', 'ends', 'looking', 'visitors', 'left-hand', 'down', 'hobbit-hole', 'for', 'as', 'the', 'hole', 'on', 'and', 'hole', 'whole', 'going', 'indeed', 'of', 'round', 'opened', 'the', 'representing', 'yellow', 'ground', 'there', 'to', 'in', 'painted', 'lived', 'side', 'on', 'another', 'comfortable', 'for', 'of', 'with', 'polished', 'pantries', 'with', 'ones', 'kitchens', 'sit', 'a', 'on', 'side', 'the', 'exact', 'beyond', 'smoke', 'tunnel', 'an', 'opened', 'hall', 'the', 'a', 'dining-rooms', 'round', 'a', 'going', 'and', 'sloping', 'comfort', 'the', 'and', 'presenter', 'straight', '']</code></pre>
 

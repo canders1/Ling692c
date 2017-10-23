@@ -18,25 +18,72 @@ Today we're going talk about recursion and functional programming.
 
 <h3>Functions as arguments</h3>
 
-Functional programming style involves frequent use of functions as arguments to other functions.
+Why is functional programming useful? Let's write a function that iterates through a list of numbers, and returns all the items that are even.
 
 ```{python}
-import math
+def evens(l):
+  n = []
+  for e in l:
+    if e%2.0==0:
+      n.append(e)
+  return n
 
-def square(x):
-  return x*x
-
-def squareroot(x):
-  return math.sqrt(x)
-
-def foo(f,x):
-  print f(x)
-
-foo(square,4)
-foo(squareroot,4)
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
+print evens(nums)
 ```
 
-Here we have defined three functions. The first two, square() and squareroot(), provide mathematical operations on an integer argument. The third takes both a function and an integer, and prints the result of the function applied to the second argument.
+Wait, oops, we actually need all the *odd numbers*, not the even ones! What to do?
+
+```{python}
+def odds(l):
+  n = []
+  for e in l:
+    if e%2.0!=0:
+      n.append(e)
+  return n
+  
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
+print odds(nums)
+```
+
+Great! Later on, we realize we also need to find all the multiples of 4 in the list.
+
+```{python}
+def multiplesOfFour(l):
+  n = []
+  for e in l:
+    if e%4.0==0:
+      n.append(e)
+  return n
+  
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
+print multiplesOfFour(nums)
+```
+
+Gosh, it feels like we're writing the same code over and over again! What if instead, we pass that 1 line that's different to our function as an argument?
+
+```{python}
+
+def exclude(l,f):
+  n = []
+  for e in l:
+    if f(e):
+      n.append(e)
+  return n
+  
+nums = [1,20,3.4,11,5.7,25,11.2,22,24,10]
+
+def isEven(x):
+  return x%2.0==0
+  
+def isOdd(x):
+  return x%2!=0
+  
+print exclude(nums,isEven)
+print exclude(nums,isOdd)
+```
+
+Here we've written a function, exclude( ), that takes another function as an argument. This is known as a *higher-order function*.
 
 <h4>Anonymous functions</h4>
 
@@ -173,12 +220,20 @@ numbers = [8523, 2065, 8757, 7000, 4741, 4622, 380, 574, 5011, 220, 8281, 541, 8
 
 Given the same list, can you write a single line of code that returns the largest value?
 
-<h4>Problem 3: Find all words containing a given root</h4>
+<h4>Problem 3: Remove False items from list</h4>
 
-Given the list of words in hobbit.txt, can you write a single line of code that returns a list of all elements containing the root 'present'?
+Given the list below, can you write a single line of code that removes all Falses?
 
 ```{python}
-f = file('/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 6/hobbit.txt','r')
+l = [False,"penguin",1,False,True,19,20,"pepper",True,109,"a",False,"peanut","pimento",100,True,109,False]
+```
+
+<h4>Problem 4: Find all words containing a given root</h4>
+
+Given the list of words in misc.txt, can you write a single line of code that returns a list of all elements containing the root 'present'?
+
+```{python}
+f = file('/Users/carolyn/Documents/UMass/CogMod/Ling692c/lecture 6/misc.txt','r')
 print f.read().split('\n')
 ```
 
