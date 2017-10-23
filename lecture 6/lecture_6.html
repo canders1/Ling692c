@@ -171,6 +171,15 @@ So which is better, iterative or recursive?
 <h2>
 Functional programming
 </h2>
+<p>Functional programming is a kind of programming paradigm. It’s characterized by the following properties:</p>
+<ul>
+<li><p>First class/higher-order functions</p></li>
+<li><p>Pure functions (no side effects)</p></li>
+<li><p>Recursion used more than iteration</p></li>
+<li><p>Immutable data structures</p></li>
+</ul>
+<p>There are languages that emphasize these properties much more than Python, and they are often called functional programming languages. Examples include Scheme, Haskell, Lisp, and OCaml.</p>
+<p>However, functional programming is also possible in Python! It’s just that Python lets you do other kinds of programming styles as well, so it’s usually classified more as a ‘general purpose’ programming language than ‘functional’.</p>
 <h3>
 Functions as arguments
 </h3>
@@ -266,6 +275,7 @@ Reduce
 </h3>
 <p>Reduce( ) also takes a function and a list. However, it applies the function pairwise. In the first step, it will apply the function to the first two items in the list. In all previous steps, it will apply it to the result of the previous computation and the next item in the list. It returns a single value.</p>
 <p>In other words, it <em>reduces</em> the list down to a single value using the given function.</p>
+<p>Note: if you are using Python 3, reduce( ) is found in the functools library.</p>
 <pre class="python"><code>numbers = [1, 2, 3, 4]
 letters = [&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;,&quot;!&quot;]
 print reduce(lambda x, y: x*y, numbers)
