@@ -14,6 +14,56 @@ Today we're going talk about recursion and functional programming.
 
 <h2>Warmup</h2>
 
+<h2>Recursion</h2>
+
+Recursion is useful because it allows us to employ a divide-and-conquer approach, as we saw last week when looking at sorting algorithms.
+
+We haven't explicitly discussed recursion much in this class, although we've seen a couple examples of recursive programs.
+
+Most of the functions we've worked with so far have been iterative: they iterate through the data to arrive at a solution.
+
+Consider an iterative approach to calculating the factorial of a number. The factorial of 0 is 1. The factorial of n is 1 \* (1+1)...(n-1) * n.
+
+We have to treat 0 as a special case. Then we iterate through all the numbers up to n and iteratively increase the return value, m, by multiplying it by the ith number in the range.
+
+```{python}
+def itFactorial(n):
+  m = 1
+  if n==0:
+    return m
+  else:
+    for i in range(1,n+1):
+      m = m*i
+  return m
+
+print itFactorial(0)
+print itFactorial(3)
+```
+
+How would we write this recursively? Well, we have a natural basecase: 0. 
+
+```{python}
+
+def recFactorial(n):
+  if n==0:
+    return 1
+  else:
+    return n*recFactorial(n-1)
+
+print recFactorial(0)
+print recFactorial(3)
+```
+
+In any other case, we call the function recursively to calculate the factorial of n-1, and multiply the result by n.
+
+<h5>So which is better, iterative or recursive?</h5>
+
+Well, it really depends on the application. Sometimes the recursive solution is faster, or easier to reason about (often the case with particular kinds of data structures like trees). Sometimes the iterative solution is more intuitive, or requires less memory.
+
+For instance, both the factorial programs we wrote are pretty simple. But, it turns out that the iterative version requires only O(1) space, while the recursive one takes O(n) space, because the program has to keep track of all the levels of recursion.
+
+What is the time efficiency of each program?
+
 <h2>Functional programming</h2>
 
 <h3>Functions as arguments</h3>
