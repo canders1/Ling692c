@@ -12,8 +12,6 @@ opts_chunk$set(engine = 'python',engine.path="/usr/local/bin/python2")
 
 Today we're going talk about recursion and functional programming.
 
-<h2>Warmup</h2>
-
 <h2>Recursion</h2>
 
 Recursion is useful because it allows us to employ a divide-and-conquer approach, as we saw last week when looking at sorting algorithms.
