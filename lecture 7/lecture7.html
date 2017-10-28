@@ -162,6 +162,16 @@ See printBST.py
 See height.py
 </h5>
 <p>Great, now we can call findHeight, and pass the result as the argument to prettyPrintBST!</p>
+<h3>
+Inserting new values into a binary search tree
+</h3>
+<p>What do we have to do to insert new values into a binary search tree?</p>
+<p>Well, if our value is bigger than the root value, we need to search the right subtree, and insert it there. If it’s smaller, we need to search the left subtree, and insert it there. (What happens if it is equal to the root value?)</p>
+<p>This is a perfect kind of problem to solve with a recursive algorithm.</p>
+<h5>
+See insert.py
+</h5>
+<p>(You can also write this iteratively, but it’s a little less intuitive. You can compare our recursive algorithm with the iterative version I wrote in the BST constructor.)</p>
 
 
 
