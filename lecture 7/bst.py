@@ -49,6 +49,13 @@ def prettyPrintBST(curr,ind):
 	if l != None:
 		prettyPrintBST(l,ind-2)
 
+def findHeight(curr):
+	if curr != None:
+		h = 1
+	else:
+		return 0
+	return h+max(findHeight(curr.leftChild),findHeight(curr.rightChild))
+
 
 b = BST([0,1,2,5,-1,-6,-1,3,-2,4])
 #print b.root.val
@@ -56,6 +63,8 @@ b = BST([0,1,2,5,-1,-6,-1,3,-2,4])
 #print b.root.rightChild.val
 #print b.root.rightChild.rightChild.val
 #print b.root.rightChild.rightChild.rightChild.val
-#printBST(b.root," ")
+printBST(b.root," ")
+print
 prettyPrintBST(b.root,12)
-
+print
+print findHeight(b.root)

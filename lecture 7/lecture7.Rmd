@@ -48,3 +48,7 @@ Well, this lets us look inside the tree, but it's not the most readable. How cou
 That's much better! But we're still manually figuring out the height of the tree... which means that if we have a program that prints out a bunch of these, it won't know what to use as the ind value for each.
 
 Maybe we should add something to keep track of the height of the tree?
+
+<h5>See height.py</h5>
+
+Great, now we can call findHeight, and pass the result as the argument to prettyPrintBST!
