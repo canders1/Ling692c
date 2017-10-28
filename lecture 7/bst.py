@@ -56,6 +56,22 @@ def findHeight(curr):
 		return 0
 	return h+max(findHeight(curr.leftChild),findHeight(curr.rightChild))
 
+def insertBST(curr,i):
+	if curr == None:
+		return BST([Node(i)])
+	if i > curr.val:
+		if curr.rightChild == None:
+			curr.rightChild = Node(i)
+		else:
+			insertBST(curr.rightChild,i)
+	elif i < curr.val:
+		if curr.leftChild == None:
+			curr.leftChild = Node(i)
+		else:
+			insertBST(curr.leftChild,i)
+	else:
+		pass
+
 
 b = BST([0,1,2,5,-1,-6,-1,3,-2,4])
 #print b.root.val
@@ -67,4 +83,6 @@ printBST(b.root," ")
 print
 prettyPrintBST(b.root,12)
 print
-print findHeight(b.root)
+#print findHeight(b.root)
+insertBST(b.root,-4)
+prettyPrintBST(b.root,2*findHeight(b.root))
