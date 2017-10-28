@@ -72,6 +72,15 @@ def insertBST(curr,i):
 	else:
 		pass
 
+def inOrder(curr):
+	l = curr.leftChild
+	r = curr.rightChild
+	lst = [curr.val]
+	if l != None:
+		lst=inOrder(l)+lst
+	if r !=None:
+		lst=lst+inOrder(r)
+	return lst
 
 b = BST([0,1,2,5,-1,-6,-1,3,-2,4])
 #print b.root.val
@@ -86,3 +95,4 @@ print
 #print findHeight(b.root)
 insertBST(b.root,-4)
 prettyPrintBST(b.root,2*findHeight(b.root))
+print inOrder(b.root)
