@@ -1,13 +1,3 @@
-def flatten(lis):
-    """Given a list, possibly nested to any level, return it flattened."""
-    new_lis = []
-    for item in lis:
-        if type(item) == type([]):
-            new_lis.extend(flatten(item))
-        else:
-            new_lis.append(item)
-    return new_lis
-
 class Node:
     def __init__(self, val):
         self.val = val
@@ -63,8 +53,8 @@ class Trie:
 
 t = Trie(["cat","cats","cast","cab"])
 
-#print t.root.children[0].val
-#for v in t.root.children[0].children[0].children:
+#print t.children[0].val
+#for v in t.children[0].children[0].children:
 	#print v.val
 print t.get("cats").val
 
