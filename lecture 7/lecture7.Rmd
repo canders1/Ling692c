@@ -89,4 +89,10 @@ One important method to write for our trie class is a function that returns all 
 
 In order to do this, we'll have to walk down every branch of the trie, building up the word as we go, until we reach a node that has no children (a leaf).
 
-<h5>See printLeaves.py</h5>
+<h5>See getLeaves.py</h5>
+
+<h3>Get</h3>
+
+I'm going to go ahead and add some more built-in methods to our trie, so that we can get to some applications. In trie+.py, you'll find an updated version of the trie that has a get() method to find the noe containing a given value; getValues(), which returns the values of the immediate children of a given node; and getPrefixes(), which returns all prefixes stored in the trie.
+
+

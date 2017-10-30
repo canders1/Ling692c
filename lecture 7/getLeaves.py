@@ -8,14 +8,9 @@ def flatten(lis):
             new_lis.append(item)
     return new_lis
 
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.children = None
-
 class Trie:
-	def __init__(self,vals):
-		self.val = ""
+	def __init__(self,vals,start=''):
+		self.val = start
 		self.children = None
 		for v in vals:
 			self.insert(v)
@@ -23,7 +18,7 @@ class Trie:
 	def insert(self,val):
 		curr = self
 		for i in range(0,len(val)):
-			newcurr = Node(val[i:i+1])
+			newcurr = Trie([val[i+1:]],val[i:i+1])
 			if curr.children == None:
 				curr.children = [newcurr]
 			else:
@@ -60,19 +55,19 @@ class Trie:
 					if missing:
 						return False
 
-def printLeaves(curr,pre):
-	pre = pre + curr.val
-	if curr.children == None:
-		return pre
-	else:
-		pres = []
-		for c in curr.children:
-			pres.append(printLeaves(c,pre))
-		return flatten(pres)
+	def getLeaves(self,pre=''):
+		pre = pre + self.val
+		if self.children == None:
+			return [pre]
+		else:
+			pres = []
+			for c in self.children:
+				pres.append(c.getLeaves(pre))
+			return flatten(pres)
 
 t = Trie(["cat","cats","cast","cab"])
-
-pres = printLeaves(t,"")
+print t.children[0].children[0].children[2].val
+pres = t.getLeaves()
 print pres
 
 					

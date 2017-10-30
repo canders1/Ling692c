@@ -190,6 +190,18 @@ Tries
 </div>
 <p>The trie above stores terminal nodes containing the words ‘A’, ‘to’, ‘ted’, ‘ten’, ‘tea’, and ‘inn’, as well as parent nodes containing all prefixes of these words.</p>
 <p>I’ve implemented a trie in trie.py. Notice that each node only stores one letter, and that prefixes must be read by walking down the branches of the trie.</p>
+<h3>
+Returning all leaves of a trie
+</h3>
+<p>One important method to write for our trie class is a function that returns all leaves of the trie. These represent words.</p>
+<p>In order to do this, we’ll have to walk down every branch of the trie, building up the word as we go, until we reach a node that has no children (a leaf).</p>
+<h5>
+See getLeaves.py
+</h5>
+<h3>
+Get
+</h3>
+<p>I’m going to go ahead and add some more built-in methods to our trie, so that we can get to some applications. In trie+.py, you’ll find an updated version of the trie that has a get() method to find the noe containing a given value; getValues(), which returns the values of the immediate children of a given node; and getPrefixes(), which returns all prefixes stored in the trie.</p>
 
 
 
