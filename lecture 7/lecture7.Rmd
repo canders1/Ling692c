@@ -99,4 +99,26 @@ In trie+.py, you'll find an updated version of the trie that has a get() method 
 
 <h5>See trie+.py</h5>
 
+<h3>Spell-check using a trie</h3>
+
+Now for some problem-solving using tries! We're going to write a spell-checker. 
+
+First, we need to find some text to build our trie on. We're going to make the simplifying assumption that any word not occurring in the first 10,000 words of Emma by Jane Austen is not a valid word of English.
+
+Next, we'll do some preprocessing with the selection from Emma: strip punctuation, make everything lowercase (of course, you might not want to do this--- perhaps 'Emma' is a valid word, but 'emma' is not?), and split the text into a list of words.
+
+Then we read all the words from the text into the trie.
+
+Next, we give our program an argument indicating the file that we want to spell-check. Since we built this trie on data from Emma, let's use another selection from Emma. I've run 500 words from Emma through a program that adds some spelling mistakes. You can find the original text in emma.txt, and the misspelled version in misspelledEmma.txt.
+
+Now let's write a function that checks whether a word is misspelled.
+
+<h5>See spellcheck.py</h5>
+
+Once we've got that, we can simply call it for each word of the text. I'm going to do two things: collect a list of misspellings, and mark misspellings in the text using '#' on either side of the misspelled word.
+
+<h3>Challenge: Can you write a trie-based spell-checker that gives suggestions?</h3>
+
+Real spell-checkers suggest corrections for misspelled words. Can you think of how to do that using our trie?
+
 
