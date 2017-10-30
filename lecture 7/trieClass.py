@@ -74,9 +74,3 @@ class Trie:
 			for c in self.children:
 				pres.append(c.getLeaves(pre))
 			return flatten(pres)
-
-t = Trie(["cat","cats","cast","cab"])
-
-print t.get("cats").val
-for p in t.getPrefixes():
-	print p
