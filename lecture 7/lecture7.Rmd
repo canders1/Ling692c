@@ -53,6 +53,14 @@ Maybe we should add something to keep track of the height of the tree?
 
 Great, now we can call findHeight, and pass the result as the argument to prettyPrintBST!
 
+<h3>Traversing the tree</h3>
+
+Another kind of printing method we might want to have for our binary search tree is printing the values out in order.
+
+This is an *in-order traversal* of the tree.
+
+<h5>See inorder.py</h5>
+
 <h3>Inserting new values into a binary search tree</h3>
 
 What do we have to do to insert new values into a binary search tree?
@@ -64,3 +72,12 @@ This is a perfect kind of problem to solve with a recursive algorithm.
 <h5>See insert.py</h5>
 
 (You can also write this iteratively, but it's a little less intuitive. You can compare our recursive algorithm with the iterative version I wrote in the BST constructor.)
+
+<h2>Tries</h2>
+
+The second kind of tree we're going to talk about is called a *trie*. It's also known as a prefix tree, because it is most commonly used to store strings. The idea is that each child of the parent stores the string associated with the parent, plus one more character. That is, each level h in the tree stores prefixes of length h.
+
+![https://commons.wikimedia.org/w/index.php?curid=1197221](Trie_example.png)
+
+The trie above stores terminal nodes containing the words 'A', 'to', 'ted', 'ten', 'tea', and 'inn', as well as parent nodes containing all prefixes of these words.
+
