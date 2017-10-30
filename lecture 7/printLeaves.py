@@ -34,10 +34,20 @@ class Trie:
 				curr = newcurr
 
 
+def printLeaves(curr,pre):
+	pre = pre + curr.val
+	if curr.children == None:
+		return pre
+	else:
+		pres = []
+		for c in curr.children:
+			pres.append(printLeaves(c,pre))
+		return flatten(pres)
+
 t = Trie(["cat","cats","cast","cab"])
-print t.root.val
-print t.root.children[0].val
-for v in t.root.children[0].children[0].children:
-	print v.val
+
+pres = printLeaves(t.root,"")
+print pres
+
 					
 

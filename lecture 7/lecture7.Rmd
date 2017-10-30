@@ -81,3 +81,12 @@ The second kind of tree we're going to talk about is called a *trie*. It's also 
 
 The trie above stores terminal nodes containing the words 'A', 'to', 'ted', 'ten', 'tea', and 'inn', as well as parent nodes containing all prefixes of these words.
 
+I've implemented a trie in trie.py. Notice that each node only stores one letter, and that prefixes must be read by walking down the branches of the trie.
+
+<h3>Returning all leaves of a trie</h3>
+
+One important method to write for our trie class is a function that returns all leaves of the trie. These represent words.
+
+In order to do this, we'll have to walk down every branch of the trie, building up the word as we go, until we reach a node that has no children (a leaf).
+
+<h5>See printLeaves.py</h5>
