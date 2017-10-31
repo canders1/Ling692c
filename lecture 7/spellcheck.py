@@ -14,6 +14,7 @@ def checkText(text,trie):
 		else:
 			misspellings.append(text[i])
 			text[i] = '#'+text[i]+'#'
+	print text
 	return misspellings
 
 def main():
@@ -27,7 +28,7 @@ def main():
 	f = file(sys.argv[1], 'r')
 	text = f.readlines()
 	text = map(lambda x:x.strip('\n'),text)
-	for c in checkText(text,t):
-		print c
-	print text
+	checkText(text,t)
+	#for c in checkText(text,t):
+	#	print c
 main()

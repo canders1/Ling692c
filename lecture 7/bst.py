@@ -82,16 +82,16 @@ def inOrder(curr):
 		lst=lst+inOrder(r)
 	return lst
 
-b = BST([0,1,2,5,-1,-6,-1,3,-2,4])
+b = BST([0,1,2,5,-6,-1,-1,3,-2,4])
 #print b.root.val
 #print b.root.leftChild.val
 #print b.root.rightChild.val
 #print b.root.rightChild.rightChild.val
 #print b.root.rightChild.rightChild.rightChild.val
-printBST(b.root," ")
-print
-prettyPrintBST(b.root,12)
-print
+#printBST(b.root," ")
+#print
+#prettyPrintBST(b.root,12)
+#print
 #print findHeight(b.root)
 insertBST(b.root,-4)
 prettyPrintBST(b.root,2*findHeight(b.root))
