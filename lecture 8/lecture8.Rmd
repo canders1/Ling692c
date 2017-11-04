@@ -1,0 +1,110 @@
+---
+title: 'Programming in Python: Lecture 8'
+author: "Carolyn Jane Anderson"
+date: "11/3/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Today we're going to take a look at the NLTK package. First up: corpora.
+
+<h2>Corpora</h2>
+
+NLTK includes many useful collections of texts:
+
+Australian Broadcasting Commission 2006 
+
+Brown Corpus 
+
+Chat-80 Data Files 
+
+City Database 
+
+The Carnegie Mellon Pronouncing Dictionary (0.6) 
+
+Comparative Sentence Dataset 
+
+Crubadan Corpus 
+
+Dolch Word List 
+
+Sample European Parliament Proceedings Parallel Corpus 
+
+Gazeteer Lists 
+
+Genesis Corpus 
+
+Project Gutenberg Selections 
+
+C-Span Inaugural Address Corpus 
+
+KNB Corpus (Annotated blog corpus) 
+
+PanLex Swadesh Corpora 
+
+The Patient Information Leaflet (PIL) Corpus 
+
+Polish language of the XX century sixties 
+
+Problem Report Corpus 
+
+Product Reviews 
+
+Shakespeare XML Corpus Sample 
+
+C-Span State of the Union Address Corpus 
+
+Switchboard Corpus Sample
+
+Twitter Samples 
+
+Universal Declaration of Human Rights Corpus 
+
+Treebanks
+--------------------------------
+Alpino Dutch Treebank 
+
+CESS-CAT Treebank 
+
+CESS-ESP Treebank 
+
+Dependency Treebanks from CoNLL 2007 (Catalan and Basque Subset)
+
+Dependency Parsed Treebank 
+
+Portuguese Treebank 
+
+Penn Treebank 
+
+Sinica Treebank Corpus Sample 
+
+Universal Treebanks Version 2.0 
+
+York-Toronto-Helsinki Parsed Corpus of Old English Prose
+
+Tagged corpora
+-------------------------------
+Indian Language POS-Tagged Corpus 
+
+JEITA Public Morphologically Tagged Corpus (in ChaSen format) 
+
+MAC-MORPHO: Brazilian Portuguese news text with part-of-speech tags 
+
+Machado de Assis -- Obra Completa 
+
+MASC Tagged Corpus 
+
+SENSEVAL 2 Corpus: Sense Tagged Text  
+
+POS-taggers
+----------------------------
+Averaged Perceptron Tagger 
+
+Averaged Perceptron Tagger (Russian) 
+
+Treebank Part of Speech Tagger (HMM) 
+
+Treebank Part of Speech Tagger (Maximum entropy) 
