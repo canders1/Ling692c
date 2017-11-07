@@ -147,7 +147,9 @@ I'll demo the Earley parser, since we've discussed that in class, but probably t
 
 <h2>Word frequencies</h2>
 
-Another thing you might want to do with a text is understand how often different words are used. We can start by visualizing the relative frequencies of words in the text.
+Another thing you might want to do with a text is understand how often different words are used. We can start by finding the most common and least common words in Emma.
+
+We can also visualize word frequencies in a couple of ways.
 
 <h5>See freq.py</h5>
 
@@ -157,8 +159,16 @@ There are also tools for more computational approaches to semantics, such as sen
 
 <h5>See sentiment.py</h5>
 
+<h2>Lexical semantics</h2>
+
+The wsd module contains methods for word sense disambiguation. It is based on the WordNet project, which encodes hierarchically structured hypernym/hyponym relations between words in English.
+
+<h5>See wsd.py</h5>
+
 <h2>Fun stuff</h2>
 
 +Chomsky generator in the misc.chomsky module
 
 +Word search generator in the misc.wordfinder module
+
++Rude chat
