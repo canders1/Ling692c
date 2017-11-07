@@ -152,8 +152,49 @@ Corpora
 <p>Switchboard Corpus Sample</p>
 <p>Twitter Samples</p>
 <p>Universal Declaration of Human Rights Corpus</p>
-<div id="treebanks" class="section level2">
-<h2>Treebanks</h2>
+<p>Last class, I used the text of Emma from the Gutenberg corpus to train our spell-checker.</p>
+<h3>
+Getting started with corpora
+</h3>
+<p>You can download NLTK resources using the NLTK importer.</p>
+<p>Open a Python terminal and import NLTK. Then type:</p>
+<pre><code>nltk.download()</code></pre>
+<p>You should see a new window that lets you select modules from NLTK to download. This is helpful when working with large corpora, because you may not have space on your computer to download all of the corpora NLTK provides.</p>
+<p>Now that we have some texts downloaded, we can import them into a Python file and start working with them.</p>
+<h5>
+See corpora.py
+</h5>
+<h2>
+Part-of-speech tagging
+</h2>
+<p>NLTK provides a number of corpora that have already been part-of-speech tagged.</p>
+<h4>
+Tagged corpora
+</h4>
+<p>Indian Language POS-Tagged Corpus</p>
+<p>JEITA Public Morphologically Tagged Corpus (in ChaSen format)</p>
+<p>MAC-MORPHO: Brazilian Portuguese news text with part-of-speech tags</p>
+<p>Machado de Assis – Obra Completa</p>
+<p>MASC Tagged Corpus</p>
+<p>SENSEVAL 2 Corpus: Sense Tagged Text</p>
+<p>It also comes with a few part-of-speech taggers that you can apply to your own data.</p>
+<h4>
+POS-taggers
+</h4>
+<p>Averaged Perceptron Tagger</p>
+<p>Averaged Perceptron Tagger (Russian)</p>
+<p>Treebank Part of Speech Tagger (HMM)</p>
+<p>Treebank Part of Speech Tagger (Maximum entropy)</p>
+<h5>
+See pos.py
+</h5>
+<h2>
+Parsing
+</h2>
+<p>NLTK includes a number of treebanks (collections of parse trees) for various languages.</p>
+<h4>
+Treebanks
+</h4>
 <p>Alpino Dutch Treebank</p>
 <p>CESS-CAT Treebank</p>
 <p>CESS-ESP Treebank</p>
@@ -164,23 +205,18 @@ Corpora
 <p>Sinica Treebank Corpus Sample</p>
 <p>Universal Treebanks Version 2.0</p>
 <p>York-Toronto-Helsinki Parsed Corpus of Old English Prose</p>
-</div>
-<div id="tagged-corpora" class="section level2">
-<h2>Tagged corpora</h2>
-<p>Indian Language POS-Tagged Corpus</p>
-<p>JEITA Public Morphologically Tagged Corpus (in ChaSen format)</p>
-<p>MAC-MORPHO: Brazilian Portuguese news text with part-of-speech tags</p>
-<p>Machado de Assis – Obra Completa</p>
-<p>MASC Tagged Corpus</p>
-<p>SENSEVAL 2 Corpus: Sense Tagged Text</p>
-</div>
-<div id="pos-taggers" class="section level2">
-<h2>POS-taggers</h2>
-<p>Averaged Perceptron Tagger</p>
-<p>Averaged Perceptron Tagger (Russian)</p>
-<p>Treebank Part of Speech Tagger (HMM)</p>
-<p>Treebank Part of Speech Tagger (Maximum entropy)</p>
-</div>
+<p>There are also parsing algorithms that NLTK provides, including a Shift Reduce parser, a Recursive Descent parser, the Stanford parser, and an Earley parser.</p>
+<p>I’ll demo the Earley parser, since we’ve discussed that in class, but probably the others are better if you want to apply them to a lot of text.</p>
+<h5>
+See pos.py
+</h5>
+<h2>
+Word frequencies
+</h2>
+<p>Another thing you might want to do with a text is understand how often different words are used. We can start by visualizing the relative frequencies of words in the text.</p>
+<h5>
+See freq.py
+</h5>
 
 
 

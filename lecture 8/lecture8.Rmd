@@ -63,8 +63,62 @@ Twitter Samples
 
 Universal Declaration of Human Rights Corpus 
 
-Treebanks
---------------------------------
+Last class, I used the text of Emma from the Gutenberg corpus to train our spell-checker.
+
+<h3>Getting started with corpora</h3>
+
+You can download NLTK resources using the NLTK importer. 
+
+Open a Python terminal and import NLTK. Then type:
+
+```
+nltk.download()
+```
+
+You should see a new window that lets you select modules from NLTK to download. This is helpful when working with large corpora, because you may not have space on your computer to download all of the corpora NLTK provides.
+
+Now that we have some texts downloaded, we can import them into a Python file and start working with them.
+
+<h5>See corpora.py</h5>
+
+<h2>Part-of-speech tagging</h2>
+
+NLTK provides a number of corpora that have already been part-of-speech tagged. 
+
+<h4>Tagged corpora</h4>
+
+Indian Language POS-Tagged Corpus 
+
+JEITA Public Morphologically Tagged Corpus (in ChaSen format) 
+
+MAC-MORPHO: Brazilian Portuguese news text with part-of-speech tags 
+
+Machado de Assis -- Obra Completa 
+
+MASC Tagged Corpus 
+
+SENSEVAL 2 Corpus: Sense Tagged Text  
+
+It also comes with a few part-of-speech taggers that you can apply to your own data. 
+
+<h4>POS-taggers</h4>
+
+Averaged Perceptron Tagger 
+
+Averaged Perceptron Tagger (Russian) 
+
+Treebank Part of Speech Tagger (HMM) 
+
+Treebank Part of Speech Tagger (Maximum entropy) 
+
+<h5>See pos.py</h5>
+
+<h2>Parsing</h2>
+
+NLTK includes a number of treebanks (collections of parse trees) for various languages.
+
+<h4>Treebanks</h4>
+
 Alpino Dutch Treebank 
 
 CESS-CAT Treebank 
@@ -85,26 +139,14 @@ Universal Treebanks Version 2.0
 
 York-Toronto-Helsinki Parsed Corpus of Old English Prose
 
-Tagged corpora
--------------------------------
-Indian Language POS-Tagged Corpus 
+There are also parsing algorithms that NLTK provides, including a Shift Reduce parser, a Recursive Descent parser, the Stanford parser, and an Earley parser.
 
-JEITA Public Morphologically Tagged Corpus (in ChaSen format) 
+I'll demo the Earley parser, since we've discussed that in class, but probably the others are better if you want to apply them to a lot of text. 
 
-MAC-MORPHO: Brazilian Portuguese news text with part-of-speech tags 
+<h5>See pos.py</h5>
 
-Machado de Assis -- Obra Completa 
+<h2>Word frequencies</h2>
 
-MASC Tagged Corpus 
+Another thing you might want to do with a text is understand how often different words are used. We can start by visualizing the relative frequencies of words in the text.
 
-SENSEVAL 2 Corpus: Sense Tagged Text  
-
-POS-taggers
-----------------------------
-Averaged Perceptron Tagger 
-
-Averaged Perceptron Tagger (Russian) 
-
-Treebank Part of Speech Tagger (HMM) 
-
-Treebank Part of Speech Tagger (Maximum entropy) 
+<h5>See freq.py</h5>
