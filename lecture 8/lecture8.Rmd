@@ -150,3 +150,9 @@ I'll demo the Earley parser, since we've discussed that in class, but probably t
 Another thing you might want to do with a text is understand how often different words are used. We can start by visualizing the relative frequencies of words in the text.
 
 <h5>See freq.py</h5>
+
+<h2>Fun stuff</h2>
+
++Chomsky generator in the misc.chomsky module
+
++Word search generator in the misc.wordfinder module
