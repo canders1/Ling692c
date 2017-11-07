@@ -151,6 +151,12 @@ Another thing you might want to do with a text is understand how often different
 
 <h5>See freq.py</h5>
 
+<h2>Sentiment analysis</h2>
+
+There are also tools for more computational approaches to semantics, such as sentiment analysis. In the nltk.sentiment module, there are tools for marking parts of a sentence that are negated; calculating the sentiment of a sentence based on a supplied lexicon; and traning different kinds of sentiment classifiers.
+
+<h5>See sentiment.py</h5>
+
 <h2>Fun stuff</h2>
 
 +Chomsky generator in the misc.chomsky module
