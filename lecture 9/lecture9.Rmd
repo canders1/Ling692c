@@ -10,3 +10,14 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Today we're going to talk about data visualization and exporting data. Much of this lecture is borrowed from a data processing tutorial put together by Dan Saunders (https://github.com/gridclub/PythonPandasTutorial).
+
+<h2>Data Processing</h2>
+
+<h2>Data Visualization</h2>
+
+<h2>Exporting Data</h2>
+
+<h2>Bonus: Calling R from Python</h2>
+
+You can use the rpy2 library to run R directly from Python.
+
