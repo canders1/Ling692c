@@ -6,5 +6,6 @@ from nltk.tokenize import word_tokenize
 
 s = " ".join(gutenberg.sents('austen-emma.txt')[0])
 tokens = nltk.word_tokenize(s)
+print tokens
 tagged = nltk.pos_tag(tokens)
 print tagged

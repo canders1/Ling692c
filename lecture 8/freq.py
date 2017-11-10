@@ -19,4 +19,4 @@ emma.dispersion_plot(["she","he","Knightley","Emma","money","Elton"])
 emma.plot(30)
 
 #Words that are similar to "Knightley":
-emma.similar("Knightley")
+emma.similar("Caroline")
