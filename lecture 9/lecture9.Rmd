@@ -1,0 +1,12 @@
+---
+title: 'Programming in Python: Lecture 9'
+author: "Carolyn Jane Anderson"
+date: "11/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Today we're going to talk about data visualization and exporting data. Much of this lecture is borrowed from a data processing tutorial put together by Dan Saunders (https://github.com/gridclub/PythonPandasTutorial).
