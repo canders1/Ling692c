@@ -13,6 +13,9 @@ Today we're going to talk about data visualization and exporting data. Much of t
 
 <h2>Data Processing</h2>
 
+One useful library for data manipulation and processing in Python is pandas. Among other features, pandas provides a dataframe data structure that will be familiar to R folks.
+
+
 <h2>Data Visualization</h2>
 
 <h2>Exporting Data</h2>
