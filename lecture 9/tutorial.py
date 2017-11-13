@@ -18,8 +18,15 @@ for idx, column in enumerate(taxi_data.columns.values):
 print '\n'
 
 # Rename columns with odd or strangely formatted names.
-taxi_data = taxi_data.rename(index=str, columns={'lpep_pickup_datetime' : 'pickup_time','Lpep_dropoff_datetime' : 'dropoff_time','Pickup_longitude' : 'pickup_longitude','Pickup_latitude' : 'pickup_latitude','Dropoff_longitude' : 'dropoff_longitude','Dropoff_latitude' : 'dropoff_latitude','Passenger_count' : 'passengers','Trip_distance' : 'distance','Fare_amount' : 'fare','Tip_amount' : 'tip'})
+taxi_data = taxi_data.rename(index=str, columns={'lpep_pickup_datetime' : 'pickup_time','lpep_dropoff_datetime' : 'dropoff_time','PULocationID' : 'pickup_location','DOLocationID' : 'dropoff_location','passenger_count' : 'passengers','trip_distance' : 'distance','fare_amount' : 'fare','tip_amount' : 'tip'})
 
 # Select columns of interest and drop the rest
-interesting_columns = ['pickup_time', 'dropoff_time', 'pickup_longitude', 'pickup_latitude','dropoff_longitude', 'dropoff_latitude', 'passengers', 'distance', 'fare', 'tip']
+interesting_columns = ['pickup_time','dropoff_time','pickup_location','dropoff_location','passengers', 'distance', 'fare', 'tip']
 taxi_data = taxi_data[interesting_columns]
+
+#Drop columns without known locations for pick-up and drop-off
+taxi_data = taxi_data[(taxi_data['pickup_location'] < 264) & (taxi_data['dropoff_location'] < 264)]
+
+# Which columns remain?
+for idx, column in enumerate(taxi_data.columns.values):
+    print idx + 1, ':', column
