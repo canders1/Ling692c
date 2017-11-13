@@ -30,3 +30,29 @@ taxi_data = taxi_data[(taxi_data['pickup_location'] < 264) & (taxi_data['dropoff
 # Which columns remain?
 for idx, column in enumerate(taxi_data.columns.values):
     print idx + 1, ':', column
+
+# Pretty-prints the first 5 rowso of the DataFrame.
+print taxi_data.head(5),'\n'
+
+#Data exploration
+print '- Number of observations (datapoints) in the dataset:', len(taxi_data.index), '\n'
+print '- Mean distance traveled (in miles):', taxi_data['distance'].mean(), '\n'
+print '- Mean fare:', taxi_data['fare'].mean(), '\n'
+print '- Mean tip:', taxi_data['tip'].mean(), '\n'
+print '- Mean number of passengers:', taxi_data['passengers'].mean(), '\n'
+
+#Histograms
+
+plt.rcParams['figure.figsize'] = (10, 10)
+
+plt.hist(taxi_data['distance'], bins=25, range=[0, 15]); plt.xlabel('Trip distance (mi)')
+plt.ylabel('No. of observations'); plt.title('Histogram of taxicab trips by distance')
+plt.show()
+
+plt.hist(taxi_data['fare'], bins=25, range=[0, 75]); plt.xlabel('Trip fair (USD)')
+plt.ylabel('No. of observations'); plt.title('Histogram of taxicab trips by fare')
+plt.show()
+
+plt.hist(taxi_data['tip'], bins=25, range=[0, 15]); plt.xlabel('Trip tip (USD)')
+plt.ylabel('No. of observations'); plt.title('Histogram of taxicab trips by tip')
+plt.show()
