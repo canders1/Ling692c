@@ -10,7 +10,7 @@ from sklearn.cluster import KMeans
 # Load in the data using the 'read_csv' function.
 # The CSV file is too big to add to the Github, so I've put it in a Box folder
 # You can access it here: https://umass.box.com/s/b1zyepwpq85smiuw5esyf4ey2ia4gog0
-taxi_data = pd.read_csv('green_tripdata_2016-01.csv')
+taxi_data = pd.read_csv('~/Documents/temp/green_tripdata_2016-01.csv')
 
 # Pretty-prints the first 5 rows of the DataFrame.
 print taxi_data.head(5)
@@ -65,6 +65,18 @@ plt.ylabel('No. of observations'); plt.title('Histogram of taxicab trips by tip'
 plt.show()
 
 plt.rcParams["figure.figsize"] = (16, 16)
+"""
+"""
+#Pie chart
+plt.title('Number of Rides by Number of Passengers')
+fourormore = len(taxi_data[(taxi_data['Passenger_count'] >= 4)].index)
+three = len(taxi_data[(taxi_data['Passenger_count'] == 3)]['Total_amount'].index)
+two = len(taxi_data[(taxi_data['Passenger_count'] == 2)]['Total_amount'].index)
+one = len(taxi_data[(taxi_data['Passenger_count'] == 1)]['Total_amount'].index)
+pie_data = [fourormore,three,two,one]
+pie_labels = ['Four or more','Three','Two','One']
+plt.pie(pie_data, labels=pie_labels)
+plt.show()
 """
 """
 #Mapping:
@@ -190,3 +202,4 @@ plt.show()
 """
 #Export dataframe as csv again
 taxi_data.to_csv('out.csv')
+"""
