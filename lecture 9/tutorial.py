@@ -8,6 +8,8 @@ from mpl_toolkits.basemap import Basemap
 from sklearn.cluster import KMeans
 
 # Load in the data using the 'read_csv' function.
+# The CSV file is too big to add to the Github, so I've put it in a Box folder
+# You can access it here: https://umass.box.com/s/b1zyepwpq85smiuw5esyf4ey2ia4gog0
 taxi_data = pd.read_csv('green_tripdata_2016-01.csv')
 
 # Pretty-prints the first 5 rows of the DataFrame.
