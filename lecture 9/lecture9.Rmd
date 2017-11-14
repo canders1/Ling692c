@@ -1,0 +1,26 @@
+---
+title: 'Programming in Python: Lecture 9'
+author: "Carolyn Jane Anderson"
+date: "11/10/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Today we're going to talk about data visualization and exporting data. Much of this lecture is borrowed from a data processing tutorial put together by Dan Saunders (https://github.com/gridclub/PythonPandasTutorial).
+
+<h2>Data Processing</h2>
+
+One useful library for data manipulation and processing in Python is pandas. Among other features, pandas provides a dataframe data structure that will be familiar to R folks.
+
+
+<h2>Data Visualization</h2>
+
+<h2>Exporting Data</h2>
+
+<h2>Bonus: Calling R from Python</h2>
+
+You can use the rpy2 library to run R directly from Python.
+
