@@ -1,3 +1,10 @@
+"""
+Tutorial on data processing and visualization in Pandas
+Borrowed and adapted from one presented by Dan Saunders at the UMASS GRID club:
+https://github.com/gridclub/PythonPandasTutorial
+"""
+
+
 import scipy
 import colorsys
 import numpy as np
