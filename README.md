@@ -28,7 +28,11 @@ Topics are as follows:
 	Exercises: many small functional programming exercises
 
 7.	Trees and object-oriented programming
+
 	Exercises: binary search trees, tries, spell-check with tries
+
 8.	NLTK tutorial
+
 	Exercises: demos on POS-tagging, word frequency visualization, sentiment analysis, word sense disambiguation
+
 9.	Data visualization: tutorial by Dan Saunders
